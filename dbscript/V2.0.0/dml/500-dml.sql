@@ -21,9 +21,13 @@ INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_P
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`) VALUES (60706, 'queryAcceptBill', 'LTEinvoiceDate', 6, '1');
 
 --bug-286 字典修改 提交日期2016/11/17
-UPDATE `scfdev`.`t_cfg_dictitem` SET `C_NAME`='商业承兑汇票' WHERE  `ID`=1066;
-UPDATE `scfdev`.`t_cfg_dictitem` SET `C_NAME`='商业承兑汇票' WHERE  `ID`=30037;
-UPDATE `scfdev`.`t_cfg_dictitem` SET `C_NAME`='银行承兑汇票' WHERE  `ID`=1067;
-UPDATE `scfdev`.`t_cfg_dictitem` SET `C_NAME`='银行承兑汇票' WHERE  `ID`=30038;
+UPDATE `t_cfg_dictitem` SET `C_NAME`='商业承兑汇票' WHERE  `ID`=1066;
+UPDATE `t_cfg_dictitem` SET `C_NAME`='商业承兑汇票' WHERE  `ID`=30037;
+UPDATE `t_cfg_dictitem` SET `C_NAME`='银行承兑汇票' WHERE  `ID`=1067;
+UPDATE `t_cfg_dictitem` SET `C_NAME`='银行承兑汇票' WHERE  `ID`=30038;
 
+--bug-289 修改供应商变更  提交日期2016/11/17
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`) VALUES (60810, 'saveModifyOrder', 'custNO', 10, '1');
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`) VALUES (60410, 'saveModifyReceivable', 'coreCustNo', 10, '1');
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`) VALUES (60411, 'saveModifyReceivable', 'custNo', 11, '1');
 
