@@ -16,7 +16,14 @@ update t_cfg_menu set c_name='询价',c_title='询价' where id='218';
 update t_cfg_menu set c_name='融资还款',c_title='融资还款' where id='221';
 
 
---bug-254 出票日期 搜索条件无效
+--bug-254 出票日期 搜索条件无效 提交日期2016/11/16
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`) VALUES (60705, 'queryAcceptBill', 'GTEinvoiceDate', 5, '1');
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`) VALUES (60706, 'queryAcceptBill', 'LTEinvoiceDate', 6, '1');
+
+--bug-286 字典修改 提交日期2016/11/17
+UPDATE `scfdev`.`t_cfg_dictitem` SET `C_NAME`='商业承兑汇票' WHERE  `ID`=1066;
+UPDATE `scfdev`.`t_cfg_dictitem` SET `C_NAME`='商业承兑汇票' WHERE  `ID`=30037;
+UPDATE `scfdev`.`t_cfg_dictitem` SET `C_NAME`='银行承兑汇票' WHERE  `ID`=1067;
+UPDATE `scfdev`.`t_cfg_dictitem` SET `C_NAME`='银行承兑汇票' WHERE  `ID`=30038;
+
 
