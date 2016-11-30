@@ -98,3 +98,14 @@ INSERT INTO `scfdev`.`t_cfg_menu` (`id`, `c_name`, `c_title`, `c_url`, `n_parent
 UPDATE `scfdev`.`t_cfg_menu` SET `C_RULE_LIST`='SUPPLIER_USER,SELLER_USER' WHERE  `id`=311;
 UPDATE `scfdev`.`t_cfg_menu` SET `C_RULE_LIST`='SUPPLIER_USER,SELLER_USER' WHERE  `id`=312;
 UPDATE `scfdev`.`t_cfg_menu` SET `C_RULE_LIST`='SUPPLIER_USER,SELLER_USER' WHERE  `id`=313;
+
+
+
+##操作员添加对外经办人标识验证器内容   提交日期 2016/11/30
+delete from t_rule_busin_validator where id in (50103,50104);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (50103, 'addCustOperator', 'clerkMan', 16, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (50104, 'updateCustOperator', 'clerkMan', 7, '1', NULL, NULL, NULL, NULL, NULL);
+
+delete from t_rule_validator where C_VALID_NAME='clerkMan';
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'clerkMan', '对外经办人标识', 'clerkMan', '0', 'C', 1, 0, 1, 0, NULL, NULL, '20161130', '20161130', '对外经办人标识', NULL, NULL, NULL, NULL);
+
