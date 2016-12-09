@@ -1,35 +1,56 @@
-##-- DDLÓï¾ä
+##-- DDLï¿½ï¿½ï¿½
 ##
 ##-- V1.0
 ##
-##-- ±í½á¹¹·Ç¿ÕÐÞ¸Ä		Ìá½»ÈÕÆÚ2016/11/18
+##-- ï¿½ï¿½á¹¹ï¿½Ç¿ï¿½ï¿½Þ¸ï¿½		ï¿½á½»ï¿½ï¿½ï¿½ï¿½2016/11/18
 ALTER TABLE `t_scf_receivable`
-	CHANGE COLUMN `C_GOODSNAME` `C_GOODSNAME` VARCHAR(40) NULL COMMENT 'ÉÌÆ·Ãû³Æ' AFTER `C_DEBTOR`;
+	CHANGE COLUMN `C_GOODSNAME` `C_GOODSNAME` VARCHAR(40) NULL COMMENT 'ï¿½ï¿½Æ·ï¿½ï¿½ï¿½' AFTER `C_DEBTOR`;
 	
-##¿ª»§ÓÅ»¯ÏàÓ¦±íÔö¼Ó×Ö¶Î   Ìá½»ÈÕÆÚ2016/11/25
+##ï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½   ï¿½á½»ï¿½ï¿½ï¿½ï¿½2016/11/25
 ALTER TABLE `t_cust_open_account_tmp`
-	ADD COLUMN `C_TAX_NO` VARCHAR(120) NULL DEFAULT NULL COMMENT 'Ë°ÎñµÇ¼ÇÖ¤ºÅ' AFTER `C_CORELIST`,
-	ADD COLUMN `C_OPEN_LICENSE` VARCHAR(120) NULL DEFAULT NULL COMMENT '¿ª»§Ðí¿ÉÖ¤ºË×¼ºÅ' AFTER `C_TAX_NO`;
+	ADD COLUMN `C_TAX_NO` VARCHAR(120) NULL DEFAULT NULL COMMENT 'Ë°ï¿½ï¿½Ç¼ï¿½Ö¤ï¿½ï¿½' AFTER `C_CORELIST`,
+	ADD COLUMN `C_OPEN_LICENSE` VARCHAR(120) NULL DEFAULT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½×¼ï¿½ï¿½' AFTER `C_TAX_NO`;
 ALTER TABLE `t_cust_mech_bankacco_tmp`
-	ADD COLUMN `C_OPEN_LICENSE` VARCHAR(120) NULL DEFAULT NULL COMMENT '¿ª»§Ðí¿ÉÖ¤ºË×¼ºÅ' AFTER `N_BATCHNO`;
+	ADD COLUMN `C_OPEN_LICENSE` VARCHAR(120) NULL DEFAULT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½×¼ï¿½ï¿½' AFTER `N_BATCHNO`;
 	ALTER TABLE `t_cust_mech_bankacco`
-	ADD COLUMN `C_OPEN_LICENSE` VARCHAR(120) NULL DEFAULT NULL COMMENT '¿ª»§Ðí¿ÉÖ¤ºË×¼ºÅ' AFTER `N_BATCHNO`;
+	ADD COLUMN `C_OPEN_LICENSE` VARCHAR(120) NULL DEFAULT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½×¼ï¿½ï¿½' AFTER `N_BATCHNO`;
 	
 ALTER TABLE `t_cust_open_account_tmp`
-	ADD COLUMN `C_WECHAT_OPENID` VARCHAR(120) NULL DEFAULT NULL COMMENT 'Î¢ÐÅÓÃ»§±êÊ¶' AFTER `C_OPEN_LICENSE`,
-	ADD COLUMN `C_DEAL_PASSWORD` VARCHAR(120) NULL DEFAULT NULL COMMENT '½»Ò×ÃÜÂë(½öÎ¢ÐÅÓÐ)' AFTER `C_WECHAT_OPENID`,
-	ADD COLUMN `C_ROLE` VARCHAR(18) NULL DEFAULT NULL COMMENT '½ÇÉ«£º¹©Ó¦ÉÌ¡¢¾­ÏúÉÌ' AFTER `C_DEAL_PASSWORD`;
-##ÎÄ¼þÀàÐÍ×Ö¶Î³¤¶È   Ìá½»ÈÕÆÚ2016/11/29
+	ADD COLUMN `C_WECHAT_OPENID` VARCHAR(120) NULL DEFAULT NULL COMMENT 'Î¢ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ê¶' AFTER `C_OPEN_LICENSE`,
+	ADD COLUMN `C_DEAL_PASSWORD` VARCHAR(120) NULL DEFAULT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Î¢ï¿½ï¿½ï¿½ï¿½)' AFTER `C_WECHAT_OPENID`,
+	ADD COLUMN `C_ROLE` VARCHAR(18) NULL DEFAULT NULL COMMENT 'ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ì¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' AFTER `C_DEAL_PASSWORD`;
+##ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶Î³ï¿½ï¿½ï¿½   ï¿½á½»ï¿½ï¿½ï¿½ï¿½2016/11/29
 ALTER TABLE `t_cust_fileaduit`
 	CHANGE COLUMN `C_TYPE` `C_TYPE` VARCHAR(60) NULL DEFAULT NULL AFTER `C_STATUS`;
-##¿ª»§Ôö¼Ó×ÔÖ÷¿ª»§×´Ì¬   	Ìá½»ÈÕÆÚ2016/12/2
+
+##ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬   	ï¿½á½»ï¿½ï¿½ï¿½ï¿½2016/12/2
 ALTER TABLE `t_cust_open_account_tmp`
-	CHANGE COLUMN `C_BUSIN_STATUS` `C_BUSIN_STATUS` CHAR(1) NULL DEFAULT NULL COMMENT '0Î´Ê¹ÓÃ  1Ê¹ÓÃÖÐ  2ÒÑÊ¹ÓÃ 3²µ»Ø4×ÔÖ÷¿ª»§' AFTER `T_MODI_TIME`;
-##¿ª»§ÓÅ»¯µãÔö¼Ó×Ö¶Î			Ìá½»ÈÕÆÚ2016/12/6
+	CHANGE COLUMN `C_BUSIN_STATUS` `C_BUSIN_STATUS` CHAR(1) NULL DEFAULT NULL COMMENT '0Î´Ê¹ï¿½ï¿½  1Ê¹ï¿½ï¿½ï¿½ï¿½  2ï¿½ï¿½Ê¹ï¿½ï¿½ 3ï¿½ï¿½ï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' AFTER `T_MODI_TIME`;
+##ï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½			ï¿½á½»ï¿½ï¿½ï¿½ï¿½2016/12/6
 ALTER TABLE `t_cust_open_account_tmp`
-	ADD COLUMN `C_OPER_OTHER_IDENTTYPE` VARCHAR(20) NULL DEFAULT NULL COMMENT '¾­°ìÈËÆäËûÖ¤¼þÀàÐÍ' AFTER `C_OPER_IDENTTYPE`,
-	ADD COLUMN `C_LAW_OTHER_IDENTTYPE` VARCHAR(20) NULL DEFAULT NULL COMMENT '·¨ÈËÆäËûÖ¤¼þÀàÐÍ' AFTER `C_LAW_IDENTTYPE`,
-	ADD COLUMN `C_DATA_SOURCE` CHAR(1) NOT NULL DEFAULT NULL COMMENT 'Êý¾ÝÀ´Ô´:0:PC×ÔÖ÷¿ª»§,1:PCÆ½Ì¨´úÂ¼,2:Î¢ÐÅÆ½Ì¨´úÂ¼' AFTER `C_ROLE`;
+	ADD COLUMN `C_OPER_OTHER_IDENTTYPE` VARCHAR(20) NULL DEFAULT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' AFTER `C_OPER_IDENTTYPE`,
+	ADD COLUMN `C_LAW_OTHER_IDENTTYPE` VARCHAR(20) NULL DEFAULT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' AFTER `C_LAW_IDENTTYPE`,
+	ADD COLUMN `C_DATA_SOURCE` CHAR(1) NOT NULL DEFAULT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½Ô´:0:PCï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,1:PCÆ½Ì¨ï¿½ï¿½Â¼,2:Î¢ï¿½ï¿½Æ½Ì¨ï¿½ï¿½Â¼' AFTER `C_ROLE`;
 ALTER TABLE `t_cust_open_account_tmp`
-	ADD COLUMN `D_ACTIVE_DATE` VARCHAR(8) NULL DEFAULT NULL COMMENT '¼¤»îÈÕÆÚ' AFTER `C_DATA_SOURCE`,
-	ADD COLUMN `T_ACTIVE_TIME` VARCHAR(8) NULL DEFAULT NULL COMMENT '¼¤»îÊ±¼ä' AFTER `D_ACTIVE_DATE`;
+	ADD COLUMN `D_ACTIVE_DATE` VARCHAR(8) NULL DEFAULT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' AFTER `C_DATA_SOURCE`,
+	ADD COLUMN `T_ACTIVE_TIME` VARCHAR(8) NULL DEFAULT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½' AFTER `D_ACTIVE_DATE`;
+	
+	
+##ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ ï¿½á½»ï¿½ï¿½ï¿½ï¿½2016/12/08
+CREATE TABLE `t_cust_fileaduit_temp` (
+	`ID` DECIMAL(18,0) NULL DEFAULT NULL,
+	`L_CUSTNO` DECIMAL(18,0) NULL DEFAULT NULL,
+	`N_COUNT` DECIMAL(5,0) NULL DEFAULT NULL,
+	`C_STATUS` VARCHAR(1) NULL DEFAULT NULL,
+	`C_TYPE` VARCHAR(60) NULL DEFAULT NULL,
+	`C_DESCRIPTION` VARCHAR(200) NULL DEFAULT NULL,
+	`D_REGDATE` VARCHAR(8) NULL DEFAULT NULL,
+	`D_REGTIME` VARCHAR(8) NULL DEFAULT NULL,
+	`D_MODIDATE` VARCHAR(15) NULL DEFAULT NULL,
+	`C_OPERNO` VARCHAR(8) NULL DEFAULT NULL,
+	`L_ADUIT_CUSTNO` DECIMAL(18,0) NULL DEFAULT NULL,
+	`C_ADUITORNO` VARCHAR(8) NULL DEFAULT NULL,
+	`D_ADUIT_DATE` VARCHAR(15) NULL DEFAULT NULL,
+	UNIQUE INDEX `PK_CUST_FILEADUIT` (`ID`, `L_CUSTNO`, `C_TYPE`)
+);
+
