@@ -4,132 +4,76 @@
 
     <property file="settings/release.properties"/>
 
-    <property name="dbscriptsdir"  value="${basedir}/dbscripts"/>
+    <property name="dbscriptsdir"  value="${basedir}/dbscript" />
+	
+	<property name="tempdir" value="${basedir}/temp" />
+	
+	<property name="outputdir" value="${basedir}/output" />
 
- <target name="gen-db">
-        <echo level="info" message="running" />
-        <var name="hello" value="${working.dir}/${build-ver}/${gen.db.type}/install"/>
-
-        <execdirsql
-                        dbhost="127.0.0.1"
-                        dbport="3306"
-                        dbname="scfdev"
-                        dbuser="finance"
-                        dbpwd="1"
-                        classpath="${basedir}/ant-lib/mysql-connector-java-5.1.31.jar"
-                        dir="${dbscriptsdir}/tables"
-                        logdir="${basedir}/logs"/>
-        <execdirsql
-                        dbhost="127.0.0.1"
-                        dbport="3306"
-                        dbname="scfdev"
-                        dbuser="finance"
-                        dbpwd="1"
-                        classpath="${basedir}/ant-lib/mysql-connector-java-5.1.31.jar"
-                        dir="${dbscriptsdir}/validator"
-                        logdir="${basedir}/logs"/>
-
-         <exportMysqlDump
-                        dbhost="127.0.0.1"
-                        dbport="3306"
-                        dbname="scfdev"
-                        dbuser="finance"
-                        dbpwd="1"
-                        dumpfile="${basedir}/output/scfdev_1.sql"
-        />     
-        <importMysqlImport
-                        dbhost="127.0.0.1"
-                        dbport="3306"
-                        dbname="test123"
-                        dbuser="finance"
-                        dbpwd="1"
-                        dumpfile="${basedir}/output/scfdev_1.sql"
-        />                        
-    </target>
-
-        <target name="dumpDB">
-             <exportMysqlDump
-                        dbhost="127.0.0.1"
-                        dbport="3306"
-                        dbname="scfdev"
-                        dbuser="finance"
-                        dbpwd="1"
-                        dumpfile="${basedir}/output/scfdev_1.sql"
-        />     
-    </target>
-
-    <target name="importDB">
-            <importMysqlImport
-                        dbhost="127.0.0.1"
-                        dbport="3306"
-                        dbname="test123"
-                        dbuser="finance"
-                        dbpwd="1"
-                        dumpfile="${basedir}/output/scfdev_1.sql"
+	<target name="gen-db">
+        <echo level="info" message="begin gen db" />
+		
+		
+		<!-- scan and combine sql -->
+		<scanAndCombineSql dbscriptsdir="${dbscriptsdir}" outputdir="${tempdir}/sql" version="${gen.release.version}"/>
+		
+		<!-- rebuild scf_build db -->
+		<rebuildMysqlDb
+			dbhost="${dbhost}"
+			dbport="${dbport}"
+			dbname="${dbname}"
+			dbuser="${dbuser}"
+			dbpwd="${dbpwd}"
+        />
+		
+		<!-- restore base db -->
+		<importMysqlImport
+			dbhost="${dbhost}"
+			dbport="${dbport}"
+			dbname="${dbname}"
+			dbuser="${dbuser}"
+			dbpwd="${dbpwd}"
+			dumpfile="${basedir}/basedb/scf_db_${pre.release.version}.sql"
         />    
+		
+		<!-- exec sql scripts -->
+		<execdirsql 
+			dbhost="${dbhost}"
+			dbport="${dbport}"
+			dbname="${dbname}"
+			dbuser="${dbuser}"
+			dbpwd="${dbpwd}"
+			dir="${tempdir}/sql"
+			logdir="${basedir}/logs"
+			classpath="${basedir}/ant-lib/mysql-connector-java-5.1.31.jar"/>
+		
+		
+		<!-- backup sql -->
+		<copy todir="${outputdir}/sql">
+           <fileset dir="${tempdir}/sql">
+             <include name="***" />
+           </fileset>
+       </copy>  
+	   
+	   
+		<!-- backup db -->
+		<exportMysqlDump
+			dbhost="${dbhost}"
+			dbport="${dbport}"
+			dbname="${dbname}"
+			dumpfile="${outputdir}/db/scf_dev.sql"
+        />   
+		
+        <echo level="info" message="end gen db" />
     </target>
 
-    <target name="single-run">
-        <echo level="info" message="running" />
-        <var name="hello" value="${working.dir}/${build-ver}/${gen.db.type}/install"/>
-
-        <execsql
-                        dbhost="mysql.vanlin.me"
-                        dbport="3306"
-                        dbname="testdb"
-                        dbuser="finance"
-                        dbpwd="1"
-                        classpath="${basedir}/ant-lib/mysql-connector-java-5.1.31.jar"
-                        sqlfile="${dbscriptsdir}/hello.sql"
-                        logfile="${dbscriptsdir}/hello.sql.log"/>
-
-        <importMysqlDump
-                        dbhost="mysql.vanlin.me"
-                        dbport="3306"
-                        dbname="scfdev"
-                        dbuser="finance"
-                        dbpwd="1"
-                        dumpfile="xyzabc.sql"
-        />     
-        <importMysqlImport
-                        dbhost="mysql.vanlin.me"
-                        dbport="3306"
-                        dbname="test123"
-                        dbuser="finance"
-                        dbpwd="1"
-                        dumpfile="xyzabc.sql"
-        />                    
-    </target>
-
-    <target name="dumpdb">
-        <importMysqlDump
-                        dbhost="mysql.vanlin.me"
-                        dbport="3306"
-                        dbname="testdb"
-                        dbuser="finance"
-                        dbpwd="1"
-                        dumpfile="xyzabc.sql"
-        /> 
-    </target>
-
-    <target name="importdb">
-        <importMysqlImport
-                        dbhost="mysql.vanlin.me"
-                        dbport="3306"
-                        dbname="test123"
-                        dbuser="finance"
-                        dbpwd="1"
-                        dumpfile="xyzabc.sql"
-        />  
-    </target>
-
-    <target name="rebuilddb">
-        <rebuildMysqlDb
-                        dbhost="mysql.vanlin.me"
-                        dbport="3306"
-                        dbname="test123"
-                        dbuser="finance"
-                        dbpwd="1"
-        />  
-    </target>
+	<target name="backup">
+		<exportMysqlDump
+			dbhost="${dbhost}"
+			dbport="${dbport}"
+			dbname="${dbname}"
+			dumpfile="${outputdir}/db/scf_dev.sql"
+        />   
+	</target>
+ 
 </project>
