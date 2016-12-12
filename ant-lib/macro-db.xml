@@ -1,0 +1,196 @@
+
+<project>
+
+    <macrodef name="execdirsql"
+              description="Rull all SQL in the dir (Depends on marcodef: execsql)
+                           Note: Need to load the dbProfile properties file (Run the task: -verify-load-dbprofile)">
+        <attribute name="dbhost" description="Host Name/ IP of the DB"/>
+        <attribute name="dbport" description="DB Port" default="3306"/>
+        <attribute name="dbuser" description="DB User name"/>
+        <attribute name="dbpwd" description="DB Password"/>
+        <attribute name="dbname" description="DB Name"/>
+        <attribute name="classpath" description="classpath"/>
+        <attribute name="dir" description="Folder that store the SQL to be executed"/>
+        <attribute name="logdir" default="" description="Folder that store the log files"/>
+        <sequential>
+            <echo>[execdirsql] SQL Folder: @{dir}</echo>
+            <fail>
+                <condition><not><available file="@{dir}" type="dir" /></not></condition>-
+= **[ ERROR ]** ===============================================================
+ Folder not found:
+ @{dir}
+===============================================================================
+            </fail>
+            <if><equals arg1="@{logdir}" arg2=""/><then>
+                <tstamp><format property="vl-runSqlTime" pattern="yyyyMMddHHmmssSSS"/></tstamp>
+                <var name="actualLogDir" value="@{dir}.${vl-runSqlTime}.logs"/>
+            </then><else>
+                <var name="actualLogDir" value="@{logdir}"/>
+            </else></if>
+
+            <mkdir dir="${actualLogDir}"/>
+            <for param="file">
+                <path>
+                    <sort xmlns:rcmp="antlib:org.apache.tools.ant.types.resources.comparators">
+                        <fileset dir="@{dir}" includes="*.sql" casesensitive="false"/>
+                    </sort>
+                </path>
+                <sequential>
+                    <propertyregex override="yes" property="sqlFileName" input="@{file}"
+                                   regexp=".*[\\/](.*)\.sql"
+                                   replace="\1.sql" casesensitive="false"/>
+                    <echo>SQL: ${sqlFileName}</echo>
+                    <execsql
+                        dbhost="@{dbhost}"
+                        dbport="@{dbport}"
+                        dbname="@{dbname}"
+                        dbuser="@{dbuser}"
+                        dbpwd="@{dbpwd}"
+                        classpath="@{classpath}"
+                        sqlfile="@{file}"
+                        logfile="${actualLogDir}/${sqlFileName}.log"/>
+                </sequential>
+            </for>
+            <echo>Log files stored in ${actualLogDir}</echo>
+        </sequential>
+	</macrodef>
+
+    <macrodef name="execsql" description="Run single SQL file.">
+        <attribute name="dbhost" description="Host Name/ IP of the DB"/>
+        <attribute name="dbport" description="DB Port" default="3306"/>
+        <attribute name="dbdriver" description="DB Driver" default="com.mysql.jdbc.Driver"/>
+        <attribute name="dbuser" description="DB User name"/>
+        <attribute name="dbname" description="DB name"/>
+        <attribute name="dbpwd" description="DB Password"/>
+        <attribute name="classpath" description="DB classpath"/>
+        <attribute name="dbautocommit" description="DB auto commit" default="false"/>
+        <attribute name="sqlfile" description="SQL file to be run"/>
+        <attribute name="logfile" default="sql.log" description="Log file"/>
+        <sequential>
+		    <echo>@{sqlfile}</echo>
+             <sql
+						driver="@{dbdriver}"
+						url="jdbc:mysql://@{dbhost}:@{dbport}/@{dbname}"
+						userid="@{dbuser}"
+						password="@{dbpwd}"
+                        classpath="@{classpath}"
+						src="@{sqlfile}" 
+						output="@{logfile}"
+						autocommit="@{dbautocommit}" 
+						keepformat="true"
+						delimiter=";" 
+					>
+					
+		
+					</sql>
+					
+         </sequential>
+    </macrodef>
+
+
+    <macrodef name="exportMysqlDump">
+        <attribute name="dbhost" description="Host Name/ IP of the DB"/>
+        <attribute name="dbport" description="DB Port" default="1521"/>
+        <attribute name="dbname" description="DB Name"/>
+        <attribute name="dbuser" description="DB User name"/>
+        <attribute name="dbpwd" description="DB Password"/>
+        <attribute name="dumpfile" description="DB Dumpfile to be restored"/>
+        <attribute name="directory" description="Oracle dumpfile directory" default=""/>
+        <sequential>
+            <tstamp>
+                <format property="runSqlTime" pattern="yyyyMMddHHmmssSSS"/>
+            </tstamp>
+            <echo>Create IMPORT_SCHEMA script</echo>
+			
+            <exec executable="mysqldump" output="@{dumpfile}.sql" failonerror="true">
+                    <arg line="-h @{dbhost}"/>
+                    <arg line="-P @{dbport}"/>
+                    <arg line="-B @{dbname}"/>
+                    <arg line="-u @{dbuser}"/>
+                    <arg line="-p@{dbpwd}"/>
+                    <arg line="-x"/>
+                    <arg line="--tables"/>
+					<arg line="--hex-blo"/>
+                    <arg line="-F"/>
+            </exec>
+			 
+        </sequential>
+    </macrodef>
+	
+	
+	<scriptdef name="scanAndCombineSql" language="javascript"
+               src="${basedir}/ant-lib/scan-and-combine-sql.js"
+               description="Scan Excel folder and generate SQL">
+        <!-- Note: All attributes will be in lower case.
+                   When use, it can be mix of upper and lower case.
+                   e.g. outputpath ==> outputPath
+        -->
+        <attribute name="excelfolder"/>
+        <attribute name="startmodule"/>
+        <attribute name="outputpath"/>
+        <attribute name="gentype"/>
+        <attribute name="dbuser"/>
+        <attribute name="dbpwd"/>
+        <attribute name="dbname"/>
+        <attribute name="dbport"/>
+        <attribute name="dbservice"/>
+        <attribute name="modules"/>
+        <attribute name="popups"/>
+        <attribute name="overwritesql"/>
+        <attribute name="diffcvstxtfile"/>
+    </scriptdef>
+
+
+    <macrodef name="importMysqlImport">
+        <attribute name="dbhost" description="Host Name/ IP of the DB"/>
+        <attribute name="dbport" description="DB Port" default="1521"/>
+        <attribute name="dbname" description="DB Name"/>
+        <attribute name="dbuser" description="DB User name"/>
+        <attribute name="dbpwd" description="DB Password"/>
+        <attribute name="dumpfile" description="DB Dumpfile to be restored"/>
+        <attribute name="directory" description="Oracle dumpfile directory" default=""/>
+        <sequential>
+            <tstamp>
+                <format property="runSqlTime" pattern="yyyyMMddHHmmssSSS"/>
+            </tstamp>
+            <echo>Create IMPORT_SCHEMA script</echo>
+			
+            <exec executable="mysql" input="@{dumpfile}"  failonerror="true">
+                    <arg line="-h @{dbhost}"/>
+                    <arg line="-P @{dbport}"/>
+                    <arg line="-u @{dbuser}"/>
+                    <arg line="-p@{dbpwd}"/>
+                    <arg line="@{dbname}"/>
+					<arg line="--hex-blo"/>
+            </exec>
+			 
+        </sequential>
+    </macrodef>
+
+    <macrodef name="rebuildMysqlDb">
+        <attribute name="dbhost" description="Host Name/ IP of the DB"/>
+        <attribute name="dbport" description="DB Port" default="1521"/>
+        <attribute name="dbname" description="DB Name"/>
+        <attribute name="dbuser" description="DB User name"/>
+        <attribute name="dbpwd" description="DB Password"/>
+        <sequential>
+            <tstamp>
+                <format property="runSqlTime" pattern="yyyyMMddHHmmssSSS"/>
+            </tstamp>
+            <echo>Create IMPORT_SCHEMA script</echo>
+			
+            <exec executable="mysql" inputstring="drop database if exists @{dbname}">
+                    <arg line="-h @{dbhost}"/>
+                    <arg line="-P @{dbport}"/>
+                    <arg line="-u @{dbuser}"/>
+                    <arg line="-p@{dbpwd}"/>
+            </exec>
+			 <exec executable="mysql" inputstring="create database if not exists @{dbname}">
+                    <arg line="-h @{dbhost}"/>
+                    <arg line="-P @{dbport}"/>
+                    <arg line="-u @{dbuser}"/>
+                    <arg line="-p@{dbpwd}"/>
+            </exec>
+        </sequential>
+    </macrodef>
+</project>
