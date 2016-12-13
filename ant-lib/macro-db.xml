@@ -79,6 +79,7 @@
 				autocommit="@{dbautocommit}" 
 				keepformat="true"
 				encoding="utf8"
+				print="true"
 				delimiter="$$" 
 			></sql>
 					
