@@ -1,5 +1,8 @@
 /target/
 /bin/
+/logs/
+/output/
+/temp/
 /.settings/
 .project
 .classpath

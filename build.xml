@@ -15,15 +15,13 @@
 		
 		
 		<!-- scan and combine sql -->
-		<scanAndCombineSql dbscriptsdir="${dbscriptsdir}" outputdir="${tempdir}/sql" version="${gen.release.version}"/>
+		<scanAndCombineSql dbscriptsdir="${dbscriptsdir}" tempdir="${tempdir}" outputdir="${outputdir}" version="${gen.release.version}"/>
 		
 		<!-- rebuild scf_build db -->
 		<rebuildMysqlDb
 			dbhost="${dbhost}"
 			dbport="${dbport}"
 			dbname="${dbname}"
-			dbuser="${dbuser}"
-			dbpwd="${dbpwd}"
         />
 		
 		<!-- restore base db -->
@@ -31,8 +29,6 @@
 			dbhost="${dbhost}"
 			dbport="${dbport}"
 			dbname="${dbname}"
-			dbuser="${dbuser}"
-			dbpwd="${dbpwd}"
 			dumpfile="${basedir}/basedb/scf_db_${pre.release.version}.sql"
         />    
 		
