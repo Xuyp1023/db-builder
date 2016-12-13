@@ -117,6 +117,7 @@
                description="Scan Excel folder and generate SQL">
         <attribute name="dbscriptsdir"/>
         <attribute name="outputdir"/>
+		<attribute name="tempdir"/>
 		<attribute name="version"/>
     </scriptdef>
 
@@ -125,8 +126,6 @@
         <attribute name="dbhost" description="Host Name/ IP of the DB"/>
         <attribute name="dbport" description="DB Port" default="1521"/>
         <attribute name="dbname" description="DB Name"/>
-        <attribute name="dbuser" description="DB User name"/>
-        <attribute name="dbpwd" description="DB Password"/>
         <attribute name="dumpfile" description="DB Dumpfile to be restored"/>
         <attribute name="directory" description="dumpfile directory" default=""/>
         <sequential>
@@ -138,8 +137,6 @@
             <exec executable="mysql" input="@{dumpfile}"  failonerror="true">
 				<arg line="-h @{dbhost}"/>
 				<arg line="-P @{dbport}"/>
-				<arg line="-u @{dbuser}"/>
-				<arg line="-p@{dbpwd}"/>
 				<arg line="@{dbname}"/>
             </exec>
 			 
@@ -150,8 +147,6 @@
         <attribute name="dbhost" description="Host Name/ IP of the DB"/>
         <attribute name="dbport" description="DB Port" default="1521"/>
         <attribute name="dbname" description="DB Name"/>
-        <attribute name="dbuser" description="DB User name"/>
-        <attribute name="dbpwd" description="DB Password"/>
         <sequential>
             <tstamp>
                 <format property="runSqlTime" pattern="yyyyMMddHHmmssSSS"/>
@@ -161,14 +156,10 @@
             <exec executable="mysql" inputstring="drop database if exists @{dbname}">
 				<arg line="-h @{dbhost}"/>
 				<arg line="-P @{dbport}"/>
-				<arg line="-u @{dbuser}"/>
-				<arg line="-p@{dbpwd}"/>
             </exec>
 			 <exec executable="mysql" inputstring="create database if not exists @{dbname}">
 				<arg line="-h @{dbhost}"/>
 				<arg line="-P @{dbport}"/>
-				<arg line="-u @{dbuser}"/>
-				<arg line="-p@{dbpwd}"/>
             </exec>
         </sequential>
     </macrodef>

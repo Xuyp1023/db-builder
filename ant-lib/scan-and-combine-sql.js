@@ -23,19 +23,36 @@ var DirectoryStream = java.nio.file.DirectoryStream;
 var params = {
 	dbscriptsdir:'' + attributes.get('dbscriptsdir'),
 	outputdir:'' + attributes.get('outputdir'),
+	tempdir:'' + attributes.get('tempdir'),
 	version:'' + attributes.get('version'),
 	ddldir:'' + attributes.get('dbscriptsdir') + "/" + '' + attributes.get('version') + "/ddl",
 	dmldir:'' + attributes.get('dbscriptsdir') + "/" + '' + attributes.get('version') + "/dml"
 };
 //-- set default value for the input attributes (Note that all attributes should be in lower-case)
 
-params.ddl_pre = params.outputdir + "/01-ddl-pre-" + params.version + ".sql";
-params.ddl = params.outputdir + "/03-ddl-" + params.version + ".sql";
-params.ddl_post = params.outputdir + "/05-ddl-post-" + params.version + ".sql";
+params.ddl_pre = params.tempdir + "/sql/01-ddl-pre-" + params.version + ".sql";
+params.ddl = params.tempdir + "/sql/03-ddl-" + params.version + ".sql";
+params.ddl_post = params.tempdir + "/sql/05-ddl-post-" + params.version + ".sql";
 
-params.dml_pre = params.outputdir + "/02-dml-pre-" + params.version + ".sql";
-params.dml = params.outputdir + "/04-dml-" + params.version + ".sql";
-params.dml_post = params.outputdir + "/06-dml-post-" + params.version + ".sql";
+params.dml_pre = params.tempdir + "/sql/02-dml-pre-" + params.version + ".sql";
+params.dml = params.tempdir + "/sql/04-dml-" + params.version + ".sql";
+params.dml_post = params.tempdir + "/sql/06-dml-post-" + params.version + ".sql";
+
+
+prepare(params);
+
+
+function prepare(params) {
+	var tempdir = new File(params.tempdir + "/sql");
+	if (!tempdir.exists()) {
+		tempdir.mkdirs();
+	}
+	var dbdir = new File(params.outputdir + "/db");
+	if (!dbdir.exists()) {
+		dbdir.mkdirs();
+	}
+};
+
 
 combine(params);
 
