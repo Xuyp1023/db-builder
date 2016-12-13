@@ -156,8 +156,6 @@ function fileMerge(src, fos) {
 		var bufw = new BufferedWriter(fos);
 		bufw.newLine();
 		bufw.newLine();
-		bufw.write("DELIMITER $$");
-		bufw.newLine();
 		bufw.write("### ------------ file: " + src.getName());
 		bufw.newLine();
 		while ((b = bufr.readLine()) != null) {
