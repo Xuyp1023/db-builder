@@ -74,14 +74,14 @@
 				userid="@{dbuser}"
 				password="@{dbpwd}"
 				classpath="@{classpath}"
-				src="@{sqlfile}" 
 				output="@{logfile}"
-				autocommit="@{dbautocommit}" 
 				keepformat="true"
 				encoding="utf8"
 				print="true"
 				delimiter="$$" 
-			></sql>
+			>
+				<transaction  src="@{sqlfile}"/>
+			</sql>
 					
          </sequential>
     </macrodef>
