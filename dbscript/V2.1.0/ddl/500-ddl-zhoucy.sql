@@ -1,9 +1,9 @@
-##-- ÎÄ¼şÀàĞÍ±íÖĞÔö¼Ó×Ö¶ÎÔÊĞíµÄÎÄ¼şÀàĞÍ	Ìá½»ÈÕÆÚ2016/12/14s
+##-- æ–‡ä»¶ç±»å‹è¡¨ä¸­å¢åŠ å­—æ®µå…è®¸çš„æ–‡ä»¶ç±»å‹	æäº¤æ—¥æœŸ2016/12/14s
 	drop PROCEDURE if EXISTS change_table_col$$
 	create procedure change_table_col() BEGIN   
 	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cfg_auth_filegroup' AND COLUMN_NAME='c_permit_filetypes')
 	THEN   
-		ALTER TABLE `t_cfg_auth_filegroup`	ADD COLUMN `c_permit_filetypes` VARCHAR(100) NULL DEFAULT NULL COMMENT '¸ÃÀàĞÍÔÊĞíµÄÎÄ¼şÀàĞÍ£¬¶à¸öÊ¹ÓÃ¶ººÅ·Ö¸ô£¬Ä¬ÈÏÊÇÈ«²¿Æ½Ì¨ÔÊĞíµÄÀàĞÍ' AFTER `c_storepath`;
+		ALTER TABLE `t_cfg_auth_filegroup`	ADD COLUMN `c_permit_filetypes` VARCHAR(100) NULL DEFAULT NULL COMMENT 'è¯¥ç±»å‹å…è®¸çš„æ–‡ä»¶ç±»å‹ï¼Œå¤šä¸ªä½¿ç”¨é€—å·åˆ†éš”ï¼Œé»˜è®¤æ˜¯å…¨éƒ¨å¹³å°å…è®¸çš„ç±»å‹' AFTER `c_storepath`;
 	END IF;
 	END$$
 	call change_table_col()$$
