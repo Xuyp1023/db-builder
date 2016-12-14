@@ -1,0 +1,39 @@
+<project name="better-release" default="gen-db" basedir=".">
+    <taskdef resource="net/sf/antcontrib/antlib.xml" classpath="ant-lib/ant-contrib-1.0b3.jar"/>
+	<import file="ant-lib/macro-db.xml"/>
+
+    <property file="settings/release_qa.properties"/>
+
+    <property name="dbscriptsdir"  value="/app/build/database/last/output/sql" />
+	
+	<property name="outputdir" value="${basedir}/output" />
+
+	<target name="gen-db">
+        <echo level="info" message="begin gen db" />
+		
+		
+		<!-- exec sql scripts -->
+		<execdirsql 
+			dbhost="${dbhost}"
+			dbport="${dbport}"
+			dbname="${dbname}"
+			dbuser="${dbuser}"
+			dbpwd="${dbpwd}"
+			dir="${dbscriptsdir}"
+			logdir="${basedir}/logs"
+			classpath="${basedir}/ant-lib/mysql-connector-java-5.1.31.jar"/>
+		
+		
+        <echo level="info" message="end gen db" />
+    </target>
+
+	<target name="backup">
+		<exportMysqlDump
+			dbhost="${dbhost}"
+			dbport="${dbport}"
+			dbname="${dbname}"
+			dumpfile="${outputdir}/db/scf_dev.sql"
+        />   
+	</target>
+ 
+</project>
