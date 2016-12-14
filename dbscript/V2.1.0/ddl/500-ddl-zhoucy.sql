@@ -1,5 +1,4 @@
-##-- 表结构非空修改		提交日期2016/11/18s
-	delimiter $$
+##-- 文件类型表中增加字段允许的文件类型	提交日期2016/12/14s
 	drop PROCEDURE if EXISTS change_table_col$$
 	create procedure change_table_col() BEGIN   
 	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cfg_auth_filegroup' AND COLUMN_NAME='c_permit_filetypes')
