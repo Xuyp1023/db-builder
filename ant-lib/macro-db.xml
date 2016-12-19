@@ -76,7 +76,6 @@
 				classpath="@{classpath}"
 				output="@{logfile}"
 				keepformat="true"
-				encoding="UTF8"
 				print="true"
 				delimiter="$$" 
 			>
