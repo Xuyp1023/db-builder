@@ -78,8 +78,9 @@
 				keepformat="true"
 				print="true"
 				delimiter="$$" 
+				encoding="UTF8"
+				src="@{sqlfile}"
 			>
-				<transaction  src="@{sqlfile}"/>
 			</sql>
 					
          </sequential>
