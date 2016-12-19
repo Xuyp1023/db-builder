@@ -1,4 +1,4 @@
-##--bug-254 出票日期 搜索条件无效 提交日期2016/11/16
+﻿##--bug-254 出票日期 搜索条件无效 提交日期2016/11/16
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`) select 60705, 'queryAcceptBill', 'GTEinvoiceDate', 5, '1' from dual where not exists (select 1 from t_rule_busin_validator where id = 60705)$$
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`) select 60706, 'queryAcceptBill', 'LTEinvoiceDate', 6, '1' from dual where not exists (select 1 from t_rule_busin_validator where id = 60706)$$
 
