@@ -70,7 +70,7 @@
 		    <echo>@{sqlfile}</echo>
              <sql
 				driver="@{dbdriver}"
-				url="jdbc:mysql://@{dbhost}:@{dbport}/@{dbname}?useUnicode=true&characterEncoding=utf-8"
+				url="jdbc:mysql://@{dbhost}:@{dbport}/@{dbname}?useUnicode=true&amp;characterEncoding=utf-8"
 				userid="@{dbuser}"
 				password="@{dbpwd}"
 				classpath="@{classpath}"
