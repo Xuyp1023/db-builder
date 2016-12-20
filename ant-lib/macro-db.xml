@@ -70,17 +70,16 @@
 		    <echo>@{sqlfile}</echo>
              <sql
 				driver="@{dbdriver}"
-				url="jdbc:mysql://@{dbhost}:@{dbport}/@{dbname}"
+				url="jdbc:mysql://@{dbhost}:@{dbport}/@{dbname}?useUnicode=true&amp;characterEncoding=utf-8"
 				userid="@{dbuser}"
 				password="@{dbpwd}"
 				classpath="@{classpath}"
 				output="@{logfile}"
 				keepformat="true"
-				encoding="utf8"
 				print="true"
 				delimiter="$$" 
+				src="@{sqlfile}"
 			>
-				<transaction  src="@{sqlfile}"/>
 			</sql>
 					
          </sequential>
