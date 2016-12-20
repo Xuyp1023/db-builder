@@ -55,17 +55,17 @@
 	create procedure add_table_col() BEGIN   
 	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_open_account_tmp' AND COLUMN_NAME='C_DEAL_PASSWORD')
 	THEN   
-	   ALTER TABLE `t_cust_open_account_tmp`ADD COLUMN `C_DEAL_PASSWORD` VARCHAR(120) NULL DEFAULT NULL COMMENT '微信用户标识' AFTER `C_WECHAT_OPENID`;
+	   ALTER TABLE `t_cust_open_account_tmp`ADD COLUMN `C_DEAL_PASSWORD` VARCHAR(120) NULL DEFAULT NULL COMMENT '交易密码(仅微信有)' AFTER `C_WECHAT_OPENID`;
 	END IF;
 	END$$
 	call add_table_col()$$
 	drop PROCEDURE if EXISTS add_table_col$$
-##6 微信用户标识
+##6 角色：供应商、经销商
 	drop PROCEDURE if EXISTS add_table_col$$
 	create procedure add_table_col() BEGIN   
 	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_open_account_tmp' AND COLUMN_NAME='C_ROLE')
 	THEN   
-	   ALTER TABLE `t_cust_open_account_tmp`ADD COLUMN `C_ROLE` VARCHAR(120) NULL DEFAULT NULL COMMENT '微信用户标识' AFTER `C_DEAL_PASSWORD`;
+	   ALTER TABLE `t_cust_open_account_tmp`ADD COLUMN `C_ROLE` VARCHAR(120) NULL DEFAULT NULL COMMENT '角色：供应商、经销商' AFTER `C_DEAL_PASSWORD`;
 	END IF;
 	END$$
 	call add_table_col()$$
@@ -140,6 +140,46 @@
 	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_open_account_tmp' AND COLUMN_NAME='T_ACTIVE_TIME')
 	THEN   
 	   ALTER TABLE `t_cust_open_account_tmp`ADD COLUMN `T_ACTIVE_TIME` VARCHAR(8) NULL DEFAULT NULL COMMENT '激活时间' AFTER `D_ACTIVE_DATE`;
+	END IF;
+	END$$
+	call add_table_col()$$
+	drop PROCEDURE if EXISTS add_table_col$$
+##交易密码加密SALT(仅微信有)
+	drop PROCEDURE if EXISTS add_table_col$$
+	create procedure add_table_col() BEGIN   
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_open_account_tmp' AND COLUMN_NAME='C_DEAL_PASSWORD_SALT')
+	THEN   
+	   ALTER TABLE `t_cust_open_account_tmp`ADD COLUMN `C_DEAL_PASSWORD_SALT` VARCHAR(120) NULL DEFAULT NULL COMMENT '交易密码加密SALT(仅微信有)' AFTER `D_ACTIVE_DATE`;
+	END IF;
+	END$$
+	call add_table_col()$$
+	drop PROCEDURE if EXISTS add_table_col$$
+##登录用户名
+	drop PROCEDURE if EXISTS add_table_col$$
+	create procedure add_table_col() BEGIN   
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_open_account_tmp' AND COLUMN_NAME='C_LOGIN_USERNAME')
+	THEN   
+	   ALTER TABLE `t_cust_open_account_tmp`ADD COLUMN `C_LOGIN_USERNAME` VARCHAR(120) NULL DEFAULT NULL COMMENT '登录用户名' AFTER `D_ACTIVE_DATE`;
+	END IF;
+	END$$
+	call add_table_col()$$
+	drop PROCEDURE if EXISTS add_table_col$$
+##登录密码(仅微信有)
+	drop PROCEDURE if EXISTS add_table_col$$
+	create procedure add_table_col() BEGIN   
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_open_account_tmp' AND COLUMN_NAME='C_LOGIN_PASSWORD')
+	THEN   
+	   ALTER TABLE `t_cust_open_account_tmp`ADD COLUMN `C_LOGIN_PASSWORD` VARCHAR(120) NULL DEFAULT NULL COMMENT '登录密码(仅微信有)' AFTER `D_ACTIVE_DATE`;
+	END IF;
+	END$$
+	call add_table_col()$$
+	drop PROCEDURE if EXISTS add_table_col$$
+##登录密码加密SALT(仅微信有)
+	drop PROCEDURE if EXISTS add_table_col$$
+	create procedure add_table_col() BEGIN   
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_open_account_tmp' AND COLUMN_NAME='C_LOGIN_PASSWORD_SALT')
+	THEN   
+	   ALTER TABLE `t_cust_open_account_tmp`ADD COLUMN `C_LOGIN_PASSWORD_SALT` VARCHAR(120) NULL DEFAULT NULL COMMENT '登录密码加密SALT(仅微信有)' AFTER `D_ACTIVE_DATE`;
 	END IF;
 	END$$
 	call add_table_col()$$
