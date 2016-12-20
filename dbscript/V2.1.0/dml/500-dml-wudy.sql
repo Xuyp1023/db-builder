@@ -83,4 +83,4 @@ UPDATE `t_rule_busin` SET `C_FUNC`='ICustOpenAccountService.webSaveOpenAccountAp
 DELETE FROM `t_rule_busin` WHERE  `C_NAME`='saveOpenAccountInfo' AND `C_TYPE` IS NULL AND `C_EXECUTE_CONTENT` IS NULL AND `C_DESCRIPTION`='客户开户资料暂存' AND `C_GROUP` IS NULL AND `C_ERRORINFO` IS NULL AND `C_STATUS`='1' AND `D_REGDATE`='20160727' AND `D_MODIDATE`='20160727' AND `ID`=10020 AND `C_VERSION` IS NULL AND `C_FUNC`='ICustOpenAccountService2.webSaveOpenAccountInfo' AND `C_ENTITY`='com.betterjr.modules.customer.entity.CustOpenAccountTmp' LIMIT 1$$
 
 ##开户资料包文件类型限制  提交日期 2016/12/20
-INSERT IGNORE INTO `t_cfg_auth_filegroup` (`c_fileinfotype`, `c_businflag`, `c_description`, `c_sub_rang`, `c_deficiencyinfo`, `c_status`, `c_storetype`, `c_storepath`, `c_permit_filetypes`) VALUES ('CustOpenAccountFilePack', '01', '开户资料包', '开户业务', '开户资料包', '1', '0', NULL, 'zip,rar');
+REPLACE INTO `t_cfg_auth_filegroup` (`c_fileinfotype`, `c_businflag`, `c_description`, `c_sub_rang`, `c_deficiencyinfo`, `c_status`, `c_storetype`, `c_storepath`, `c_permit_filetypes`) VALUES ('CustOpenAccountFilePack', '01', '开户资料包', '开户业务', '开户资料包', '1', '0', NULL, 'zip,rar');
