@@ -239,10 +239,10 @@ REPLACE INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_targe
 
 
 delete from t_rule_validator where C_VALID_NAME = 'blk-custType'$$
-REPLACE INTO `liuwl_dev`.`t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MIN`, `D_REGDATE`, `C_DESCRIPTION`) 
+REPLACE INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MIN`, `D_REGDATE`, `C_DESCRIPTION`) 
 VALUES ('SCF', 'blk-custType', '客户类型1', 'custType', '0', 'C', 0, 0, 0, '20160718', '客户类型1')$$
 
-DELETE from `t_rule_validator`  where C_VALID_NAME in ('GTErequestDate','LTErequestDate','GTEactualDate', 'LTEactualDate','lastStatus')$$
+DELETE from `t_rule_validator` where C_VALID_NAME in ('GTErequestDate','LTErequestDate','GTEactualDate', 'LTEactualDate','lastStatus')$$
 REPLACE INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'GTEactualDate', '交易日期', 'GTEactualDate', '0', 'C', 8, 0, 8, 0, NULL, 'yyyyMMdd', '20160721', '20160721', '企业类型', NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'GTErequestDate', '实际申请日期', 'GTErequestDate', '0', 'C', 20, 0, NULL, NULL, NULL, 'yyyyMMdd', '20160809', NULL, NULL, NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'lastStatus', '状态', 'lastStatus', '0', 'C', 18, 0, 18, 0, NULL, NULL, '20160719', '20160719', 'lastStatus', NULL, NULL, NULL, NULL)$$
