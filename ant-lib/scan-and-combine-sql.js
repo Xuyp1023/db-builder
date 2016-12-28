@@ -46,10 +46,20 @@ function prepare(params) {
 	var tempdir = new File(params.tempdir + "/sql");
 	if (!tempdir.exists()) {
 		tempdir.mkdirs();
+	} else {
+		var files = tempdir.listFiles();
+		for (var i = 0; i < files.length; i++) {
+			files[i].delete();
+		}
 	}
 	var dbdir = new File(params.outputdir + "/db");
 	if (!dbdir.exists()) {
 		dbdir.mkdirs();
+	} else {
+		var files = dbdir.listFiles();
+		for (var i = 0; i < files.length; i++) {
+			files[i].delete();
+		}
 	}
 };
 
