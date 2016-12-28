@@ -61,6 +61,15 @@ function prepare(params) {
 			files[i].delete();
 		}
 	}
+	var sqldir = new File(params.outputdir + "/sql");
+	if (!sqldir.exists()) {
+		sqldir.mkdirs();
+	} else {
+		var files = sqldir.listFiles();
+		for (var i = 0; i < files.length; i++) {
+			files[i].delete();
+		}
+	}
 };
 
 
