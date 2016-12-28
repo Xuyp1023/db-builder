@@ -238,6 +238,5 @@ REPLACE INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_targe
 REPLACE INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (3342, NULL, '经销商融资_N', '经销商融资_N', '../../scf2/views/core/financeSearch/financeSearch.html#agency', NULL, 260, 2, '', '1', '20160830', '20160830', NULL, '1', 'CORE_USER')$$
 
 
-delete from t_rule_validator t where t.C_VALID_NAME = 'blk-custType'$$
-REPLACE INTO `liuwl_dev`.`t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MIN`, `D_REGDATE`, `C_DESCRIPTION`) 
-VALUES ('SCF', 'blk-custType', '客户类型1', 'custType', '0', 'C', 0, 0, 0, '20160718', '客户类型1')$$
+delete from `t_rule_validator` t where t.C_VALID_NAME = 'blk-custType'$$
+REPLACE INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MIN`, `D_REGDATE`, `C_DESCRIPTION`) VALUES ('SCF', 'blk-custType', '客户类型1', 'custType', '0', 'C', 0, 0, 0, '20160718', '客户类型1')$$
