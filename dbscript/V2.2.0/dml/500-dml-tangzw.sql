@@ -67,7 +67,7 @@ REPLACE INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIP
 REPLACE INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('custQueryRequest', NULL, NULL, '申请企业查询', NULL, NULL, '1', '20160728', '20160728', 33009, NULL, 'IScfRequestService.webCustQueryRequest', 'java.util.HashMap')$$
                     
 
-delete from t_rule_busin_validator where C_BUSIN_NAME='seller_application'
+delete from t_rule_busin_validator where C_BUSIN_NAME='seller_application'$$
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (33001, 'supply_application', 'requestNo', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (33002, 'supply_application', 'custNo', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (33003, 'supply_application', 'factorNo', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
@@ -150,7 +150,7 @@ REPLACE INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIP
 REPLACE INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('seller_confirmLoan', NULL, NULL, '审批-确认放款', NULL, NULL, '1', '20160728', '20160728', 34006, NULL, 'IScfSellerApprovalService.confirmLoan', 'com.betterjr.modules.loan.entity.ScfLoan')$$
 REPLACE INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('seller_endFlow', NULL, NULL, '审批-结束', NULL, NULL, '1', '20160728', '20160728', 34007, NULL, 'IScfSellerApprovalService.endFlow', 'java.util.HashMap')$$
 
-delete from t_rule_busin_validator where C_BUSIN_NAME='seller_application'
+delete from t_rule_busin_validator where C_BUSIN_NAME='seller_application'$$
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34001, 'seller_application', 'requestNo', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34002, 'seller_application', 'custNo', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34003, 'seller_application', 'factorNo', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
