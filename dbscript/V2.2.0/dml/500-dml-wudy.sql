@@ -164,4 +164,14 @@ replace INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, 
 replace INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (11264, 110316, '074', NULL, '装饰装潢', NULL, 0, '1', '0', NULL, '1');
 replace INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (11218, 110316, '028', NULL, '咨询分析', NULL, 0, '1', '0', NULL, '1');
 replace INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (11204, 110316, '014', NULL, '资本投资', NULL, 0, '1', '0', NULL, '1');
+##合同菜单
+insert ignore `t_cfg_menu` (`id`, `c_name`, `c_title`, `n_parent_id`, `n_order`, `c_description`, `d_regdate`, `d_modidate`, `c_endnode`, `C_RULE_LIST`) VALUES (320, '合同管理', '合同管理', 4, 1, '合同管理', '20170104', '20170104', '0', 'SUPPLIER_USER,SELLER_USER,CORE_USER,FACTOR_USER,PLATFORM_USER')$$
+
+insert ignore `t_cfg_menu` (`id`, `c_name`, `c_title`, `c_url`, `n_parent_id`, `n_order`, `c_description`, `d_regdate`, `d_modidate`, `c_endnode`, `C_RULE_LIST`) VALUES (321, '合同类型登记', '合同类型登记', '../../scf2/home.html#/contractType/contractTypeManage', 320, 1, '合同类型登记', '20170104', '20170104', '1', 'PLATFORM_USER')$$
+insert ignore `t_cfg_menu` (`id`, `c_name`, `c_title`, `c_url`, `n_parent_id`, `n_order`, `c_description`, `d_regdate`, `d_modidate`, `c_endnode`, `C_RULE_LIST`) VALUES (322, '合同类型审核', '合同类型审核', '../../scf2/home.html#/contractType/contractTypeAudit', 320, 2, '合同类型审核', '20170104', '20170104', '1', 'PLATFORM_USER')$$
+insert ignore `t_cfg_menu` (`id`, `c_name`, `c_title`, `c_url`, `n_parent_id`, `n_order`, `c_description`, `d_regdate`, `d_modidate`, `c_endnode`, `C_RULE_LIST`) VALUES (323, '合同类型查询', '合同类型查询', '../../scf2/home.html#/contractType/contractTypeQuery', 320, 3, '合同类型查询', '20170104', '20170104', '1', 'PLATFORM_USER')$$
+
+insert ignore `t_cfg_menu` (`id`, `c_name`, `c_title`, `c_url`, `n_parent_id`, `n_order`, `c_description`, `d_regdate`, `d_modidate`, `c_endnode`, `C_RULE_LIST`) VALUES (324, '标准合同登记', '标准合同登记', '../../scf2/home.html#/standardContract/list', 320, 4, '标准合同登记', '20170104', '20170104', '1', 'PLATFORM_USER')$$
+insert ignore `t_cfg_menu` (`id`, `c_name`, `c_title`, `c_url`, `n_parent_id`, `n_order`, `c_description`, `d_regdate`, `d_modidate`, `c_endnode`, `C_RULE_LIST`) VALUES (325, '标准合同审核', '标准合同审核', '../../scf2/home.html#/standardContract/aduit', 320, 5, '标准合同审核', '20170104', '20170104', '1', 'PLATFORM_USER')$$
+insert ignore `t_cfg_menu` (`id`, `c_name`, `c_title`, `c_url`, `n_parent_id`, `n_order`, `c_description`, `d_regdate`, `d_modidate`, `c_endnode`, `C_RULE_LIST`) VALUES (326, '标准合同查询', '标准合同查询', '../../scf2/home.html#/standardContract/query', 320, 6, '标准合同查询', '20170104', '20170104', '1', 'PLATFORM_USER')$$
 
