@@ -59,7 +59,7 @@ create procedure add_table() BEGIN
 			`T_AUDIT_TIME` VARCHAR(8) NULL DEFAULT NULL COMMENT '审核时间',
 			PRIMARY KEY (`ID`),
 			INDEX `AGREEMENT_STANDARD_NO` (`C_AGREEMENT_STANDARD_NO`)
-		)
+		);
 	END IF;
 	END$$
 	call add_table()$$
