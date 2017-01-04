@@ -49,7 +49,7 @@ replace INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, 
 replace INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (60702, 600008, '1', NULL, '生效', NULL, 0, '1', NULL, NULL, '1')$$
 
 ##字典排序
-delete  from t_cfg_dictitem where L_ITEMNO = '110316';
+delete  from t_cfg_dictitem where L_ITEMNO = '110316'$$
 replace INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (11233, 110316, '043', NULL, '保健', NULL, 0, '1', '0', NULL, '1')$$
 replace INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (11206, 110316, '016', NULL, '保险', NULL, 0, '1', '0', NULL, '1')$$
 replace INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (11246, 110316, '056', NULL, '博彩', NULL, 0, '1', '0', NULL, '1')$$
