@@ -164,7 +164,7 @@ replace INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, 
 replace INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (11264, 110316, '074', NULL, '装饰装潢', NULL, 0, '1', '0', NULL, '1')$$
 replace INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (11218, 110316, '028', NULL, '咨询分析', NULL, 0, '1', '0', NULL, '1')$$
 replace INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (11204, 110316, '014', NULL, '资本投资', NULL, 0, '1', '0', NULL, '1')$$
-##合同菜单
+##合同菜单                                                                                                                                                              
 insert ignore `t_cfg_menu` (`id`, `c_name`, `c_title`, `n_parent_id`, `n_order`, `c_description`, `d_regdate`, `d_modidate`, `c_endnode`, `C_RULE_LIST`) VALUES (320, '合同管理', '合同管理', 4, 1, '合同管理', '20170104', '20170104', '0', 'SUPPLIER_USER,SELLER_USER,CORE_USER,FACTOR_USER,PLATFORM_USER')$$
 
 insert ignore `t_cfg_menu` (`id`, `c_name`, `c_title`, `c_url`, `n_parent_id`, `n_order`, `c_description`, `d_regdate`, `d_modidate`, `c_endnode`, `C_RULE_LIST`) VALUES (321, '合同类型登记', '合同类型登记', '../../scf2/home.html#/contractType/contractTypeManage', 320, 1, '合同类型登记', '20170104', '20170104', '1', 'PLATFORM_USER')$$
@@ -175,3 +175,31 @@ insert ignore `t_cfg_menu` (`id`, `c_name`, `c_title`, `c_url`, `n_parent_id`, `
 insert ignore `t_cfg_menu` (`id`, `c_name`, `c_title`, `c_url`, `n_parent_id`, `n_order`, `c_description`, `d_regdate`, `d_modidate`, `c_endnode`, `C_RULE_LIST`) VALUES (325, '标准合同审核', '标准合同审核', '../../scf2/home.html#/standardContract/aduit', 320, 5, '标准合同审核', '20170104', '20170104', '1', 'PLATFORM_USER')$$
 insert ignore `t_cfg_menu` (`id`, `c_name`, `c_title`, `c_url`, `n_parent_id`, `n_order`, `c_description`, `d_regdate`, `d_modidate`, `c_endnode`, `C_RULE_LIST`) VALUES (326, '标准合同查询', '标准合同查询', '../../scf2/home.html#/standardContract/query', 320, 6, '标准合同查询', '20170104', '20170104', '1', 'PLATFORM_USER')$$
 
+##更新开户附件信息
+UPDATE `t_cfg_auth_filegroup` SET `c_fileinfotype`='CustBankOpenLicenseFile', `c_description`='银行账户开户许可证', `c_deficiencyinfo`='银行账户开户许可证' WHERE  `c_fileinfotype`='bankAcctAckFile'$$
+UPDATE `t_cfg_auth_filegroup_agency` set `c_fileinfotype`='CustBankOpenLicenseFile', `c_description`='银行账户开户许可证' WHERE  `c_fileinfotype`='bankAcctAckFile'$$
+UPDATE `t_cfg_auth_filegroup` SET `c_fileinfotype`='CustBizLicenseFile', `c_description`='营业执照附件', `c_deficiencyinfo`='营业执照附件' WHERE  `c_fileinfotype`='bizLicenseFile'$$
+UPDATE `t_cfg_auth_filegroup_agency` set `c_fileinfotype`='CustBizLicenseFile', `c_description`='营业执照附件' WHERE  `c_fileinfotype`='bizLicenseFile'$$
+UPDATE `t_cfg_auth_filegroup` SET `c_fileinfotype`='BrokerIdHeadFile', `c_description`='经办人身份证-头像面', `c_deficiencyinfo`='经办人身份证-头像面' WHERE  `c_fileinfotype`='brokerIdFile'$$
+UPDATE `t_cfg_auth_filegroup_agency` set `c_fileinfotype`='BrokerIdHeadFile', `c_description`='经办人身份证-头像面件' WHERE  `c_fileinfotype`='brokerIdFile'$$
+UPDATE `t_cfg_auth_filegroup` SET `c_fileinfotype`='CustOrgCodeFile', `c_description`='组织机构代码证', `c_deficiencyinfo`='组织机构代码证' WHERE  `c_fileinfotype`='orgCodeFile'$$
+UPDATE `t_cfg_auth_filegroup_agency` set `c_fileinfotype`='CustOrgCodeFile', `c_description`='组织机构代码证' WHERE  `c_fileinfotype`='orgCodeFile'$$
+UPDATE `t_cfg_auth_filegroup` SET `c_fileinfotype`='RepresentIdHeadFile', `c_description`='法人身份证-头像面', `c_deficiencyinfo`='法人身份证-头像面' WHERE  `c_fileinfotype`='representIdFile'$$
+UPDATE `t_cfg_auth_filegroup_agency` set `c_fileinfotype`='RepresentIdHeadFile', `c_description`='法人身份证-头像面' WHERE  `c_fileinfotype`='representIdFile'$$
+UPDATE `t_cfg_auth_filegroup` SET `c_fileinfotype`='CustTaxRegistFile', `c_description`='税务登记证', `c_deficiencyinfo`='税务登记证' WHERE  `c_fileinfotype`='taxRegistFile'$$
+UPDATE `t_cfg_auth_filegroup_agency` set `c_fileinfotype`='CustTaxRegistFile', `c_description`='税务登记证' WHERE  `c_fileinfotype`='taxRegistFile'$$
+INSERT IGNORE `t_cfg_auth_filegroup` (`c_fileinfotype`, `c_description`, `c_sub_rang`, `c_deficiencyinfo`) VALUES ('CustCreditCodeFile', '机构信用代码证', '保理业务', '机构信用代码证')$$
+INSERT IGNORE `t_cfg_auth_filegroup` (`c_fileinfotype`, `c_description`, `c_sub_rang`, `c_deficiencyinfo`) VALUES ('BrokerIdNationFile', '经办人身份证-国徽面', '保理业务', '经办人身份证-国徽面')$$
+INSERT IGNORE `t_cfg_auth_filegroup` (`c_fileinfotype`, `c_description`, `c_sub_rang`, `c_deficiencyinfo`) VALUES ('BrokerIdHoldFile', '经办人身份证-手持证件', '保理业务', '经办人身份证-手持证件')$$
+INSERT IGNORE `t_cfg_auth_filegroup` (`c_fileinfotype`, `c_description`, `c_sub_rang`, `c_deficiencyinfo`) VALUES ('RepresentIdNationFile', '法人身份证-国徽面', '保理业务', '法人身份证-国徽面')$$
+INSERT IGNORE `t_cfg_auth_filegroup` (`c_fileinfotype`, `c_description`, `c_sub_rang`, `c_deficiencyinfo`) VALUES ('RepresentIdHoldFile', '法人身份证-手持证件', '保理业务', '法人身份证-手持证件')$$
+##统一机构信息部分附件字典     提交日期:2017/01/05
+UPDATE `t_cfg_dictitem` SET `C_VALUE`='RepresentIdHeadFile', `C_NAME`='法人身份证-头像面' WHERE  `ID`=20041$$
+UPDATE `t_cfg_dictitem` SET `C_VALUE`='RepresentIdNationFile', `C_NAME`='法人身份证-国徽面' WHERE  `ID`=20042$$
+UPDATE `t_cfg_dictitem` SET `C_VALUE`='RepresentIdHoldFile', `C_NAME`='法人身份证-手持证件' WHERE  `ID`=20043$$
+UPDATE `t_cfg_dictitem` SET `C_NAME`='营业执照' WHERE  `ID`=20071$$
+UPDATE `t_cfg_dictitem` SET `C_NAME`='税务登记证' WHERE  `ID`=20072$$
+UPDATE `t_cfg_dictitem` SET `C_NAME`='组织机构代码证' WHERE  `ID`=20073$$
+DELETE FROM `t_cfg_dictitem` WHERE  `ID`=20074$$
+UPDATE `t_cfg_dictitem` SET `C_VALUE`='CustBankOpenLicenseFile', `C_NAME`='银行账户开户许可证' WHERE  `ID`=20091$$
+DELETE FROM `t_cfg_dictitem` WHERE  `ID`=20092$$
