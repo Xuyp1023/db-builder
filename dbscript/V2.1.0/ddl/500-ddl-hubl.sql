@@ -2,7 +2,8 @@
 drop PROCEDURE if EXISTS create_table_custFileAduitTemp$$
 	create procedure create_table_custFileAduitTemp() 
 	BEGIN
-		drop table t_cust_fileaduit_temp;
+		IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit_temp')
+		THEN
 		CREATE TABLE `t_cust_fileaduit_temp` (
 		`ID` DECIMAL(18,0) NULL DEFAULT NULL,
 		`L_CUSTNO` DECIMAL(18,0) NULL DEFAULT NULL,
@@ -19,6 +20,7 @@ drop PROCEDURE if EXISTS create_table_custFileAduitTemp$$
 		`D_ADUIT_DATE` VARCHAR(15) NULL DEFAULT NULL,
 		UNIQUE INDEX `PK_CUST_FILEADUIT` (`ID`, `L_CUSTNO`, `C_TYPE`)
 		);
+		END IF;
 	END$$
 call create_table_custFileAduitTemp()$$
 drop PROCEDURE if EXISTS create_table_custFileAduitTemp$$
