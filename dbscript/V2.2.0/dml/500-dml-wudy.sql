@@ -203,3 +203,9 @@ UPDATE `t_cfg_dictitem` SET `C_NAME`='组织机构代码证' WHERE  `ID`=20073$$
 DELETE FROM `t_cfg_dictitem` WHERE  `ID`=20074$$
 UPDATE `t_cfg_dictitem` SET `C_VALUE`='CustBankOpenLicenseFile', `C_NAME`='银行账户开户许可证' WHERE  `ID`=20091$$
 DELETE FROM `t_cfg_dictitem` WHERE  `ID`=20092$$
+
+##融资申请查询订单、汇票、应收  提交日期:2017/01/10    bug448
+replace INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('findOrderList', NULL, NULL, '订单信息无分页查询', NULL, NULL, '1', '20170104', '20170104', 60043, NULL, 'IScfOrderService.webFindOrderList', 'java.util.HashMap')$$
+replace INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('findAcceptBillList', NULL, NULL, '汇票信息无分页查询', NULL, NULL, '1', '20170104', '20170104', 60044, NULL, 'IScfAcceptBillService.webFindAcceptBillList', 'java.util.HashMap')$$
+replace INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('findReceivableList', NULL, NULL, '应收信息无分页查询', NULL, NULL, '1', '20170104', '20170104', 60045, NULL, 'IScfReceivableService.webFindReceivableList', 'java.util.HashMap')$$
+
