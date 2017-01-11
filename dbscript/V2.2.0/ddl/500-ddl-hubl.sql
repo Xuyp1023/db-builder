@@ -1,4 +1,4 @@
-﻿##-- 表结构非空修改		提交日期2017/01/05
+##-- 表结构非空修改		提交日期2017/01/05
 	drop PROCEDURE if EXISTS change_table_col$$
 	create procedure change_table_col() BEGIN   
 	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_request_notice' AND COLUMN_NAME='C_EMAIL')
