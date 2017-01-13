@@ -218,3 +218,6 @@ replace INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_
 
 ##融资查询条件修改  提交日期:2017/01/10    bug447
 INSERT ignore `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`) VALUES (61440, 'queryCoreEnterpriseRequest', 'blk-custType', 4, '1')$$
+
+##融资申请查询条件   提交日期:2017/01/13   bug477
+UPDATE `t_rule_busin_validator` SET `C_VALID_NAME`='holderNo' WHERE  `ID`=63601 AND `C_BUSIN_NAME`='findAcceptBillList' AND `C_VALID_NAME`='custNo' AND `N_PRIORITY`=1 AND `C_STATUS`='1' AND `D_REGDATE` IS NULL AND `D_MODIDATE` IS NULL AND `C_SHOW_NAME` IS NULL AND `C_NAME` IS NULL AND `C_MUSTITEM` IS NULL LIMIT 1$$
