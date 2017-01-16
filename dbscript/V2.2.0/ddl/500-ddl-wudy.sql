@@ -40,7 +40,7 @@ create procedure add_table() BEGIN
 	   CREATE TABLE `t_scf_agreement_standard` (
 			`ID` BIGINT(18) NOT NULL COMMENT '编号',
 			`C_AGREEMENT_STANDARD_NO` VARCHAR(20) NOT NULL COMMENT '标准合同编号',
-			`C_AGREEMENT_TYPE_ID` BIGINT(18) NOT NULL COMMENT '合同类型id',
+			`L_AGREEMENT_TYPE_ID` BIGINT(18) NOT NULL COMMENT '合同类型id',
 			`C_AGREEMENT_STANDARD_NAME` VARCHAR(50) NOT NULL COMMENT '标准合同名称',
 			`C_DESCRIPTION` VARCHAR(200) NULL DEFAULT NULL COMMENT '备注',
 			`C_OPERORG` VARCHAR(200) NULL DEFAULT NULL COMMENT '操作机构',
@@ -76,12 +76,12 @@ create procedure add_table() BEGIN
 	call change_table_col()$$
 	drop PROCEDURE if EXISTS change_table_col$$
 	
-##标准合同字段修改  提交日期2017/01/13
+##标准合同字段修改  提交日期2017/01/16
 drop PROCEDURE if EXISTS change_table_col$$
 	create procedure change_table_col() BEGIN   
-	IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_agreement_standard' AND COLUMN_NAME='L_AGREEMENT_TYPE_ID')
+	IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_agreement_standard' AND COLUMN_NAME='C_AGREEMENT_TYPE_ID')
 	THEN
-	ALTER TABLE `t_scf_agreement_standard` CHANGE COLUMN `L_AGREEMENT_TYPE_ID` `L_AGREEMENT_TYPE_ID` BIGINT(18) NOT NULL COMMENT '合同类型id' AFTER `C_AGREEMENT_STANDARD_NO`;
+	ALTER TABLE `t_scf_agreement_standard` CHANGE COLUMN `C_AGREEMENT_TYPE_ID` `L_AGREEMENT_TYPE_ID` BIGINT(18) NOT NULL COMMENT '合同类型id' AFTER `C_AGREEMENT_STANDARD_NO`;
 	END IF;
 	END$$
 	call change_table_col()$$
