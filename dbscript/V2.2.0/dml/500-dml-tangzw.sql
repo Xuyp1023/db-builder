@@ -249,3 +249,8 @@ REPLACE INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME
 REPLACE INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'lastStatus', '状态', 'lastStatus', '0', 'C', 18, 0, 18, 0, NULL, NULL, '20160719', '20160719', 'lastStatus', NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'LTEactualDate', '企业类型', 'LTEactualDate', '0', 'C', 8, 0, 8, 0, NULL, 'yyyyMMdd', '20160721', '20160721', '企业类型', NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'LTErequestDate', '实际申请日期', 'LTErequestDate', '0', 'C', 20, 0, 8, 0, NULL, 'yyyyMMdd', '20160809', NULL, NULL, NULL, NULL, NULL, NULL)$$
+
+update t_sys_wf_base set c_wechat_form = '/finance/detail' where C_form = '/flow/supplierFinance/detail'$$
+update t_sys_wf_node set c_wechat_form = '/finance/audit' where C_form = '/flow/supplierFinance/issueEnsure'$$
+update t_sys_wf_node set c_wechat_form = '/finance/audit' where C_form = '/flow/agencyFinance/issueEnsure'$$
+
