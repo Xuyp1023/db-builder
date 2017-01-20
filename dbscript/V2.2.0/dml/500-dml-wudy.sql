@@ -226,3 +226,8 @@ UPDATE `t_rule_validator` SET `N_DATA_LEN`=60, `F_MAX`=60, `C_VALIDATOR`='matchV
 
 ##融资申请查询条件   提交日期:2017/01/13   bug486
 UPDATE `t_rule_busin_validator` SET `C_VALID_NAME`='custNo' WHERE  `ID`=63601 AND `C_BUSIN_NAME`='findAcceptBillList' AND `C_VALID_NAME`='holderNo' AND `N_PRIORITY`=1 AND `C_STATUS`='1' AND `D_REGDATE` IS NULL AND `D_MODIDATE` IS NULL AND `C_SHOW_NAME` IS NULL AND `C_NAME` IS NULL AND `C_MUSTITEM` IS NULL LIMIT 1$$
+
+
+##客户信息查询菜单   提交日期：2017/01/20
+REPLACE INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (601, NULL, '客户信息查询', '客户信息查询', '../../scf2/home.html#/plat/custInfo', NULL, 256, 5, '', '1', '20160918', '20160918', NULL, '1', 'PLATFORM_USER')$$
+REPLACE INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (602, NULL, '客户信息查询', '客户信息查询', '../../scf2/home.html#/fac/custInfo', NULL, 283, 5, '', '1', '20160918', '20160918', NULL, '1', 'FACTOR_USER')$$
