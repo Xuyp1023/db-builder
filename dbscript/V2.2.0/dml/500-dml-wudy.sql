@@ -226,3 +226,6 @@ UPDATE `t_rule_validator` SET `N_DATA_LEN`=60, `F_MAX`=60, `C_VALIDATOR`='matchV
 
 ##融资申请查询条件   提交日期:2017/01/13   bug486
 UPDATE `t_rule_busin_validator` SET `C_VALID_NAME`='custNo' WHERE  `ID`=63601 AND `C_BUSIN_NAME`='findAcceptBillList' AND `C_VALID_NAME`='holderNo' AND `N_PRIORITY`=1 AND `C_STATUS`='1' AND `D_REGDATE` IS NULL AND `D_MODIDATE` IS NULL AND `C_SHOW_NAME` IS NULL AND `C_NAME` IS NULL AND `C_MUSTITEM` IS NULL LIMIT 1$$
+
+##黑名单录入个人类型时，无法添加			提交日期：2017/02/07
+update t_scf_blackList set C_LAWNAME = ' ' where C_LAWNAME is null;$$
