@@ -231,3 +231,6 @@ UPDATE `t_rule_busin_validator` SET `C_VALID_NAME`='custNo' WHERE  `ID`=63601 AN
 ##客户信息查询菜单   提交日期：2017/01/20
 REPLACE INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (601, NULL, '客户信息查询', '客户信息查询', '../../scf2/home.html#/plat/custInfo', NULL, 256, 5, '', '1', '20160918', '20160918', NULL, '1', 'PLATFORM_USER')$$
 REPLACE INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (602, NULL, '客户信息查询', '客户信息查询', '../../scf2/home.html#/fac/custInfo', NULL, 283, 5, '', '1', '20160918', '20160918', NULL, '1', 'FACTOR_USER')$$
+
+##黑名单录入个人类型时，无法添加			提交日期：2017/02/07
+update t_scf_blackList set C_LAWNAME = ' ' where C_LAWNAME is null;$$
