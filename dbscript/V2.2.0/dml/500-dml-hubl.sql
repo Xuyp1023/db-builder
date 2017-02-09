@@ -70,7 +70,7 @@ INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`
 INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'des', '描述', 'des', '0', 'C', 200, 0, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
 
 
-delete from t_cfg_snogeneral where c_opertype in ('ContractLedger.id','ContractLedgerRecode.id');
+delete from t_cfg_snogeneral where c_opertype in ('ContractLedger.id','ContractLedgerRecode.id')$$
 INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) VALUES ('ContractLedger.id', 1, NULL, 'SCF', '0', NULL, 10, 50009)$$
 INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) VALUES ('ContractLedgerRecode.id', 1, NULL, 'SCF', '0', NULL, 10, 50012)$$
 
