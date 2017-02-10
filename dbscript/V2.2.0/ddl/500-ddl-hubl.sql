@@ -201,3 +201,15 @@ drop PROCEDURE if EXISTS create_table_contractLedgerRecode$$
 	END$$
 call create_table_contractLedgerRecode()$$
 drop PROCEDURE if EXISTS create_table_contractLedgerRecode$$
+
+
+##-- 合同台账客户关联表新增邮编字段	提交日期2017/02/10
+drop PROCEDURE if EXISTS change_table_col$$
+	create procedure change_table_col() BEGIN   
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_contract_ledger_cust' AND COLUMN_NAME='c_zipCode')
+	THEN   
+	   ALTER TABLE `t_contract_ledger_cust` ADD COLUMN `c_zipCode` VARCHAR(20) NULL COMMENT '邮编';
+	END IF;
+	END$$
+	call change_table_col()$$
+	drop PROCEDURE if EXISTS change_table_col$$
