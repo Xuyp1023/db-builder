@@ -31,7 +31,12 @@ REPLACE INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSN
 REPLACE INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) VALUES ('WorkFlowAudit.id', '1', NULL, 'SYS', '0', NULL, '10', '20507')$$
 
 
+## bug-479  消息通知--查看站内消息详情，点击超链接地址无效，且点击后页面变为空白。
 
+UPDATE `t_sys_notifi_chan_profile` SET `C_CONTENT`='<p style="white-space: normal; background-color: rgb(255, 255, 255);">尊敬的客户您好：</p><p style="white-space: normal; background-color: rgb(255, 255, 255);"><br/></p><p style="white-space: normal; text-indent: 2em; background-color: rgb(255, 255, 255);">您的证书已经颁发成功:</p><p style="white-space: normal; text-indent: 2em; background-color: rgb(255, 255, 255);"><br/></p><p><br/></p><table><tbody><tr class="firstRow"><td width="140" valign="top" style="word-break: break-all;">机构名称</td><td width="661" valign="top" style="word-break: break-all;">${custName}</td></tr><tr class="firstRow"><td width="140" valign="top" style="word-break: break-all;">证书有效期</td><td width="661" valign="top" style="word-break: break-all;">${createDate} - ${validDate}</td></tr>
+		<tr class="firstRow"><td width="140" valign="top" style="word-break: break-all;">密码</td><td width="661" valign="top" style="word-break: break-all;">数字证书密码是${certPassword}，系统登陆密码是${loginPassword}。</td></tr><tr><td width="140" valign="top" style="word-break: break-all;">证书下载地址</td><td width="661" valign="top" style="word-break: break-all;"><a href="http://cust.qiejf.com/better/forCustomer/downloadCertificate?token=${token}"  target="_blank">http://cust.qiejf.com/better/forCustomer/downloadCertificate?token=${token}</a><br/>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td></tr></tbody></table><p><br/></p><p style="white-space: normal; background-color: rgb(255, 255, 255);"><br/></p><p style="white-space: normal; text-align: right; background-color: rgb(255, 255, 255);"><span style="color: rgb(152, 153, 153); font-family: 微软雅黑; font-size: 17px; line-height: 24px;">深圳市前海拜特互联网金融服务有限公司</span></p>
+'  WHERE `ID` = -20303$$
 
 ### 
 
