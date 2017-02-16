@@ -234,3 +234,9 @@ REPLACE INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_targe
 
 ##黑名单录入个人类型时，无法添加			提交日期：2017/02/07
 update t_scf_blackList set C_LAWNAME = ' ' where C_LAWNAME is null;$$
+
+##解决菜单错误
+UPDATE `t_cfg_menu` SET `C_RULE_LIST`='FACTOR_USER,PLATFORM_USER' WHERE  `id`=320$$
+
+##应收账款查询条件
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`) VALUES (60506, 'queryReceivable', 'businStatus', 6, '1')$$
