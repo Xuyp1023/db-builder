@@ -239,4 +239,4 @@ update t_scf_blackList set C_LAWNAME = ' ' where C_LAWNAME is null;$$
 UPDATE `t_cfg_menu` SET `C_RULE_LIST`='FACTOR_USER,PLATFORM_USER' WHERE  `id`=320$$
 
 ##应收账款查询条件
-INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`) VALUES (60506, 'queryReceivable', 'businStatus', 6, '1')$$
+replace INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`) VALUES (60506, 'queryReceivable', 'businStatus', 6, '1')$$
