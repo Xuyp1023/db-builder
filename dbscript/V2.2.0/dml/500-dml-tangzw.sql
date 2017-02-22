@@ -254,3 +254,5 @@ update t_sys_wf_base set c_wechat_form = '/finance/detail' where C_form = '/flow
 update t_sys_wf_node set c_wechat_form = '/finance/audit' where C_form = '/flow/supplierFinance/issueEnsure'$$
 update t_sys_wf_node set c_wechat_form = '/finance/audit' where C_form = '/flow/agencyFinance/issueEnsure'$$
 
+##----删除一般审批
+delete from t_sys_wf_node where C_NAME='一般审批'
