@@ -75,3 +75,7 @@ INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO
 INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) VALUES ('ContractLedgerRecode.id', 1, NULL, 'SCF', '0', NULL, 10, 50012)$$
 
 
+## -- 添加合同/发票删除标识
+delete from t_rule_busin_validator where id in (50108,50107)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (50107, 'webAddCustAgreement', 'isDeleted', 21, '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (50108, 'addInvoice', 'isDeleted', 13, '1', NULL, NULL, NULL, NULL, NULL)$$
