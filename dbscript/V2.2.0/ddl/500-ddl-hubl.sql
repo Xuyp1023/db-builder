@@ -213,3 +213,14 @@ drop PROCEDURE if EXISTS change_table_col$$
 	END$$
 	call change_table_col()$$
 	drop PROCEDURE if EXISTS change_table_col$$
+	
+## -- 添加发票删除标识
+drop PROCEDURE if EXISTS change_table_col$$
+	create procedure change_table_col() BEGIN   
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_invoice' AND COLUMN_NAME='C_DELETED_FLAG')
+	THEN   
+	   ALTER TABLE `t_scf_invoice` ADD COLUMN `C_DELETED_FLAG` VARCHAR(2) NULL COMMENT '删除标识：2已删除，1默认';
+	END IF;
+	END$$
+	call change_table_col()$$
+	drop PROCEDURE if EXISTS change_table_col$$
