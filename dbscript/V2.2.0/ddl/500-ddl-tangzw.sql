@@ -41,8 +41,7 @@
    )
   COLLATE='utf8_general_ci'
   ENGINE=InnoDB
-  AUTO_INCREMENT=1000602
-	;;
+  AUTO_INCREMENT=1000602$$
 
 		
 	
