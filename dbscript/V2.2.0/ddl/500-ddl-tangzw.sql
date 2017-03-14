@@ -1,5 +1,5 @@
 ##-- 合同模板表		提交日期2017/03/10
-     CREATE TABLE `t_scf_product` (
+      CREATE TABLE IF NOT EXISTS `t_scf_product` (
 	`id` BIGINT(18) NOT NULL AUTO_INCREMENT COMMENT '产品流水号',
 	`L_CORE_CUSTNO` BIGINT(20) NOT NULL COMMENT '核心企业',
 	`C_CORE_CUSTNAME` VARCHAR(120) NOT NULL COMMENT '核心企业名称',
