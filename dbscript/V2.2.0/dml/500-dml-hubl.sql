@@ -30,6 +30,7 @@ INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPT
 
 
 delete from t_rule_busin_validator where c_busin_name in ('webAddContractLedger','webSaveContractLedger')$$
+delete from t_rule_busin_validator where ID in (50107,50108)$$
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (50107, 'webAddContractLedger', 'agreeNo', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (50108, 'webAddContractLedger', 'agreeName', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (50109, 'webAddContractLedger', 'buyer', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
@@ -76,6 +77,6 @@ INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO
 
 
 ## -- 添加合同/发票删除标识
-delete from t_rule_busin_validator where id in (50108,50107)$$
-INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (50107, 'webAddCustAgreement', 'isDeleted', 21, '1', NULL, NULL, NULL, NULL, NULL)$$
-INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (50108, 'addInvoice', 'isDeleted', 13, '1', NULL, NULL, NULL, NULL, NULL)$$
+delete from t_rule_busin_validator where id in (50140,50141)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (50140, 'webAddCustAgreement', 'isDeleted', 21, '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (50141, 'addInvoice', 'isDeleted', 13, '1', NULL, NULL, NULL, NULL, NULL)$$
