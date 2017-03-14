@@ -43,5 +43,22 @@
   ENGINE=InnoDB
   AUTO_INCREMENT=1000602$$
 
+
+  CREATE TABLE IF NOT EXISTS `t_scf_contract_template` (
+	`ID` BIGINT(18) NOT NULL,
+	`L_FACTORNO` BIGINT(18) NOT NULL COMMENT '保理公司编号',
+	`C_TEMPLATE_NAME` VARCHAR(100) NOT NULL COMMENT '合同名称',
+	`C_TEMPLATE_TYPE` VARCHAR(50) NOT NULL COMMENT '合同类型 billTransNotice：应该收账款转让通知书，buyerConfirm：应该收账款转让确认意见书， threePartProtocol：三方协议',
+	`C_TEMPLATE_PATH` VARCHAR(200) NOT NULL COMMENT '合同所在路径',
+	`C_TEMPLATE_STATUS` CHAR(1) NOT NULL COMMENT '合同类型 0:禁用， 1启用',
+	`N_BATCHNO` BIGINT(18) NOT NULL COMMENT '上传的批次号，对应fileinfo中的ID',
+	`D_REG_DATE` VARCHAR(8) NULL DEFAULT ' ',
+	`T_REG_TIME` VARCHAR(8) NULL DEFAULT ' ',
+	PRIMARY KEY (`ID`)
+)
+COMMENT='合同模板表-保理公司上传不同的合同模板'
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB$$
+
 		
 	
