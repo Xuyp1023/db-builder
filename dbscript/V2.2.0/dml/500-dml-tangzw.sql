@@ -289,7 +289,7 @@ REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_
 
 
 #合同模板菜单
-REPLACE INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (3343, NULL, '合同模板管理', '合同模板管理', '../../scf2/home.html#/Contract.prototype', NULL, 320, 5, '合同模板管理', '1', '20170104', '20170104', NULL, '1', 'PLATFORM_USER')$$
+REPLACE INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (3343, NULL, '合同模板管理', '合同模板管理', '../../scf2/home.html#/contract.prototype', NULL, 320, 5, '合同模板管理', '1', '20170104', '20170104', NULL, '1', 'PLATFORM_USER')$$
 
 #文件信息配置
 REPLACE INTO `t_cfg_auth_filegroup` (`c_fileinfotype`, `c_businflag`, `c_description`, `c_sub_rang`, `c_deficiencyinfo`, `c_status`, `c_storetype`, `c_storepath`, `c_permit_filetypes`) VALUES ('signTemplateFile', '01', '电子合同-模板', '保理业务', '电子合同-模板', '1', '1', NULL, 'ftl')$$
