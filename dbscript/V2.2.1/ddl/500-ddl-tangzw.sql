@@ -18,4 +18,5 @@ CREATE TABLE IF NOT EXISTS `t_custinfo_role` (
 	PRIMARY KEY (`L_CUSTNO`, `C_OPERROLE`)
 )
 COLLATE='utf8_general_ci'
-ENGINE=InnoDB
+ENGINE=InnoDB$$
+
