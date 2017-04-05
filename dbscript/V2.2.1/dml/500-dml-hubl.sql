@@ -34,3 +34,36 @@ INSERT INTO `t_far_config` (`C_FACE`, `C_NAME`, `C_VALUE`, `C_TYPE`, `C_SPLIT`, 
 INSERT INTO `t_far_config` (`C_FACE`, `C_NAME`, `C_VALUE`, `C_TYPE`, `C_SPLIT`, `C_SCOPE`, `C_DESCRIPTION`, `N_ORDER`, `ID`) VALUES ('MAOY', 'process_Input', 'false', NULL, '0', '0', '是否需要映射转换处理，默认是需要', 0, 16)$$
 INSERT INTO `t_far_config` (`C_FACE`, `C_NAME`, `C_VALUE`, `C_TYPE`, `C_SPLIT`, `C_SCOPE`, `C_DESCRIPTION`, `N_ORDER`, `ID`) VALUES ('MAOY', 'sign_data', 'true', NULL, '0', '0', '使用签名模式', 0, 7)$$
 INSERT INTO `t_far_config` (`C_FACE`, `C_NAME`, `C_VALUE`, `C_TYPE`, `C_SPLIT`, `C_SCOPE`, `C_DESCRIPTION`, `N_ORDER`, `ID`) VALUES ('MAOY', 'token', 'bytter123456789', NULL, '0', '0', '避免外部攻击，约定的token，定期更换', 0, NULL)$$
+
+
+##--基金附件类型添加
+delete from t_cfg_auth_filegroup where C_FILEINFOTYPE in ('authorizeFile','bankAcctAckFile','bizLicenseFile','brokerIdFile','capitalReportFile','orgCodeFile', 'proveAssetsFile','representIdFile','serviceContractFile','taxRegistFile')$$
+insert into t_cfg_auth_filegroup (C_FILEINFOTYPE, C_BUSINFLAG, C_DESCRIPTION, C_SUB_RANG, C_DEFICIENCYINFO, C_STATUS)
+values ('authorizeFile', '01', '授权书', '基金业务', '授权书', '1')$$
+
+insert into t_cfg_auth_filegroup (C_FILEINFOTYPE, C_BUSINFLAG, C_DESCRIPTION, C_SUB_RANG, C_DEFICIENCYINFO, C_STATUS)
+values ('bankAcctAckFile', '01', '银行开户证明附件', '保理业务', '银行开户证明附件', '1')$$
+
+insert into t_cfg_auth_filegroup (C_FILEINFOTYPE, C_BUSINFLAG, C_DESCRIPTION, C_SUB_RANG, C_DEFICIENCYINFO, C_STATUS)
+values ('bizLicenseFile', '01', '企业营业执照附件', '保理业务', '企业营业执照附件', '1')$$
+
+insert into t_cfg_auth_filegroup (C_FILEINFOTYPE, C_BUSINFLAG, C_DESCRIPTION, C_SUB_RANG, C_DEFICIENCYINFO, C_STATUS)
+values ('brokerIdFile', '01', '经办人身份证附件', '保理业务', '经办人身份证附件', '1')$$
+
+insert into t_cfg_auth_filegroup (C_FILEINFOTYPE, C_BUSINFLAG, C_DESCRIPTION, C_SUB_RANG, C_DEFICIENCYINFO, C_STATUS)
+values ('capitalReportFile', '01', '验资报告', '保理业务', '验资报告', '1')$$
+
+insert into t_cfg_auth_filegroup (C_FILEINFOTYPE, C_BUSINFLAG, C_DESCRIPTION, C_SUB_RANG, C_DEFICIENCYINFO, C_STATUS)
+values ('orgCodeFile', '01', '组织机构代码证附件', '保理业务', '组织机构代码证附件', '1')$$
+
+insert into t_cfg_auth_filegroup (C_FILEINFOTYPE, C_BUSINFLAG, C_DESCRIPTION, C_SUB_RANG, C_DEFICIENCYINFO, C_STATUS)
+values ('proveAssetsFile', '01', '资产证明文件', '保理业务', '资产证明文件', '1')$$
+
+insert into t_cfg_auth_filegroup (C_FILEINFOTYPE, C_BUSINFLAG, C_DESCRIPTION, C_SUB_RANG, C_DEFICIENCYINFO, C_STATUS)
+values ('representIdFile', '01', '法人身份证附件', '保理业务', '法人身份证附件', '1')$$
+
+insert into t_cfg_auth_filegroup (C_FILEINFOTYPE, C_BUSINFLAG, C_DESCRIPTION, C_SUB_RANG, C_DEFICIENCYINFO, C_STATUS)
+values ('serviceContractFile', '01', '服务协议', '基金业务', '服务协议', '1')$$
+
+insert into t_cfg_auth_filegroup (C_FILEINFOTYPE, C_BUSINFLAG, C_DESCRIPTION, C_SUB_RANG, C_DEFICIENCYINFO, C_STATUS)
+values ('taxRegistFile', '01', '税务登记证附件', '保理业务', '税务登记证附件', '1')$$
