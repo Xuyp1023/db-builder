@@ -87,3 +87,7 @@ values('227','RepresentIdHeadFile','08','法人身份证-头像面','20160417','
 insert into `t_cfg_auth_filegroup_agency`(`C_AGENCYNO`,`C_FILEINFOTYPE`,`C_BUSINFLAG`,`C_DESCRIPTION`,`D_REGDATE`,`D_MODIDATE`,`N_INVALID_TIME`,`C_STATUS`,`C_BUSINCLASS`,`C_RULE_LIST`,`c_demo_file_path`,`c_temp_file_path`,`c_file_class`)
 values('227','serviceContractFile','08','服务协议','20160926','20160926','30','1','fund',null,null,null,null)$$
 
+
+##--屏蔽完善资料菜单项
+update t_cfg_menu set c_status='0' where id=212 and c_name='完善资料'$$
+
