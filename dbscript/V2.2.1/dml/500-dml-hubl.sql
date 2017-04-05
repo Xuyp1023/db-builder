@@ -12,7 +12,7 @@ INSERT INTO `t_cfg_menu_role` (`id`, `n_rule_id`, `c_rule_name`, `n_menu_id`, `c
 
 ##--茂业集团远程调用接口信息sql 添加
 DELETE FROM t_far_interface WHERE C_FACE='MAOY'$$
-INSERT INTO `t_far_interface` (`C_FACE`, `C_NAME`, `C_SIGN`, `C_FORMAT`, `C_ENCRYPT`, `C_HEADSIGN`, `C_FIELDORDER`, `C_FTP`, `C_URL`, `C_CHARSET`, `C_KEYPATH`, `C_KEYPASS`, `C_OWNER`, `C_GROUP`, `C_PROVIDER`, `D_MODIDATE`, `C_MUSTITEM`, `C_ERR_MODE`) VALUES ('MAOY', '茂业', '1', 'JSON', '9', '0', '0', ' ', ' ', 'UTF-8', 'keys/maoy', 'priv:DemoKey', 'hubl', 'SCF', NULL, '20170330', '0', 'yqr')$$
+INSERT INTO `t_far_interface` (`C_FACE`, `C_NAME`, `C_SIGN`, `C_FORMAT`, `C_ENCRYPT`, `C_HEADSIGN`, `C_FIELDORDER`, `C_FTP`, `C_URL`, `C_CHARSET`, `C_KEYPATH`, `C_KEYPASS`, `C_OWNER`, `C_GROUP`, `C_PROVIDER`, `D_MODIDATE`, `C_MUSTITEM`, `C_ERR_MODE`) VALUES ('MAOY', '茂业', '1', 'JSON', '9', '0', '0', ' ', ' ', 'UTF-8', 'keys/maoy', 'priv:maoye', 'hubl', 'SCF', NULL, '20170330', '0', 'yqr')$$
 
 DELETE FROM t_far_function WHERE C_FACE='MAOY'$$
 INSERT INTO `t_far_function` (`C_FACE`, `C_FUN`, `C_CODE`, `C_NAME`, `C_DESCRIPTION`, `C_URL`, `C_FACEURL`, `C_INCLASS`, `C_OUTCLASS`, `D_MODIDATE`, `C_INPUT_MODE`, `C_OUTPUT_MODE`, `C_INVOKE_MODE`, `C_DATA_ENCODER`, `C_DATA_DECODER`, `C_RESULTCODE`) VALUES ('MAOY', 'accessFristLogin', 'accessFristLogin', '首次登陆', 'webservice接口', NULL, NULL, NULL, NULL, NULL, '0', '0', '0', NULL, NULL, NULL)$$

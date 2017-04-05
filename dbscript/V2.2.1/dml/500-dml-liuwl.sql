@@ -6,7 +6,7 @@
 
 
 
-REPLACE INTO `t_far_interface` (`C_FACE`, `C_NAME`, `C_SIGN`, `C_FORMAT`, `C_ENCRYPT`, `C_HEADSIGN`, `C_FIELDORDER`, `C_FTP`, `C_URL`, `C_CHARSET`, `C_KEYPATH`, `C_KEYPASS`, `C_OWNER`, `C_GROUP`, `C_PROVIDER`, `D_MODIDATE`, `C_MUSTITEM`, `C_ERR_MODE`) VALUES ('GXJG', '广西建工', '1', 'JSON', '9', '0', '0', '', '', 'UTF-8', 'keys/gxjg', 'priv:123456', 'zhoucy', 'SCF', NULL, '20160330', '0', 'yqr')$$
+REPLACE INTO `t_far_interface` (`C_FACE`, `C_NAME`, `C_SIGN`, `C_FORMAT`, `C_ENCRYPT`, `C_HEADSIGN`, `C_FIELDORDER`, `C_FTP`, `C_URL`, `C_CHARSET`, `C_KEYPATH`, `C_KEYPASS`, `C_OWNER`, `C_GROUP`, `C_PROVIDER`, `D_MODIDATE`, `C_MUSTITEM`, `C_ERR_MODE`) VALUES ('GXJG', '广西建工', '1', 'JSON', '9', '0', '0', '', '', 'UTF-8', 'keys/gxjg', 'priv:gxjg', 'zhoucy', 'SCF', NULL, '20160330', '0', 'yqr')$$
 
 
 REPLACE INTO `t_far_function` (`C_FACE`, `C_FUN`, `C_CODE`, `C_NAME`, `C_DESCRIPTION`, `C_URL`, `C_FACEURL`, `C_INCLASS`, `C_OUTCLASS`, `D_MODIDATE`, `C_INPUT_MODE`, `C_OUTPUT_MODE`, `C_INVOKE_MODE`, `C_DATA_ENCODER`, `C_DATA_DECODER`, `C_RESULTCODE`) VALUES ('GXJG', 'accessFristLogin', 'accessFristLogin', '首次登陆', 'webservice接口', NULL, NULL, NULL, NULL, NULL, '0', '0', '0', NULL, NULL, NULL)$$
