@@ -67,3 +67,23 @@ values ('serviceContractFile', '01', '服务协议', '基金业务', '服务协�
 
 insert into t_cfg_auth_filegroup (C_FILEINFOTYPE, C_BUSINFLAG, C_DESCRIPTION, C_SUB_RANG, C_DEFICIENCYINFO, C_STATUS)
 values ('taxRegistFile', '01', '税务登记证附件', '保理业务', '税务登记证附件', '1')$$
+
+delete from t_cfg_auth_filegroup_agency where C_AGENCYNO='227'$$
+
+insert into `t_cfg_auth_filegroup_agency`(`C_AGENCYNO`,`C_FILEINFOTYPE`,`C_BUSINFLAG`,`C_DESCRIPTION`,`D_REGDATE`,`D_MODIDATE`,`N_INVALID_TIME`,`C_STATUS`,`C_BUSINCLASS`,`C_RULE_LIST`,`c_demo_file_path`,`c_temp_file_path`,`c_file_class`)
+values('227','authorizeFile','08','授权书','20160926','20160926','30','1','fund',null,null,null,null)$$
+insert into `t_cfg_auth_filegroup_agency`(`C_AGENCYNO`,`C_FILEINFOTYPE`,`C_BUSINFLAG`,`C_DESCRIPTION`,`D_REGDATE`,`D_MODIDATE`,`N_INVALID_TIME`,`C_STATUS`,`C_BUSINCLASS`,`C_RULE_LIST`,`c_demo_file_path`,`c_temp_file_path`,`c_file_class`)
+values('227','BrokerIdHeadFile','08','经办人身份证-头像面件','20160417','20160417','30','1','fund',null,null,null,null)$$
+insert into `t_cfg_auth_filegroup_agency`(`C_AGENCYNO`,`C_FILEINFOTYPE`,`C_BUSINFLAG`,`C_DESCRIPTION`,`D_REGDATE`,`D_MODIDATE`,`N_INVALID_TIME`,`C_STATUS`,`C_BUSINCLASS`,`C_RULE_LIST`,`c_demo_file_path`,`c_temp_file_path`,`c_file_class`)
+values('227','CustBankOpenLicenseFile','08','银行账户开户许可证','20160417','20160417','30','1','fund',null,null,null,null)$$
+insert into `t_cfg_auth_filegroup_agency`(`C_AGENCYNO`,`C_FILEINFOTYPE`,`C_BUSINFLAG`,`C_DESCRIPTION`,`D_REGDATE`,`D_MODIDATE`,`N_INVALID_TIME`,`C_STATUS`,`C_BUSINCLASS`,`C_RULE_LIST`,`c_demo_file_path`,`c_temp_file_path`,`c_file_class`)
+values('227','CustBizLicenseFile','08','营业执照附件','20160417','20160417','30','1','fund',null,null,null,null)$$
+insert into `t_cfg_auth_filegroup_agency`(`C_AGENCYNO`,`C_FILEINFOTYPE`,`C_BUSINFLAG`,`C_DESCRIPTION`,`D_REGDATE`,`D_MODIDATE`,`N_INVALID_TIME`,`C_STATUS`,`C_BUSINCLASS`,`C_RULE_LIST`,`c_demo_file_path`,`c_temp_file_path`,`c_file_class`)
+values('227','CustOrgCodeFile','08','组织机构代码证','20160417','20160417','30','1','fund',null,null,null,null)$$
+insert into `t_cfg_auth_filegroup_agency`(`C_AGENCYNO`,`C_FILEINFOTYPE`,`C_BUSINFLAG`,`C_DESCRIPTION`,`D_REGDATE`,`D_MODIDATE`,`N_INVALID_TIME`,`C_STATUS`,`C_BUSINCLASS`,`C_RULE_LIST`,`c_demo_file_path`,`c_temp_file_path`,`c_file_class`)
+values('227','CustTaxRegistFile','08','税务登记证','20160417','20160417','30','1','fund',null,null,null,null)$$
+insert into `t_cfg_auth_filegroup_agency`(`C_AGENCYNO`,`C_FILEINFOTYPE`,`C_BUSINFLAG`,`C_DESCRIPTION`,`D_REGDATE`,`D_MODIDATE`,`N_INVALID_TIME`,`C_STATUS`,`C_BUSINCLASS`,`C_RULE_LIST`,`c_demo_file_path`,`c_temp_file_path`,`c_file_class`)
+values('227','RepresentIdHeadFile','08','法人身份证-头像面','20160417','20160417','30','1','fund',null,null,null,null)$$
+insert into `t_cfg_auth_filegroup_agency`(`C_AGENCYNO`,`C_FILEINFOTYPE`,`C_BUSINFLAG`,`C_DESCRIPTION`,`D_REGDATE`,`D_MODIDATE`,`N_INVALID_TIME`,`C_STATUS`,`C_BUSINCLASS`,`C_RULE_LIST`,`c_demo_file_path`,`c_temp_file_path`,`c_file_class`)
+values('227','serviceContractFile','08','服务协议','20160926','20160926','30','1','fund',null,null,null,null)$$
+
