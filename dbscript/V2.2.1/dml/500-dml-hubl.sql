@@ -91,3 +91,5 @@ values('227','serviceContractFile','08','服务协议','20160926','20160926','30
 ##--屏蔽完善资料菜单项
 update t_cfg_menu set c_status='0' where id=212 and c_name='完善资料'$$
 
+##--修改远程调用wos 的证书密码
+update t_far_interface set  c_keypass='priv:qiejf332211' where c_face='wos'$$
