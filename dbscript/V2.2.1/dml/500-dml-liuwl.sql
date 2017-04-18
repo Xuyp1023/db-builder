@@ -6,7 +6,8 @@
 
 
 
-REPLACE INTO `t_far_interface` (`C_FACE`, `C_NAME`, `C_SIGN`, `C_FORMAT`, `C_ENCRYPT`, `C_HEADSIGN`, `C_FIELDORDER`, `C_FTP`, `C_URL`, `C_CHARSET`, `C_KEYPATH`, `C_KEYPASS`, `C_OWNER`, `C_GROUP`, `C_PROVIDER`, `D_MODIDATE`, `C_MUSTITEM`, `C_ERR_MODE`) VALUES ('GXJG', '广西建工', '1', 'JSON', '9', '0', '0', '', '', 'UTF-8', 'keys/gxjg', 'priv:123456', 'zhoucy', 'SCF', NULL, '20160330', '0', 'yqr')$$
+###-- 广西建工 接口 配置
+REPLACE INTO `t_far_interface` (`C_FACE`, `C_NAME`, `C_SIGN`, `C_FORMAT`, `C_ENCRYPT`, `C_HEADSIGN`, `C_FIELDORDER`, `C_FTP`, `C_URL`, `C_CHARSET`, `C_KEYPATH`, `C_KEYPASS`, `C_OWNER`, `C_GROUP`, `C_PROVIDER`, `D_MODIDATE`, `C_MUSTITEM`, `C_ERR_MODE`) VALUES ('GXJG', '广西建工', '1', 'JSON', '9', '0', '0', '', '', 'UTF-8', 'keys/gxjg', 'priv:gxjg', 'zhoucy', 'SCF', NULL, '20160330', '0', 'yqr')$$
 
 
 REPLACE INTO `t_far_function` (`C_FACE`, `C_FUN`, `C_CODE`, `C_NAME`, `C_DESCRIPTION`, `C_URL`, `C_FACEURL`, `C_INCLASS`, `C_OUTCLASS`, `D_MODIDATE`, `C_INPUT_MODE`, `C_OUTPUT_MODE`, `C_INVOKE_MODE`, `C_DATA_ENCODER`, `C_DATA_DECODER`, `C_RESULTCODE`) VALUES ('GXJG', 'accessFristLogin', 'accessFristLogin', '首次登陆', 'webservice接口', NULL, NULL, NULL, NULL, NULL, '0', '0', '0', NULL, NULL, NULL)$$
@@ -30,13 +31,29 @@ REPLACE INTO `t_far_config` (`C_FACE`, `C_NAME`, `C_VALUE`, `C_TYPE`, `C_SPLIT`,
 REPLACE INTO `t_far_config` (`C_FACE`, `C_NAME`, `C_VALUE`, `C_TYPE`, `C_SPLIT`, `C_SCOPE`, `C_DESCRIPTION`, `N_ORDER`, `ID`) VALUES ('GXJG', 'token', 'bytter123456789', NULL, '0', '0', '避免外部攻击，约定的token，定期更换', 0, NULL)$$
 
 
-REPLACE INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) VALUES ('广西建工集团有限责任公司', 'account', '20160602', '1', NULL, '20160601', NULL, 1)$$
-REPLACE INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) VALUES ('广西建工集团有限责任公司', 'accountBank', '20160602', '1', NULL, '20160601', NULL, 2)$$
-REPLACE INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) VALUES ('广西建工集团有限责任公司', 'accountBankFlow', '20150101', '1', NULL, '20110101', '20160601', 3)$$
-REPLACE INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) VALUES ('广西建工集团有限责任公司', 'accountPayStream', '20150101', '1', NULL, '20110101', '20160601', 4)$$
-REPLACE INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) VALUES ('广西建工集团有限责任公司', 'acceptBill', '20160602', '1', NULL, '20110601', NULL, 5)$$
-REPLACE INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) VALUES ('广西建工集团有限责任公司', 'coreAccountBalance', '20160602', '1', NULL, '20160601', NULL, 6)$$
-REPLACE INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) VALUES ('广西建工集团有限责任公司', 'processCoreCorp', '20170326', '1', NULL, '20170325', NULL, 7)$$
+
+INSERT INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) SELECT '广西建工集团有限责任公司', 'account', '20160602', '1', NULL, '20160601', NULL, 1 FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_scf_process_log` WHERE `c_operorg`='广西建工集团有限责任公司' AND `c_process_type` = 'account') $$
+
+INSERT INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) SELECT '广西建工集团有限责任公司', 'accountBank', '20160602', '1', NULL, '20160601', NULL, 2 FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_scf_process_log` WHERE `c_operorg`='广西建工集团有限责任公司' AND `c_process_type` = 'accountBank')$$
+INSERT INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) SELECT '广西建工集团有限责任公司', 'accountBankFlow', '20150101', '1', NULL, '20110101', '20160601', 3 FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_scf_process_log` WHERE `c_operorg`='广西建工集团有限责任公司' AND `c_process_type` = 'accountBankFlow')$$
+
+INSERT INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) SELECT '广西建工集团有限责任公司', 'accountPayStream', '20150101', '1', NULL, '20110101', '20160601', 4 FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_scf_process_log` WHERE `c_operorg`='广西建工集团有限责任公司' AND `c_process_type` = 'accountPayStream')$$
+
+INSERT INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) SELECT '广西建工集团有限责任公司', 'acceptBill', '20160602', '1', NULL, '20110601', NULL, 5 FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_scf_process_log` WHERE `c_operorg`='广西建工集团有限责任公司' AND `c_process_type` = 'acceptBill')$$
+
+INSERT INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) SELECT '广西建工集团有限责任公司', 'coreAccountBalance', '20160602', '1', NULL, '20160601', NULL, 6 FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_scf_process_log` WHERE `c_operorg`='广西建工集团有限责任公司' AND `c_process_type` = 'coreAccountBalance')$$
+
+INSERT INTO `t_scf_process_log` (`c_operorg`, `c_process_type`, `d_date`, `c_status`, `c_bankacco`, `d_startdate`, `d_enddate`, `id`) SELECT '广西建工集团有限责任公司', 'processCoreCorp', '20170326', '1', NULL, '20170325', NULL, 7 FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_scf_process_log` WHERE `c_operorg`='广西建工集团有限责任公司' AND `c_process_type` = 'processCoreCorp')$$
+
+
+
+
+#### --  茂业接口配置
+
+
+
+
+
 
 
 
