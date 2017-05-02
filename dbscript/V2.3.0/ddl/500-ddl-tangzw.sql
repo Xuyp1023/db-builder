@@ -4,7 +4,7 @@
 ##
 ##-- 产品配置相关表 提交日期2017/4/28
 
-DROP TABLE IF EXISTS t_scf_asset_dict
+DROP TABLE IF EXISTS t_scf_asset_dict$$
 CREATE TABLE `t_scf_asset_dict` (
 	`ID` BIGINT(18) NOT NULL COMMENT 'ID',
 	`C_DICT_TYPE` VARCHAR(2) NULL DEFAULT NULL COMMENT '资产类型,商业承兑汇票:1,应付账款:2,贸易合同:3,商业发票:4,采购订单或订货单:5,对账单:6,出货单或出库单:7',
