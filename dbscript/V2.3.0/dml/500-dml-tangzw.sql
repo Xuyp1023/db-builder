@@ -99,10 +99,10 @@ INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target
 
 
 #资产表，初始化
-INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1000, '1', '1', '1', '0', '1', '商业承兑汇票');
-INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1001, '2', '1', '1', '0', '1', '应付账款');
-INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1002, '3', '2', '1', '1', '1', '贸易合');
-INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1003, '4', '2', '1', '1', '1', '商业发票');
-INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1004, '5', '1', '1', '0', '1', '采购订单或订货单');
-INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1005, '6', '2', '0', '1', '1', '对账单');
-INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1006, '7', '2', '0', '1', '1', '出货单或出库单');
+INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1000, '1', '1', '1', '0', '1', '商业承兑汇票')$$
+INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1001, '2', '1', '1', '0', '1', '应付账款')$$
+INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1002, '3', '2', '1', '1', '1', '贸易合')$$
+INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1003, '4', '2', '1', '1', '1', '商业发票')$$
+INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1004, '5', '1', '1', '0', '1', '采购订单或订货单')$$
+INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1005, '6', '2', '0', '1', '1', '对账单')$$
+INSERT INTO `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`) VALUES (1006, '7', '2', '0', '1', '1', '出货单或出库单')$$
