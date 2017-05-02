@@ -4,6 +4,21 @@
 ##
 ##-- 产品配置相关表 提交日期2017/4/28
 
+DROP TABLE IF EXISTS t_scf_asset_dict
+CREATE TABLE `t_scf_asset_dict` (
+	`ID` BIGINT(18) NOT NULL COMMENT 'ID',
+	`C_DICT_TYPE` VARCHAR(2) NULL DEFAULT NULL COMMENT '资产类型,商业承兑汇票:1,应付账款:2,贸易合同:3,商业发票:4,采购订单或订货单:5,对账单:6,出货单或出库单:7',
+	`C_DATA_SOURCE` VARCHAR(2) NULL DEFAULT NULL COMMENT '数据来源，1：核心企业资金系统，2：供应商录入',
+	`C_FORM_DATA` VARCHAR(2) NULL DEFAULT NULL COMMENT '表单数据要求，0：无要求，1：有要求',
+	`C_ATTACH` VARCHAR(2) NULL DEFAULT NULL COMMENT '附件要求，0：无要求，1：有要求',
+	`C_BUSIN_STATUS` VARCHAR(2) NULL DEFAULT NULL COMMENT '状态，0：不可用，1：可用',
+	`C_DESCRIPTION` VARCHAR(200) NULL DEFAULT NULL,
+	PRIMARY KEY (`ID`)
+)
+COMMENT='资产类型表'
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB$$
+
 DROP TABLE IF EXISTS t_scf_product_asset_dict_relation$$
 CREATE TABLE `t_scf_product_asset_dict_relation` (
 	`L_ASSEST_ID` BIGINT(18) NOT NULL COMMENT '资产类型ID',
@@ -23,18 +38,6 @@ CREATE TABLE `t_scf_asset_dict_attach_relation` (
 	PRIMARY KEY (`ID`, `L_ASSESTID`)
 )
 COMMENT='资产类型关联附件类型表'
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB$$
-
-
-DROP TABLE IF EXISTS t_scf_product_asset_dict_relation$$
-CREATE TABLE `t_scf_product_asset_dict_relation` (
-	`L_ASSEST_ID` BIGINT(18) NOT NULL COMMENT '资产类型ID',
-	`C_PRODUCT_CODE` VARCHAR(50) NULL DEFAULT NULL COMMENT '产品编号',
-	`ID` BIGINT(18) NULL DEFAULT NULL,
-	`C_ASSEST_TYPE` VARCHAR(2) NULL DEFAULT NULL COMMENT '资产类型(1主体资产/2辅助材料)'
-)
-COMMENT='产品与资产类型关系表'
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB$$
 
