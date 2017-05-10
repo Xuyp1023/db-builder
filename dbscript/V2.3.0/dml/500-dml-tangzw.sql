@@ -79,7 +79,7 @@ REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34121, 'saveModifyProductConfig', 'financeModel', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34127, 'saveModifyProductConfig', 'coreCredict', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34128, 'saveModifyProductConfig', 'productName', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
-
+REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34129, 'saveModifyProductConfig', 'actionModel', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
 
 ##---生成ID
 REPLACE INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `C_SYSNO`, `C_TYPE`, `L_DATA_LEN`, `ID`) VALUES ('ScfProductConfig.id', 1202, 'SCF', '0', 10, 30004)$$
