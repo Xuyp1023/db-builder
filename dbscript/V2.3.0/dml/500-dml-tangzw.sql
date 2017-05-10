@@ -50,6 +50,10 @@ REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34076, 'addProductConfig', 'ratio', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34122, 'addProductConfig', 'actionModel', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34126, 'addProductConfig', 'coreCredict', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
+REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34130, 'addProductConfig', 'financeProportion', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
+REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34131, 'addProductConfig', 'financeModel', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
+
+
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34105, 'findAssetDictAttachRelationList', 'productCode', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34107, 'queryAssetDict', 'productCode', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
 REPLACE INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (34102, 'queryProductConfig', 'GTEregDate', 1, '1', NULL, NULL, NULL, NULL, NULL)$$
