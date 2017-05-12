@@ -9,9 +9,12 @@ INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO
 INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) VALUES ('CommissionMonthlyStatement.id', 0, NULL, 'SCF', '0', NULL, 10, 50017)$$
 
 
-##-- 新增青海移动菜单
+##-- 新增佣金支付菜单
+delete from t_cfg_menu where id=6$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (6, NULL, '佣金支付', '佣金支付', NULL, NULL, 0, 5, '佣金支付', '1', '20170513', '20170513', NULL, '0', 'CORE_USER,PLATFORM_USER')$$
+
 delete from t_cfg_menu where id>=20101 and id <=20122$$
-INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20101, NULL, '青海移动', '青海移动', NULL, NULL, 4, 13, NULL, '1', '20170509', '20170509', NULL, '0', 'PLATFORM_USER,CORE_USER')$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20101, NULL, '佣金支付', '佣金支付', NULL, NULL, 6, 1, NULL, '1', '20170509', '20170509', NULL, '0', 'PLATFORM_USER,CORE_USER')$$
 INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20110, NULL, '日账单管理', '日账单管理', '../../scf2/home.html#/1qh-mobile/check.dayManager', NULL, 20101, 7, NULL, '1', '20170509', '20170509', NULL, '1', 'PLATFORM_USER')$$
 INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20111, NULL, '月账单管理', '月账单管理', '../../scf2/home.html#/1qh-mobile/check.monthManager', NULL, 20101, 8, NULL, '1', '20170509', '20170509', NULL, '1', 'PLATFORM_USER')$$
 INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20112, NULL, '佣金导入', '佣金导入', '../../scf2/home.html#/1qh-mobile/lead.lead', NULL, 20101, 1, NULL, '1', '20170511', '20170511', NULL, '1', 'CORE_USER')$$
