@@ -1,8 +1,8 @@
 ##--合同编号生成 提交日期2017/01/06
-delete from t_cfg_snogeneral where C_OPERTYPE in ('LIMIT_102202019_QEQHTZQR','LIMIT_102202019_QEQHTZTZ')$$
-INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) VALUES ('LIMIT_102202019_QEQHTZQR', 0, NULL, 'SCF', '3', NULL, 5, 50010)$$
-INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) VALUES ('LIMIT_102202019_QEQHTZTZ', 0, NULL, 'SCF', '3', NULL, 5, 50011)$$
-
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) SELECT 'LIMIT_102202019_QEQHTZQR', 0, NULL, 'SCF', '3', NULL, 5, 50010 FROM 
+dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '50010')$$
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) SELECT 'LIMIT_102202019_QEQHTZTZ', 0, NULL, 'SCF', '3', NULL, 5, 50011 FROM 
+dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '50011')$$
 
 ##--添加帮助菜单  提交日期2017/01/12
 delete from t_cfg_menu where id in (5,314,315,316)$$
@@ -71,10 +71,9 @@ INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`
 INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'des', '描述', 'des', '0', 'C', 200, 0, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
 
 
-delete from t_cfg_snogeneral where c_opertype in ('ContractLedger.id','ContractLedgerRecode.id')$$
-INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) VALUES ('ContractLedger.id', 1, NULL, 'SCF', '0', NULL, 10, 50009)$$
-INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) VALUES ('ContractLedgerRecode.id', 1, NULL, 'SCF', '0', NULL, 10, 50012)$$
-
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) SELECT 'ContractLedger.id', 1, NULL, 'SCF', '0', NULL, 10, 50009 FROM dual 
+WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '50009')$$
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) SELECT 'ContractLedgerRecode.id', 1, NULL, 'SCF', '0', NULL, 10, 50012 FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '50012')$$
 
 ## -- 添加合同/发票删除标识
 delete from t_rule_busin_validator where id in (50140,50141)$$
