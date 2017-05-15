@@ -228,5 +228,31 @@ END$$
 call create_table_cps_delivery_record()$$
 drop PROCEDURE if EXISTS create_table_cps_delivery_record$$
 
+drop PROCEDURE if EXISTS create_table_cps_file_ordercloumn$$
+create procedure create_table_cps_file_ordercloumn() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_file_ordercloumn')
+	THEN
+	CREATE TABLE `t_cust_file_ordercloumn` (
+	  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+	  `C_INFO_TYPE` varchar(8) DEFAULT NULL COMMENT '解析的文件类型1订单 2票据  3应收账款 4发票 5 合同 6佣金',
+	  `C_UP_FLAG` varchar(8) DEFAULT NULL COMMENT '标记上传下载   上传1  下载2',
+	  `C_BUSIN_STATUS` varchar(8) DEFAULT NULL COMMENT ' 当前记录是否可用      0 可用  1过期',
+	  `L_CLOUMN_ORDER` int(11) DEFAULT NULL COMMENT '文件列排序序号',
+	  `C_CLOUMN_PROPERTIES` varchar(255) DEFAULT NULL COMMENT '文件列对应的属性',
+	  `C_CLOUMN_NAME` varchar(255) DEFAULT NULL COMMENT '列的中文名称',
+	  `L_IS_MUST` int(11) DEFAULT NULL COMMENT '是否必填 1 必须  0 不必须',
+	  `D_REG_DATE` varchar(8) DEFAULT NULL COMMENT '创建日期',
+	  `T_REG_TIME` varchar(8) DEFAULT NULL COMMENT '创建时间',
+	  `C_CLOUMN_TYPE` varchar(5) DEFAULT NULL COMMENT '当前列的类型c字符串   n数字',
+	  PRIMARY KEY (`ID`),
+	  KEY `inx_order_cloumn_tab_infoType` (`C_INFO_TYPE`) USING HASH
+	) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+	END IF;
+END$$
+call create_table_cps_file_ordercloumn()$$
+drop PROCEDURE if EXISTS create_table_cps_file_ordercloumn$$
+
 
 
