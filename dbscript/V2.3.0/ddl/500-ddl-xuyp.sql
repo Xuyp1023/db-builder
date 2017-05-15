@@ -27,7 +27,7 @@ BEGIN
 		  `C_PAY_STATUS` char(1) DEFAULT NULL COMMENT '付款状态 0 未处理 2 支付成功  1 支付失败',
 		  `C_BUSIN_STATUS` char(1) DEFAULT NULL COMMENT '业务状态 0 未处理 1 已处理 2已审核 3删除',
 		  `C_RESOLVE_STATUS` char(1) DEFAULT NULL COMMENT '文件处理状态 1：解析成功  0 解析失败',
-		  `C_SHOW_MESSAGE` varchar(500) DEFAULT NULL COMMENT '文件解析结果提示信息',
+		  `C_SHOW_MESSAGE` varchar(2500) DEFAULT NULL COMMENT '文件解析结果提示信息',
 		  `F_TOTAL_BLANCE` decimal(16,0) DEFAULT NULL COMMENT '当前文件总金额',
 		  `L_TOTAL_AMOUNT` bigint(10) DEFAULT NULL COMMENT '当前文件总记录',
 		  `C_INFO_TYPE` varchar(5) DEFAULT NULL COMMENT '解析的文件类型1订单 2票据  3应收账款 4发票 5 合同 6佣金',
