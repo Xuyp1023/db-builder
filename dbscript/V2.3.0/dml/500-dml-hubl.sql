@@ -34,7 +34,7 @@ delete from t_cfg_dict where c_code='CommissionBusinStatus'$$
 INSERT INTO `t_cfg_dict` (`ID`, `C_SYS`, `C_NAME`, `C_GROUP`, `C_MODIFY`, `C_DESCRIPTION`, `C_OWNER`, `D_MODIDATE`, `C_SCRIPT`, `C_CODE`) VALUES (50010, '4', '日月对账单显示状态', '5', '0', NULL, NULL, '20170512', '1', 'CommissionBusinStatus')$$
 
 
-delete from t_cfg_dict where ID in (50030,50031,50032,50033,50034)$$
+delete from t_cfg_dictitem where ID in (50030,50031,50032,50033,50034)$$
 INSERT INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (50030, 50010, '0', NULL, '未生效', NULL, 0, '1', '0', NULL, '1')$$
 INSERT INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (50031, 50010, '1', NULL, '已确认', NULL, 0, '1', '0', NULL, '1')$$
 INSERT INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (50032, 50010, '2', NULL, '已生效', NULL, 0, '1', '0', NULL, '1')$$
