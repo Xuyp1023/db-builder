@@ -191,9 +191,7 @@ BEGIN
 		)
 		COMMENT='佣金对账结果'
 		COLLATE='utf8_general_ci'
-		ENGINE=InnoDB
-		;
-
+		ENGINE=InnoDB;
 	END IF;
 END$$
 call create_table_pay_result()$$
@@ -208,7 +206,7 @@ BEGIN
 	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_pay_result_record')
 	THEN
 		CREATE TABLE `t_cps_pay_result_record` (
-			`ID` BIGINT(20) NULL DEFAULT NULL COMMENT '编号',
+			`ID` BIGINT(20) NOT NULL COMMENT '编号',
 			`C_REFNO` VARCHAR(20) NULL DEFAULT NULL COMMENT '凭证号',
 			`L_PAY_RESULT_ID` BIGINT(20) NULL DEFAULT NULL COMMENT '支付结果编号',
 			`C_PAY_RESULT_REFNO` VARCHAR(20) NULL DEFAULT NULL COMMENT '支付结果凭证号',
@@ -243,12 +241,14 @@ BEGIN
 			`C_REG_OPERNAME` VARCHAR(40) NULL DEFAULT ' ',
 			`D_REG_DATE` VARCHAR(8) NULL DEFAULT ' ',
 			`T_REG_TIME` VARCHAR(8) NULL DEFAULT ' ',
-			`N_VERSION` BIGINT(20) NULL DEFAULT '0'
+			`N_VERSION` BIGINT(20) NULL DEFAULT '0',
+			PRIMARY KEY (`ID`),
+			INDEX `L_PAY_RESULT_ID` (`L_PAY_RESULT_ID`),
+			INDEX `D_PAY_DATE_L_CUSTNO` (`D_PAY_DATE`, `L_CUSTNO`)
 		)
 		COMMENT='佣金对账结果 详细记录'
 		COLLATE='utf8_general_ci'
-		ENGINE=InnoDB
-		;
+		ENGINE=InnoDB;
 	END IF;
 END$$
 call create_table_pay_result_record()$$
