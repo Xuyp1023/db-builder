@@ -213,4 +213,16 @@ call create_table_cpsStatement()$$
 drop PROCEDURE if EXISTS create_table_cpsStatement$$
 
 
+##--新增结束金额字段 2017/05/16
+drop PROCEDURE if EXISTS change_table_col$$
+create procedure change_table_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_monthly_statement' AND COLUMN_NAME='F_INTEREST_BALANCE')
+THEN   
+   ALTER TABLE `t_cps_monthly_statement` ADD COLUMN `F_INTEREST_BALANCE` DECIMAL(16,2) default 0.00 COMMENT '结算金额';
+END IF;
+END$$
+call change_table_col()$$
+drop PROCEDURE if EXISTS change_table_col$$
+
+
 
