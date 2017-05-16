@@ -105,7 +105,6 @@ drop PROCEDURE if EXISTS create_table_cpsStatement$$
 			`D_REG_DATE` VARCHAR(8) NULL DEFAULT ' ',
 			`T_REG_TIME` VARCHAR(8) NULL DEFAULT ' ',
 			`N_VERSION` BIGINT(20) NULL DEFAULT '0',
-			PRIMARY KEY (`ID`),
 			INDEX `IDX_T_CPS_DAILY_STATEMENT_ID_REFNO` (`L_DAILY_STATEMENT_ID`, `C_DAILY_STATEMENT_REFNO`)
 		);
 		END IF;
@@ -223,6 +222,28 @@ END IF;
 END$$
 call change_table_col()$$
 drop PROCEDURE if EXISTS change_table_col$$
+
+##--变更索引
+drop PROCEDURE if EXISTS change_table_pri_index$$
+create procedure change_table_pri_index() BEGIN   
+IF EXISTS (SELECT * FROM information_schema.STATISTICS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_daily_statement_record' and index_name='PRIMARY')
+THEN   
+   alter table t_cps_daily_statement_record drop primary key;
+END IF;
+END$$
+call change_table_pri_index()$$
+drop PROCEDURE if EXISTS change_table_pri_index$$
+
+
+drop PROCEDURE if EXISTS change_table_index$$
+create procedure change_table_index() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.STATISTICS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_daily_statement_record' and index_name='IDX_ID')
+THEN   
+   alter table t_cps_daily_statement_record add index IDX_ID(ID);
+END IF;
+END$$
+call change_table_index()$$
+drop PROCEDURE if EXISTS change_table_index$$
 
 
 
