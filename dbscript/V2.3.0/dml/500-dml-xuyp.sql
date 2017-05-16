@@ -129,7 +129,7 @@ DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='LTEbillMonth' and C_NAME='LT
 INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SALE', 'LTEbillMonth', '对账月份', 'LTEbillMonth', '0', 'C', '6', '0', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
 
 ##-- 佣金文件解析明细项
-DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700035 AND `ID` <= 700046$$
+DELETE FROM `t_cust_file_ordercloumn` WHERE `ID` >= 700035 AND `ID` <= 700046$$
 INSERT INTO `t_cust_file_ordercloumn` (`ID`, `C_INFO_TYPE`, `C_UP_FLAG`, `C_BUSIN_STATUS`, `L_CLOUMN_ORDER`, `C_CLOUMN_PROPERTIES`, `C_CLOUMN_NAME`, `L_IS_MUST`, `D_REG_DATE`, `T_REG_TIME`, `C_CLOUMN_TYPE`) VALUES ('700035', '6', '1', '0', '0', 'area', '片区', '0', NULL, NULL, 'c')$$
 INSERT INTO `t_cust_file_ordercloumn` (`ID`, `C_INFO_TYPE`, `C_UP_FLAG`, `C_BUSIN_STATUS`, `L_CLOUMN_ORDER`, `C_CLOUMN_PROPERTIES`, `C_CLOUMN_NAME`, `L_IS_MUST`, `D_REG_DATE`, `T_REG_TIME`, `C_CLOUMN_TYPE`) VALUES ('700036', '6', '1', '0', '1', 'customerName', '客户名称', '1', NULL, NULL, 'c')$$
 INSERT INTO `t_cust_file_ordercloumn` (`ID`, `C_INFO_TYPE`, `C_UP_FLAG`, `C_BUSIN_STATUS`, `L_CLOUMN_ORDER`, `C_CLOUMN_PROPERTIES`, `C_CLOUMN_NAME`, `L_IS_MUST`, `D_REG_DATE`, `T_REG_TIME`, `C_CLOUMN_TYPE`) VALUES ('700037', '6', '1', '0', '2', 'amount', '销量', '1', NULL, NULL, 'n')$$
