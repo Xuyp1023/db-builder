@@ -212,6 +212,7 @@ BEGIN
 		  `C_EXPRESS_STATUS` varchar(2) DEFAULT NULL COMMENT '传递状态  0 未投递  1 已投递   2已确认',
 		  `D_BILL_MONTH` varchar(6) DEFAULT NULL COMMENT '对账月份yyyyMM',
 		  `L_FILE_ID` bigint(20) DEFAULT NULL,
+		  `F_INTEREST_BALANCE` decimal(16,2) DEFAULT NULL,
 		  PRIMARY KEY (`ID`),
 		  KEY `inx_delivery_statement_tab_monthlyId` (`L_MONTHLY_STATEMENT_ID`) USING HASH,
 		  KEY `inx_delivery_statement_tab_monthlyRefNo` (`C_MONTHLY_STATEMENT_REFNO`) USING HASH,
@@ -254,5 +255,14 @@ END$$
 call create_table_cps_file_ordercloumn()$$
 drop PROCEDURE if EXISTS create_table_cps_file_ordercloumn$$
 
-
+##--新增结束金额字段 2017/05/16
+drop PROCEDURE if EXISTS change_delivery_record_table_col$$
+create procedure change_delivery_record_table_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_delivery_record' AND COLUMN_NAME='F_INTEREST_BALANCE')
+THEN   
+   ALTER TABLE `t_cps_delivery_record` ADD COLUMN `F_INTEREST_BALANCE` DECIMAL(16,2) default 0.00 COMMENT '结算金额';
+END IF;
+END$$
+call change_delivery_record_table_col()$$
+drop PROCEDURE if EXISTS change_delivery_record_table_col$$
 
