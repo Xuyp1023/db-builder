@@ -101,8 +101,8 @@
             <echo>EXPORT MYSQL DB script</echo>
 			
             <exec executable="mysqldump" output="@{dumpfile}" failonerror="true">
-				<arg line="-u @{dbuser}"/>
-				<arg line="-p @{dbpwd}"/>
+				<arg line="-u@{dbuser}"/>
+				<arg line="-p@{dbpwd}"/>
 				<arg line="-h @{dbhost}"/>
 				<arg line="-P @{dbport}"/>
 				<arg line="-B @{dbname}"/>
@@ -141,8 +141,8 @@
             <echo>IMPORT MYSQL DB script </echo>
 			<echo level="info" message="dumpfile === @{dumpfile}" />
             <exec executable="mysql" input="@{dumpfile}"  failonerror="true">
-				<arg line="-u @{dbuser}"/>
-				<arg line="-p @{dbpwd}"/>
+				<arg line="-u@{dbuser}"/>
+				<arg line="-p@{dbpwd}"/>
 				<arg line="-h @{dbhost}"/>
 				<arg line="-P @{dbport}"/>
 				<arg line="@{dbname}"/>
@@ -164,14 +164,14 @@
             <echo>REBUILD MYSQL DB script</echo>
 			
             <exec executable="mysql" inputstring="drop database if exists @{dbname}">
-				<arg line="-u @{dbuser}"/>
-				<arg line="-p @{dbpwd}"/>
+				<arg line="-u@{dbuser}"/>
+				<arg line="-p@{dbpwd}"/>
 				<arg line="-h @{dbhost}"/>
 				<arg line="-P @{dbport}"/>
             </exec>
 			 <exec executable="mysql" inputstring="create database if not exists @{dbname}">
-				<arg line="-u @{dbuser}"/>
-				<arg line="-p @{dbpwd}"/>
+				<arg line="-u@{dbuser}"/>
+				<arg line="-p@{dbpwd}"/>
 				<arg line="-h @{dbhost}"/>
 				<arg line="-P @{dbport}"/>
             </exec>
