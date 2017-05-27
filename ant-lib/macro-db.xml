@@ -104,7 +104,7 @@
 				<arg line="-h @{dbhost}"/>
 				<arg line="-P @{dbport}"/>
 				<arg line="-B @{dbname}"/>
-				<arg line="-x"/>
+				<arg line="-x"/> 
 				<arg line="--tables"/>
 				<arg line="--hex-blob"/>
 				<arg line="-F"/>
