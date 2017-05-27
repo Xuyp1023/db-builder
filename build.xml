@@ -22,6 +22,8 @@
 			dbhost="${dbhost}"
 			dbport="${dbport}"
 			dbname="${dbname}"
+			dbuser="${dbuser}"
+			dbpwd="${dbpwd}"
         />
 		
 		<!-- restore base db -->
@@ -29,6 +31,8 @@
 			dbhost="${dbhost}"
 			dbport="${dbport}"
 			dbname="${dbname}"
+			dbuser="${dbuser}"
+			dbpwd="${dbpwd}"
 			dumpfile="${basedir}/basedb/scf_db_${pre.release.version}.sql"
         />    
 		
@@ -57,6 +61,8 @@
 			dbhost="${dbhost}"
 			dbport="${dbport}"
 			dbname="${dbname}"
+			dbuser="${dbuser}"
+			dbpwd="${dbpwd}"
 			dumpfile="${outputdir}/db/scf_dev.sql"
         />   
 		
@@ -68,6 +74,8 @@
 			dbhost="${dbhost}"
 			dbport="${dbport}"
 			dbname="${dbname}"
+			dbuser="${dbuser}"
+			dbpwd="${dbpwd}"
 			dumpfile="${outputdir}/db/scf_dev.sql"
         />   
 	</target>

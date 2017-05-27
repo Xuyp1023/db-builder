@@ -90,6 +90,8 @@
         <attribute name="dbhost" description="Host Name/ IP of the DB"/>
         <attribute name="dbport" description="DB Port" default="3306"/>
         <attribute name="dbname" description="DB Name"/>
+		<attribute name="dbuser" description="DB User name"/>
+        <attribute name="dbpwd" description="DB Password"/>
         <attribute name="dumpfile" description="DB Dumpfile to be restored"/>
         <attribute name="directory" description="dumpfile directory" default=""/>
         <sequential>
@@ -126,6 +128,8 @@
         <attribute name="dbhost" description="Host Name/ IP of the DB"/>
         <attribute name="dbport" description="DB Port" default="1521"/>
         <attribute name="dbname" description="DB Name"/>
+		<attribute name="dbuser" description="DB User name"/>
+        <attribute name="dbpwd" description="DB Password"/>
         <attribute name="dumpfile" description="DB Dumpfile to be restored"/>
         <attribute name="directory" description="dumpfile directory" default=""/>
         <sequential>
@@ -147,6 +151,8 @@
         <attribute name="dbhost" description="Host Name/ IP of the DB"/>
         <attribute name="dbport" description="DB Port" default="1521"/>
         <attribute name="dbname" description="DB Name"/>
+		<attribute name="dbuser" description="DB User name"/>
+        <attribute name="dbpwd" description="DB Password"/>
         <sequential>
             <tstamp>
                 <format property="runSqlTime" pattern="yyyyMMddHHmmssSSS"/>
