@@ -40,7 +40,6 @@ INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_P
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700069', 'addOrderDO', 'coreCustno', '7', '1', NULL, NULL, NULL, NULL, NULL)$$
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700070', 'addOrderDO', 'custNo', '8', '1', NULL, NULL, NULL, NULL, NULL)$$
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700071', 'addOrderDO', 'description', '9', '1', NULL, NULL, NULL, NULL, NULL)$$
-INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'orderNo', '订单编号', 'orderNo', '1', 'C', '100', '0', '100', '0', NULL, NULL, '20160719', '20160719', '订单编号', NULL, NULL, NULL, NULL)$$
 
 ##-- 订单编辑过滤规则：700072     ----   700083
 DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700072 AND `ID` <= 700083$$
