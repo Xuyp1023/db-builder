@@ -282,8 +282,8 @@ BEGIN
 	  `C_GOODSNAME` varchar(100) NOT NULL COMMENT '商品名称',
 	  `D_ORDER_DATE` varchar(8) DEFAULT NULL COMMENT '订单日期',
 	  `D_END_DATE` varchar(8) DEFAULT NULL COMMENT '到期日期',
-	  `F_UNIT` decimal(16,2) DEFAULT NULL  COMMENT '商品价格',
-	  `N_AMOUNT` int(10) DEFAULT NULL  COMMENT '采购数量',
+	  `F_UNIT` decimal(16,2) DEFAULT '0.00' COMMENT '商品价格',
+	  `N_AMOUNT` int(10) DEFAULT '0' COMMENT '采购数量',
 	  `F_BALANCE` decimal(16,2) NOT NULL DEFAULT '0.00' COMMENT '订单总额',
 	  `L_CORE_CUSTNO` bigint(18) NOT NULL COMMENT '核心企业编号',
 	  `C_CORE_CUSTNAME` varchar(120) DEFAULT NULL,
@@ -572,7 +572,7 @@ drop PROCEDURE if EXISTS change_filedown_table_balanceconfirmfailure_col$$
 
 drop PROCEDURE if EXISTS change_filedown_table_balanceconfirmsuccess_col$$
 create procedure change_filedown_table_balanceconfirmsuccess_col() BEGIN   
-IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file_down' AND COLUMN_NAME='F_BALANCE_CONFIRM_FAILURE')
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file_down' AND COLUMN_NAME='F_BALANCE_CONFIRM_SUCCESS')
 THEN   
    ALTER TABLE `t_cps_file_down` ADD COLUMN `F_BALANCE_CONFIRM_SUCCESS` decimal(18,2) DEFAULT NULL COMMENT '合规金额';
 END IF;
