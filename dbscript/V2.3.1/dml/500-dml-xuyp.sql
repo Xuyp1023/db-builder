@@ -313,6 +313,58 @@ INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_P
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700236', 'webQueryRecycleInvoice', 'coreCustNo', '4', '1', NULL, NULL, NULL, NULL, NULL)$$
 
 
+## ----20170606
+
+
+##--- --佣金文件审核全部查询sql过滤
+
+DELETE FROM `t_rule_busin` WHERE `ID` = 700237$$
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('ICommissionRecordService.webQueryCanAuditRecordList', NULL, NULL, '查询佣金记录列表', NULL, NULL, '1', '20160614', '20160614', '700237', NULL, 'ICommissionRecordService.webQueryCanAuditRecordList', 'java.util.HashMap')$$
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700238 AND `ID` <= 700241$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700238', 'ICommissionRecordService.webQueryCanAuditRecordList', 'importDate', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700239', 'ICommissionRecordService.webQueryCanAuditRecordList', 'custNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700240', 'ICommissionRecordService.webQueryCanAuditRecordList', 'businStatus', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700241', 'ICommissionRecordService.webQueryCanAuditRecordList', 'payStatus', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+
+## ---文件导出查询新增确认状态 sql过滤
+DELETE FROM `t_rule_busin_validator` WHERE `ID` =700242$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700242', 'ICommissionFileDownService.webQueryFileDownList', 'confirmStatus', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='confirmStatus' and C_NAME='confirmStatus' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SALE', 'confirmStatus', '确认状态', 'confirmStatus', '0', 'C', '8', '0', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+
+
+## --佣金文件审核导出文件查询列表
+DELETE FROM `t_rule_busin` WHERE `ID` = 700243$$
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('ICommissionFileDownService.webQueryCanAuditFileList', NULL, NULL, '查询导出文件列表', NULL, NULL, '1', '20160614', '20160614', '700243', NULL, 'ICommissionFileDownService.webQueryCanAuditFileList', 'java.util.HashMap')$$
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700244 AND `ID` <= 700247$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700244', 'ICommissionFileDownService.webQueryCanAuditFileList', 'custNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700245', 'ICommissionFileDownService.webQueryCanAuditFileList', 'GTEimportDate', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700246', 'ICommissionFileDownService.webQueryCanAuditFileList', 'LTEimportDate', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700247', 'ICommissionFileDownService.webQueryCanAuditFileList', 'confirmStatus', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+
+##  --给file_down的主键新增主键增长策越
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'CommissionFileDown.id', '1007272', NULL, 'SALE', '0', NULL, '20', '700248' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700248')$$
+
+
+## ---导出文件审核数据传递
+DELETE FROM `t_rule_busin` WHERE `ID` = 700249$$
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('ICommissionFileDownService.webSaveAuditFileDownById', NULL, NULL, '审核导出文件通过导出文件id', NULL, NULL, '1', '20160614', '20160614', '700249', NULL, 'ICommissionFileDownService.webSaveAuditFileDownById', 'java.util.HashMap')$$
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700250 AND `ID` <= 700252$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700250', 'ICommissionFileDownService.webSaveAuditFileDownById', 'confirmMessage', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700251', 'ICommissionFileDownService.webSaveAuditFileDownById', 'confirmStatus', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700252', 'ICommissionFileDownService.webSaveAuditFileDownById', 'id', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='confirmMessage' and C_NAME='confirmMessage' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SALE', 'confirmMessage', '确认意见', 'confirmMessage', '0', 'C', '200', '0', '200', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+
+
+
 
 ##-------------------------------------------------------------------------------------------------
 ##--END 请勿 COMMIT

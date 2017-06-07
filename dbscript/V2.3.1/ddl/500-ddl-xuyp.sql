@@ -282,8 +282,8 @@ BEGIN
 	  `C_GOODSNAME` varchar(100) NOT NULL COMMENT '商品名称',
 	  `D_ORDER_DATE` varchar(8) DEFAULT NULL COMMENT '订单日期',
 	  `D_END_DATE` varchar(8) DEFAULT NULL COMMENT '到期日期',
-	  `F_UNIT` decimal(16,2) NOT NULL DEFAULT '0.00' COMMENT '商品价格',
-	  `N_AMOUNT` int(10) NOT NULL DEFAULT '0' COMMENT '采购数量',
+	  `F_UNIT` decimal(16,2) DEFAULT NULL  COMMENT '商品价格',
+	  `N_AMOUNT` int(10) DEFAULT NULL  COMMENT '采购数量',
 	  `F_BALANCE` decimal(16,2) NOT NULL DEFAULT '0.00' COMMENT '订单总额',
 	  `L_CORE_CUSTNO` bigint(18) NOT NULL COMMENT '核心企业编号',
 	  `C_CORE_CUSTNAME` varchar(120) DEFAULT NULL,
@@ -441,8 +441,210 @@ END$$
 call create_table_cps_file_ordercloumn()$$
 drop PROCEDURE if EXISTS create_table_cps_file_ordercloumn$$
 
+##--新增结束金额字段 2017/06/06
+
+## --给记录表新增确认状态字段
+drop PROCEDURE if EXISTS change_record_table_confirmstatus_col$$
+create procedure change_record_table_confirmstatus_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_record' AND COLUMN_NAME='C_CONFIRM_STATUS')
+THEN   
+   ALTER TABLE `t_cps_record` ADD COLUMN `C_CONFIRM_STATUS` char(2) DEFAULT NULL COMMENT '拜特确认当前记录是否合规 0 未确认  1 确定未通过  2 确认通过';
+END IF;
+END$$
+call change_record_table_confirmstatus_col()$$
+drop PROCEDURE if EXISTS change_record_table_confirmstatus_col$$
+
+##-- 给佣金文件表新增确认相关的字段
+drop PROCEDURE if EXISTS change_file_table_confirmstatus_col$$
+create procedure change_file_table_confirmstatus_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file' AND COLUMN_NAME='C_CONFIRM_STATUS')
+THEN   
+   ALTER TABLE `t_cps_file` ADD COLUMN `C_CONFIRM_STATUS` char(2) DEFAULT NULL COMMENT '拜特确认当前记录是否合规 0 未确认  1 确定未通过  2 确认通过';
+END IF;
+END$$
+call change_file_table_confirmstatus_col()$$
+drop PROCEDURE if EXISTS change_file_table_confirmstatus_col$$
 
 
+
+drop PROCEDURE if EXISTS change_file_table_confirmdate_col$$
+create procedure change_file_table_confirmdate_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file' AND COLUMN_NAME='D_CONFIRM_DATE')
+THEN   
+   ALTER TABLE `t_cps_file` ADD COLUMN `D_CONFIRM_DATE` char(8) DEFAULT NULL COMMENT '确认日期';
+END IF;
+END$$
+call change_file_table_confirmdate_col()$$
+drop PROCEDURE if EXISTS change_file_table_confirmdate_col$$
+
+
+
+drop PROCEDURE if EXISTS change_file_table_confirmtime_col$$
+create procedure change_file_table_confirmtime_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file' AND COLUMN_NAME='T_CONFIRM_TIME')
+THEN   
+   ALTER TABLE `t_cps_file` ADD COLUMN `T_CONFIRM_TIME` char(6) DEFAULT NULL COMMENT '确认时间';
+END IF;
+END$$
+call change_file_table_confirmtime_col()$$
+drop PROCEDURE if EXISTS change_file_table_confirmtime_col$$
+
+drop PROCEDURE if EXISTS change_file_table_confirmmessage_col$$
+create procedure change_file_table_confirmmessage_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file' AND COLUMN_NAME='C_CONFRIM_MESSAGE')
+THEN   
+   ALTER TABLE `t_cps_file` ADD COLUMN `C_CONFRIM_MESSAGE` varchar(255) DEFAULT NULL COMMENT '确认信息';
+END IF;
+END$$
+call change_file_table_confirmmessage_col()$$
+drop PROCEDURE if EXISTS change_file_table_confirmmessage_col$$
+
+
+drop PROCEDURE if EXISTS change_file_table_filedownid_col$$
+create procedure change_file_table_filedownid_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file' AND COLUMN_NAME='L_FILEDOWN_ID')
+THEN   
+   ALTER TABLE `t_cps_file` ADD COLUMN `L_FILEDOWN_ID` bigint(20) DEFAULT NULL COMMENT '当天审核全部文件的id';
+END IF;
+END$$
+call change_file_table_filedownid_col()$$
+drop PROCEDURE if EXISTS change_file_table_filedownid_col$$
+
+
+
+drop PROCEDURE if EXISTS change_file_table_auditoperid_col$$
+create procedure change_file_table_auditoperid_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file' AND COLUMN_NAME='L_AUDIT_OPERID')
+THEN   
+   ALTER TABLE `t_cps_file` ADD COLUMN `L_AUDIT_OPERID` bigint(18) DEFAULT NULL COMMENT '核准人id';
+END IF;
+END$$
+call change_file_table_auditoperid_col()$$
+drop PROCEDURE if EXISTS change_file_table_auditoperid_col$$
+
+
+
+drop PROCEDURE if EXISTS change_file_table_auditopername_col$$
+create procedure change_file_table_auditopername_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file' AND COLUMN_NAME='C_AUDIT_OPERNAME')
+THEN   
+   ALTER TABLE `t_cps_file` ADD COLUMN `C_AUDIT_OPERNAME` varchar(40) DEFAULT NULL COMMENT '核准人名称';
+END IF;
+END$$
+call change_file_table_auditopername_col()$$
+drop PROCEDURE if EXISTS change_file_table_auditopername_col$$
+
+
+## ---佣金导出文件新增字段
+
+drop PROCEDURE if EXISTS change_filedown_table_amountconfirfailure_col$$
+create procedure change_filedown_table_amountconfirfailure_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file_down' AND COLUMN_NAME='N_AMOUNT_CONFIRM_FAILURE')
+THEN   
+   ALTER TABLE `t_cps_file_down` ADD COLUMN `N_AMOUNT_CONFIRM_FAILURE` int(11) DEFAULT NULL COMMENT '不合规数量';
+END IF;
+END$$
+call change_filedown_table_amountconfirfailure_col()$$
+drop PROCEDURE if EXISTS change_filedown_table_amountconfirfailure_col$$
+
+
+drop PROCEDURE if EXISTS change_filedown_table_amountconfirmsuccess_col$$
+create procedure change_filedown_table_amountconfirmsuccess_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file_down' AND COLUMN_NAME='N_AMOUNT_CONFIRM_SUCCESS')
+THEN   
+   ALTER TABLE `t_cps_file_down` ADD COLUMN `N_AMOUNT_CONFIRM_SUCCESS` int(11) DEFAULT NULL COMMENT '合规数量';
+END IF;
+END$$
+call change_filedown_table_amountconfirmsuccess_col()$$
+drop PROCEDURE if EXISTS change_filedown_table_amountconfirmsuccess_col$$
+
+
+drop PROCEDURE if EXISTS change_filedown_table_balanceconfirmfailure_col$$
+create procedure change_filedown_table_balanceconfirmfailure_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file_down' AND COLUMN_NAME='F_BALANCE_CONFIRM_FAILURE')
+THEN   
+   ALTER TABLE `t_cps_file_down` ADD COLUMN `F_BALANCE_CONFIRM_FAILURE` decimal(18,2) DEFAULT NULL COMMENT '不合规金额';
+END IF;
+END$$
+call change_filedown_table_balanceconfirmfailure_col()$$
+drop PROCEDURE if EXISTS change_filedown_table_balanceconfirmfailure_col$$
+
+
+drop PROCEDURE if EXISTS change_filedown_table_balanceconfirmsuccess_col$$
+create procedure change_filedown_table_balanceconfirmsuccess_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file_down' AND COLUMN_NAME='F_BALANCE_CONFIRM_FAILURE')
+THEN   
+   ALTER TABLE `t_cps_file_down` ADD COLUMN `F_BALANCE_CONFIRM_SUCCESS` decimal(18,2) DEFAULT NULL COMMENT '合规金额';
+END IF;
+END$$
+call change_filedown_table_balanceconfirmsuccess_col()$$
+drop PROCEDURE if EXISTS change_filedown_table_balanceconfirmsuccess_col$$
+
+
+drop PROCEDURE if EXISTS change_filedown_table_confrimstatus_col$$
+create procedure change_filedown_table_confrimstatus_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file_down' AND COLUMN_NAME='C_CONFIRM_STATUS')
+THEN   
+   ALTER TABLE `t_cps_file_down` ADD COLUMN `C_CONFIRM_STATUS` char(2) DEFAULT NULL COMMENT '拜特确认当前记录是否合规 0 未确认  1 不合规  2 合规';
+END IF;
+END$$
+call change_filedown_table_confrimstatus_col()$$
+drop PROCEDURE if EXISTS change_filedown_table_confrimstatus_col$$
+
+
+drop PROCEDURE if EXISTS change_filedown_table_confrimdate_col$$
+create procedure change_filedown_table_confrimdate_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file_down' AND COLUMN_NAME='D_CONFIRM_DATE')
+THEN   
+   ALTER TABLE `t_cps_file_down` ADD COLUMN `D_CONFIRM_DATE` char(8) DEFAULT NULL COMMENT '确认日期';
+END IF;
+END$$
+call change_filedown_table_confrimdate_col()$$
+drop PROCEDURE if EXISTS change_filedown_table_confrimdate_col$$
+
+
+drop PROCEDURE if EXISTS change_filedown_table_confrimtime_col$$
+create procedure change_filedown_table_confrimtime_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file_down' AND COLUMN_NAME='T_CONFIRM_TIME')
+THEN   
+   ALTER TABLE `t_cps_file_down` ADD COLUMN `T_CONFIRM_TIME` char(6) DEFAULT NULL COMMENT '确认时间';
+END IF;
+END$$
+call change_filedown_table_confrimtime_col()$$
+drop PROCEDURE if EXISTS change_filedown_table_confrimtime_col$$
+
+  
+  drop PROCEDURE if EXISTS change_filedown_table_confrimmessage_col$$
+create procedure change_filedown_table_confrimmessage_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file_down' AND COLUMN_NAME='C_CONFRIM_MESSAGE')
+THEN   
+   ALTER TABLE `t_cps_file_down` ADD COLUMN `C_CONFRIM_MESSAGE` varchar(255) DEFAULT NULL COMMENT '确认信息';
+END IF;
+END$$
+call change_filedown_table_confrimmessage_col()$$
+drop PROCEDURE if EXISTS change_filedown_table_confrimmessage_col$$
+
+
+  drop PROCEDURE if EXISTS change_filedown_table_auditoperid_col$$
+create procedure change_filedown_table_auditoperid_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file_down' AND COLUMN_NAME='L_AUDIT_OPERID')
+THEN   
+   ALTER TABLE `t_cps_file_down` ADD COLUMN `L_AUDIT_OPERID` bigint(18) DEFAULT NULL COMMENT '核准人id';
+END IF;
+END$$
+call change_filedown_table_auditoperid_col()$$
+drop PROCEDURE if EXISTS change_filedown_table_auditoperid_col$$
+
+
+  drop PROCEDURE if EXISTS change_filedown_table_auditopername_col$$
+create procedure change_filedown_table_auditopername_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_file_down' AND COLUMN_NAME='C_AUDIT_OPERNAME')
+THEN   
+   ALTER TABLE `t_cps_file_down` ADD COLUMN `C_AUDIT_OPERNAME` varchar(40) DEFAULT NULL COMMENT '核准人名称';
+END IF;
+END$$
+call change_filedown_table_auditopername_col()$$
+drop PROCEDURE if EXISTS change_filedown_table_auditopername_col$$
 
 
 
