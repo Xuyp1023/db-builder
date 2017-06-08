@@ -367,7 +367,7 @@ INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`
 ## ---去除订单查询的订单编号 bug714
 
 
-delete from  `t_rule_busin_validator` where  C_BUSIN_NAME='queryOrder' and C_VALID_NAME='orderNo'
+delete from  `t_rule_busin_validator` where  C_BUSIN_NAME='queryOrder' and C_VALID_NAME='orderNo'$$
 
 ##-------------------------------------------------------------------------------------------------
 ##--END 请勿 COMMIT
