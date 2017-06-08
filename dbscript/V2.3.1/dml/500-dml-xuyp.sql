@@ -364,7 +364,10 @@ DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='confirmMessage' and C_NAME='
 INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SALE', 'confirmMessage', '确认意见', 'confirmMessage', '0', 'C', '200', '0', '200', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
 
 
+## ---去除订单查询的订单编号 bug714
 
+
+delete from  `t_rule_busin_validator` where  C_BUSIN_NAME='queryOrder' and C_VALID_NAME='orderNo'
 
 ##-------------------------------------------------------------------------------------------------
 ##--END 请勿 COMMIT
