@@ -646,6 +646,212 @@ END$$
 call change_filedown_table_auditopername_col()$$
 drop PROCEDURE if EXISTS change_filedown_table_auditopername_col$$
 
+## -- task214  :20170614
+
+## -- 资产表新增字段
+ drop PROCEDURE if EXISTS change_scfasset_table_regOperId_col$$
+create procedure change_scfasset_table_regOperId_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='L_REG_OPERID')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `L_REG_OPERID` bigint(20) DEFAULT NULL;
+END IF;
+END$$
+call change_scfasset_table_regOperId_col()$$
+drop PROCEDURE if EXISTS change_scfasset_table_regOperId_col$$
+
+ 
+ drop PROCEDURE if EXISTS change_scfasset_table_regOperName_col$$
+create procedure change_scfasset_table_regOperName_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='C_REG_OPERNAME')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `C_REG_OPERNAME` varchar(120) DEFAULT NULL;
+END IF;
+END$$
+call change_scfasset_table_regOperName_col()$$
+drop PROCEDURE if EXISTS change_scfasset_table_regOperName_col$$
+ 
+  
+   drop PROCEDURE if EXISTS change_scfasset_table_annulOperId_col$$
+create procedure change_scfasset_table_annulOperId_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='L_ANNUL_OPERID')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `L_ANNUL_OPERID` bigint(20) DEFAULT NULL;
+END IF;
+END$$
+call change_scfasset_table_annulOperId_col()$$
+drop PROCEDURE if EXISTS change_scfasset_table_annulOperId_col$$
+
+  
+   drop PROCEDURE if EXISTS change_scfasset_table_annulOperName_col$$
+create procedure change_scfasset_table_annulOperName_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='C_ANNUL_OPERNAME')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `C_ANNUL_OPERNAME` varchar(120) DEFAULT NULL;
+END IF;
+END$$
+call change_scfasset_table_annulOperName_col()$$
+drop PROCEDURE if EXISTS change_scfasset_table_annulOperName_col$$
+
+  
+     drop PROCEDURE if EXISTS change_scfasset_table_annulDate_col$$
+create procedure change_scfasset_table_annulDate_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='D_ANNUL_DATE')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `D_ANNUL_DATE` char(8) DEFAULT NULL;
+END IF;
+END$$
+call change_scfasset_table_annulDate_col()$$
+drop PROCEDURE if EXISTS change_scfasset_table_annulDate_col$$
+
+       drop PROCEDURE if EXISTS change_scfasset_table_annulTime_col$$
+create procedure change_scfasset_table_annulTime_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='T_ANNUL_TIME')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `T_ANNUL_TIME` char(6) DEFAULT NULL;
+END IF;
+END$$
+call change_scfasset_table_annulTime_col()$$
+drop PROCEDURE if EXISTS change_scfasset_table_annulTime_col$$
+  
+
+  drop PROCEDURE if EXISTS change_scfasset_table_balance_col$$
+create procedure change_scfasset_table_balance_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='F_BALANCE')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `F_BALANCE` decimal(16,2) DEFAULT NULL;
+END IF;
+END$$
+call change_scfasset_table_balance_col()$$
+drop PROCEDURE if EXISTS change_scfasset_table_balance_col$$
+
+
+  drop PROCEDURE if EXISTS change_scfasset_table_statementBatchNo_col$$
+create procedure change_scfasset_table_statementBatchNo_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='N_STATEMENT_BATCHNO')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `N_STATEMENT_BATCHNO` bigint(20) DEFAULT NULL COMMENT '对账单附件';
+END IF;
+END$$
+call change_scfasset_table_statementBatchNo_col()$$
+drop PROCEDURE if EXISTS change_scfasset_table_statementBatchNo_col$$
+
+  
+    drop PROCEDURE if EXISTS change_scfasset_table_goodsbatchNo_col$$
+create procedure change_scfasset_table_goodsbatchNo_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='N_GOODS_BATCHNO')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `N_GOODS_BATCHNO` bigint(20) DEFAULT NULL COMMENT '商品出库单附件';
+END IF;
+END$$
+call change_scfasset_table_goodsbatchNo_col()$$
+drop PROCEDURE if EXISTS change_scfasset_table_goodsbatchNo_col$$
+  
+  
+      drop PROCEDURE if EXISTS change_scfasset_table_othersBatchNo_col$$
+create procedure change_scfasset_table_othersBatchNo_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='N_OTHERS_BATCHNO')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `N_OTHERS_BATCHNO` bigint(20) DEFAULT NULL COMMENT '其他附件';
+END IF;
+END$$
+call change_scfasset_table_othersBatchNo_col()$$
+drop PROCEDURE if EXISTS change_scfasset_table_othersBatchNo_col$$
+
+## -- 票据表新增字段
+
+
+drop PROCEDURE if EXISTS change_acceptBill_table_custName_col$$
+create procedure change_acceptBill_table_custName_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_accept_bill_v3' AND COLUMN_NAME='C_CUSTNAME')
+THEN   
+   ALTER TABLE `t_scf_accept_bill_v3` ADD COLUMN `C_CUSTNAME` varchar(120) DEFAULT NULL;
+END IF;
+END$$
+call change_acceptBill_table_custName_col()$$
+drop PROCEDURE if EXISTS change_acceptBill_table_custName_col$$
+
+
+drop PROCEDURE if EXISTS change_acceptBill_table_custId_col$$
+create procedure change_acceptBill_table_custId_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_accept_bill_v3' AND COLUMN_NAME='L_CUSTNO')
+THEN   
+   ALTER TABLE `t_scf_accept_bill_v3` ADD COLUMN `L_CUSTNO` bigint(18) NOT NULL;
+END IF;
+END$$
+call change_acceptBill_table_custId_col()$$
+drop PROCEDURE if EXISTS change_acceptBill_table_custId_col$$
+
+##---贸易合同新增字段
+
+drop PROCEDURE if EXISTS change_contractLedger_table_lockedStatus_col$$
+create procedure change_contractLedger_table_lockedStatus_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_contract_ledger' AND COLUMN_NAME='C_LOCKED_STATUS')
+THEN   
+   ALTER TABLE `t_contract_ledger` ADD COLUMN `C_LOCKED_STATUS` char(2) DEFAULT NULL;
+END IF;
+END$$
+call change_contractLedger_table_lockedStatus_col()$$
+drop PROCEDURE if EXISTS change_contractLedger_table_lockedStatus_col$$
+  
+  drop PROCEDURE if EXISTS change_contractLedger_table_refNo_col$$
+create procedure change_contractLedger_table_refNo_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_contract_ledger' AND COLUMN_NAME='C_Ref_NO')
+THEN   
+   ALTER TABLE `t_contract_ledger` ADD COLUMN `C_Ref_NO` char(32) DEFAULT NULL;
+END IF;
+END$$
+call change_contractLedger_table_refNo_col()$$
+drop PROCEDURE if EXISTS change_contractLedger_table_refNo_col$$
+  
+    drop PROCEDURE if EXISTS change_contractLedger_table_version_col$$
+create procedure change_contractLedger_table_version_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_contract_ledger' AND COLUMN_NAME='N_VERSION')
+THEN   
+   ALTER TABLE `t_contract_ledger` ADD COLUMN `N_VERSION` varchar(255) DEFAULT NULL;
+END IF;
+END$$
+call change_contractLedger_table_version_col()$$
+drop PROCEDURE if EXISTS change_contractLedger_table_version_col$$
+  
+      drop PROCEDURE if EXISTS change_contractLedger_table_islatest_col$$
+create procedure change_contractLedger_table_islatest_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_contract_ledger' AND COLUMN_NAME='C_IS_LATEST')
+THEN   
+   ALTER TABLE `t_contract_ledger` ADD COLUMN `C_IS_LATEST` varchar(255) DEFAULT NULL;
+END IF;
+END$$
+call change_contractLedger_table_islatest_col()$$
+drop PROCEDURE if EXISTS change_contractLedger_table_islatest_col$$
+  
+        drop PROCEDURE if EXISTS change_contractLedger_table_custNo_col$$
+create procedure change_contractLedger_table_custNo_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_contract_ledger' AND COLUMN_NAME='L_CUSTNO')
+THEN   
+   ALTER TABLE `t_contract_ledger` ADD COLUMN `L_CUSTNO` bigint(18) NOT NULL;
+END IF;
+END$$
+call change_contractLedger_table_custNo_col()$$
+drop PROCEDURE if EXISTS change_contractLedger_table_custNo_col$$
+
+          drop PROCEDURE if EXISTS change_contractLedger_table_custName_col$$
+create procedure change_contractLedger_table_custName_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_contract_ledger' AND COLUMN_NAME='C_CUSTNAME')
+THEN   
+   ALTER TABLE `t_contract_ledger` ADD COLUMN `C_CUSTNAME` varchar(255) DEFAULT NULL;
+END IF;
+END$$
+call change_contractLedger_table_custName_col()$$
+drop PROCEDURE if EXISTS change_contractLedger_table_custName_col$$
+
+          drop PROCEDURE if EXISTS change_contractLedger_table_businVersionStatus_col$$
+create procedure change_contractLedger_table_businVersionStatus_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_contract_ledger' AND COLUMN_NAME='c_busin_version_status')
+THEN   
+   ALTER TABLE `t_contract_ledger` ADD COLUMN `c_busin_version_status` char(1) DEFAULT NULL COMMENT '0 未核准 1：核准  2：已使用 3：转让 4废止 5 过期';
+END IF;
+END$$
+call change_contractLedger_table_businVersionStatus_col()$$
+drop PROCEDURE if EXISTS change_contractLedger_table_businVersionStatus_col$$
 
 
 
