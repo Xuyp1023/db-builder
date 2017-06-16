@@ -3,9 +3,9 @@
 ##-- V1.0
 ##
 ##-- 融资相关表 提交日期2017/6/16
-drop PROCEDURE if EXISTS create_table_asset_register$$
-	create procedure create_table_asset_register() 
-		BEGIN
+drop PROCEDURE if EXISTS create_table_domain_attribute$$
+	create procedure create_table_domain_attribute() 
+	BEGIN
 		IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset_register')
 		THEN
 		CREATE TABLE `t_scf_asset_register` (
@@ -33,15 +33,16 @@ drop PROCEDURE if EXISTS create_table_asset_register$$
 		)
 		COMMENT='中征登记检查表'
 		COLLATE='utf8_general_ci'
-		ENGINE=InnoDB$$
-		END IF$$
+		ENGINE=InnoDB
+			;
+		END IF;
 	END$$
-call create_table_asset_register()$$
-drop PROCEDURE if EXISTS create_table_asset_register$$
+call create_table_domain_attribute()$$
+drop PROCEDURE if EXISTS create_table_domain_attribute$$
 
 
-drop PROCEDURE if EXISTS create_table_asset_check$$
-	create procedure create_table_asset_check() 
+drop PROCEDURE if EXISTS create_table_domain_attribute$$
+	create procedure create_table_domain_attribute() 
 		BEGIN
 		IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset_check')
 		THEN
@@ -70,73 +71,76 @@ drop PROCEDURE if EXISTS create_table_asset_check$$
 		)
 		COMMENT='中征登记检查表'
 		COLLATE='utf8_general_ci'
-		ENGINE=InnoDB$$
+		ENGINE=InnoDB
+			;
 		END IF;
 	END$$
-call create_table_asset_check()$$
-drop PROCEDURE if EXISTS create_table_asset_check$$
+call create_table_domain_attribute()$$
+drop PROCEDURE if EXISTS create_table_domain_attribute$$
 
 
 
-drop PROCEDURE if EXISTS create_table_request_temp$$
-	create procedure create_table_request_temp() 
+drop PROCEDURE if EXISTS create_table_domain_attribute$$
+	create procedure create_table_domain_attribute() 
 	BEGIN
 		IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_request_temp')
 		THEN
 			CREATE TABLE `t_scf_request_temp` (
-				`C_REQUESTNO` VARCHAR(50) NOT NULL COMMENT '申请编号',
-				`C_LOAN_NO` VARCHAR(50) NULL DEFAULT NULL COMMENT '融资编号',
-				`L_BALANCE` DECIMAL(18,2) NULL DEFAULT NULL COMMENT '申请期限',
-				`N_PERIOD` INT(11) NULL DEFAULT NULL COMMENT '申请期限',
-				`C_PRODUCT_CODE` VARCHAR(50) NULL DEFAULT NULL COMMENT '产品编号',
-				`L_FACTORNO` BIGINT(18) NULL DEFAULT NULL COMMENT '保理公司编号',
-				`C_SUPP_BANK_ACCOUNT` VARCHAR(50) NULL DEFAULT NULL COMMENT '收款方银行账户',
-				`C_BUSIN_STATUS` VARCHAR(2) NULL DEFAULT NULL COMMENT '申请状态',
-				`N_PERIOD_UNIT` VARCHAR(2) NULL DEFAULT NULL COMMENT '申请状态',
-				`L_CUSTNO` BIGINT(18) NULL DEFAULT NULL COMMENT '申请企业编号',
-				`L_CORE_CUSTNO` BIGINT(18) NULL DEFAULT NULL COMMENT '核心企业编号',
-				`C_OPERORG` VARCHAR(200) NULL DEFAULT ' ' COMMENT '操作机构',
-				`L_REG_OPERID` BIGINT(18) NULL DEFAULT '0',
-				`C_REG_OPERNAME` VARCHAR(40) NULL DEFAULT ' ',
-				`D_REG_DATE` VARCHAR(8) NULL DEFAULT ' ',
-				`T_REG_TIME` VARCHAR(8) NULL DEFAULT ' ',
-				`L_MODI_OPERID` BIGINT(18) NULL DEFAULT '0',
-				`C_MODI_OPERNAME` VARCHAR(40) NULL DEFAULT ' ',
-				`D_MODI_DATE` VARCHAR(8) NULL DEFAULT ' ',
-				`T_MODI_TIME` VARCHAR(8) NULL DEFAULT ' ',
-				`N_VERSION` BIGINT(20) NULL DEFAULT '0',
-				`C_ORDERS` VARCHAR(50) NULL DEFAULT '0' COMMENT '联资产编号',
-				`C_DESCRIPTION` VARCHAR(200) NULL DEFAULT '0',
-				PRIMARY KEY (`C_REQUESTNO`)
-			)
-			COMMENT='融资申请暂存实体'
-			COLLATE='utf8_general_ci'
-			ENGINE=InnoDB$$
+			`C_REQUESTNO` VARCHAR(50) NOT NULL COMMENT '申请编号',
+			`C_LOAN_NO` VARCHAR(50) NULL DEFAULT NULL COMMENT '融资编号',
+			`L_BALANCE` DECIMAL(18,2) NULL DEFAULT NULL COMMENT '申请期限',
+			`N_PERIOD` INT(11) NULL DEFAULT NULL COMMENT '申请期限',
+			`C_PRODUCT_CODE` VARCHAR(50) NULL DEFAULT NULL COMMENT '产品编号',
+			`L_FACTORNO` BIGINT(18) NULL DEFAULT NULL COMMENT '保理公司编号',
+			`C_SUPP_BANK_ACCOUNT` VARCHAR(50) NULL DEFAULT NULL COMMENT '收款方银行账户',
+			`C_BUSIN_STATUS` VARCHAR(2) NULL DEFAULT NULL COMMENT '申请状态',
+			`N_PERIOD_UNIT` VARCHAR(2) NULL DEFAULT NULL COMMENT '申请状态',
+			`L_CUSTNO` BIGINT(18) NULL DEFAULT NULL COMMENT '申请企业编号',
+			`L_CORE_CUSTNO` BIGINT(18) NULL DEFAULT NULL COMMENT '核心企业编号',
+			`C_OPERORG` VARCHAR(200) NULL DEFAULT ' ' COMMENT '操作机构',
+			`L_REG_OPERID` BIGINT(18) NULL DEFAULT '0',
+			`C_REG_OPERNAME` VARCHAR(40) NULL DEFAULT ' ',
+			`D_REG_DATE` VARCHAR(8) NULL DEFAULT ' ',
+			`T_REG_TIME` VARCHAR(8) NULL DEFAULT ' ',
+			`L_MODI_OPERID` BIGINT(18) NULL DEFAULT '0',
+			`C_MODI_OPERNAME` VARCHAR(40) NULL DEFAULT ' ',
+			`D_MODI_DATE` VARCHAR(8) NULL DEFAULT ' ',
+			`T_MODI_TIME` VARCHAR(8) NULL DEFAULT ' ',
+			`N_VERSION` BIGINT(20) NULL DEFAULT '0',
+			`C_ORDERS` VARCHAR(50) NULL DEFAULT '0' COMMENT '联资产编号',
+			`C_DESCRIPTION` VARCHAR(200) NULL DEFAULT '0',
+			PRIMARY KEY (`C_REQUESTNO`)
+		)
+		COMMENT='融资申请暂存实体'
+		COLLATE='utf8_general_ci'
+		ENGINE=InnoDB
+			;
 		END IF;
 	END$$
-call create_table_request_temp()$$
-drop PROCEDURE if EXISTS create_table_request_temp$$
+call create_table_domain_attribute()$$
+drop PROCEDURE if EXISTS create_table_domain_attribute$$
 
 
-drop PROCEDURE if EXISTS create_table_agreement_relation$$
-	create procedure create_table_agreement_relation() 
+drop PROCEDURE if EXISTS create_table_domain_attribute$$
+	create procedure create_table_domain_attribute() 
 	BEGIN
 		IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_sign_agreement_relation')
 		THEN
-			CREATE TABLE `t_scf_sign_agreement_relation` (
-				`ID` BIGINT(18) NOT NULL,
-				`C_REQUEST_NO` VARCHAR(50) NULL DEFAULT NULL COMMENT '申请编号',
-				`L_AGREEMENT_ID` BIGINT(18) NULL DEFAULT NULL COMMENT '合同id',
-				`C_TYPE` VARCHAR(2) NULL DEFAULT NULL COMMENT '合同类型',
-				PRIMARY KEY (`ID`)
-			)
-			COMMENT='融资申请暂存实体'
-			COLLATE='utf8_general_ci'
-			ENGINE=InnoDB$$
+		CREATE TABLE `t_scf_sign_agreement_relation` (
+			`ID` BIGINT(18) NOT NULL,
+			`C_REQUEST_NO` VARCHAR(50) NULL DEFAULT NULL COMMENT '申请编号',
+			`L_AGREEMENT_ID` BIGINT(18) NULL DEFAULT NULL COMMENT '合同id',
+			`C_TYPE` VARCHAR(2) NULL DEFAULT NULL COMMENT '合同类型',
+			PRIMARY KEY (`ID`)
+		)
+		COMMENT='融资申请暂存实体'
+		COLLATE='utf8_general_ci'
+		ENGINE=InnoDB
+			;
 		END IF;
 	END$$
-call create_table_agreement_relation()$$
-drop PROCEDURE if EXISTS create_table_agreement_relation$$
+call create_table_domain_attribute()$$
+drop PROCEDURE if EXISTS create_table_domain_attribute$$
 
 
 
