@@ -369,6 +369,16 @@ INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`
 
 delete from  `t_rule_busin_validator` where  C_BUSIN_NAME='queryOrder' and C_VALID_NAME='orderNo'$$
 
+
+## ---发票提示信息错误   bug748
+
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='invoiceCode' and C_NAME='invoiceCode' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'invoiceCode', '发票号码', 'invoiceCode', '0', 'C', '30', '0', '30', '0', NULL, NULL, '20160719', '20160719', '发票代码', NULL, NULL, NULL, NULL)$$
+
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='invoiceNo' and C_NAME='invoiceNo' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SALE', 'invoiceNo', '发票代码', 'invoiceNo', '1', 'C', '30', '0', '30', '6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+
+
 ##-------------------------------------------------------------------------------------------------
 ##--END 请勿 COMMIT
 ##-------------------------------------------------------------------------------------------------
