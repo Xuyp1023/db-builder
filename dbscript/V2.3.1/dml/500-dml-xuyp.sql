@@ -378,6 +378,13 @@ INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`
 DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='invoiceNo' and C_NAME='invoiceNo' $$
 INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SALE', 'invoiceNo', '发票代码', 'invoiceNo', '1', 'C', '30', '0', '30', '6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
 
+## -----业务类型sql
+
+DELETE FROM `t_scf_busintype` WHERE `ID` >= 700253 AND `ID` <= 700254$$
+INSERT INTO `t_scf_busintype` (`ID`, `C_BUSIN_TYPE_NAME`, `C_CREDIT_FLAG`, `C_DESCRIPTION`, `C_BUSIN_STATUS`, `D_REG_DATE`, `T_REG_TIME`, `L_REG_OPERID`, `C_REG_OPERNAME`) VALUES ('700253', '应收账款保理', '1', NULL, '1', NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_scf_busintype` (`ID`, `C_BUSIN_TYPE_NAME`, `C_CREDIT_FLAG`, `C_DESCRIPTION`, `C_BUSIN_STATUS`, `D_REG_DATE`, `T_REG_TIME`, `L_REG_OPERID`, `C_REG_OPERNAME`) VALUES ('700254', '票据保理', '1', NULL, '1', NULL, NULL, NULL, NULL)$$
+
+
 
 ##-------------------------------------------------------------------------------------------------
 ##--END 请勿 COMMIT
