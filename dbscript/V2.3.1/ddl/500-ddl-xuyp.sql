@@ -15,9 +15,9 @@ BEGIN
 	  `id` bigint(20) NOT NULL COMMENT '编号',
 	  `D_REG_DATE` varchar(8) DEFAULT NULL COMMENT '创建日期',
 	  `T_REG_TIME` varchar(8) DEFAULT NULL COMMENT '创建时间',
-	  `C_BUSIN_STATU` varchar(255) DEFAULT NULL COMMENT '资产状态 10：可用  20 ：不可用',
-	  `C_ASSET_NAME` varchar(120) DEFAULT NULL COMMENT '资产产品名称',
-	  `C_ASSET_TYPE` varchar(4) DEFAULT NULL COMMENT '资产产品类型1:订单类资产 2:票据类资产3:应收账款资产',
+	  `C_BUSIN_STATU` varchar(255) DEFAULT NULL COMMENT '资产状态 0:未生效  1生效  2废止 3 转让 4不可用',
+	  `C_ASSET_NAME` varchar(120) DEFAULT NULL COMMENT '资产类型id',
+	  `C_ASSET_TYPE` varchar(4) DEFAULT NULL COMMENT '保理产品id',
 	  `C_SOURCE_USE_TYPE` varchar(4) DEFAULT NULL COMMENT '资产使用用途 1 询价 2 融资',
 	  `L_CUSTNO` bigint(20) DEFAULT NULL COMMENT '债权公司编号(资产所属公司)',
 	  `C_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '债权公司名称(资产所有者)',
@@ -854,7 +854,40 @@ call change_contractLedger_table_businVersionStatus_col()$$
 drop PROCEDURE if EXISTS change_contractLedger_table_businVersionStatus_col$$
 
 
+          drop PROCEDURE if EXISTS change_contractLedger_table_core_custNo_col$$
+create procedure change_contractLedger_table_core_custNo_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_contract_ledger' AND COLUMN_NAME='l_core_custNo')
+THEN   
+   ALTER TABLE `t_contract_ledger` ADD COLUMN `l_core_custNo` bigint(18) DEFAULT NULL;
+END IF;
+END$$
+call change_contractLedger_table_core_custNo_col()$$
+drop PROCEDURE if EXISTS change_contractLedger_table_core_custNo_col$$
 
 
+## ---业务类型表  task-213
+drop PROCEDURE if EXISTS create_table_scf_busin_type$$
+create procedure create_table_scf_busin_type() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_busintype')
+	THEN
+	CREATE TABLE `t_scf_busintype` (
+	  `ID` bigint(20) NOT NULL COMMENT '编号id',
+	  `C_BUSIN_TYPE_NAME` varchar(255) NOT NULL COMMENT '业务类型名称',
+	  `C_CREDIT_FLAG` char(1) DEFAULT NULL COMMENT '授信标识',
+	  `C_DESCRIPTION` varchar(255) DEFAULT NULL COMMENT '备注',
+	  `C_BUSIN_STATUS` char(1) DEFAULT NULL COMMENT '业务状态 0 不可用  1 生效',
+	  `D_REG_DATE` char(8) DEFAULT NULL COMMENT '新建日期',
+	  `T_REG_TIME` char(6) DEFAULT NULL COMMENT '新建时间',
+	  `L_REG_OPERID` bigint(20) DEFAULT NULL COMMENT '新建人',
+	  `C_REG_OPERNAME` varchar(140) DEFAULT NULL COMMENT '新建名称',
+	  PRIMARY KEY (`ID`),
+	  UNIQUE KEY `inx_busintype_tab_businName` (`C_BUSIN_TYPE_NAME`) USING HASH
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+	END IF;
+END$$
+call create_table_scf_busin_type()$$
+drop PROCEDURE if EXISTS create_table_scf_busin_type$$
 
 
