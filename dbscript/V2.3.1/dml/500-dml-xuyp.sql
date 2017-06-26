@@ -385,6 +385,9 @@ INSERT INTO `t_scf_busintype` (`ID`, `C_BUSIN_TYPE_NAME`, `C_CREDIT_FLAG`, `C_DE
 INSERT INTO `t_scf_busintype` (`ID`, `C_BUSIN_TYPE_NAME`, `C_CREDIT_FLAG`, `C_DESCRIPTION`, `C_BUSIN_STATUS`, `D_REG_DATE`, `T_REG_TIME`, `L_REG_OPERID`, `C_REG_OPERNAME`) VALUES ('700254', '票据保理', '1', NULL, '1', NULL, NULL, NULL, NULL)$$
 
 
+##--bug718  给日志表新增主键策越
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'ScfJoblog.id', '1006183', NULL, 'SCF', '0', NULL, '18', '700255' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700255')$$
+
 
 ##-------------------------------------------------------------------------------------------------
 ##--END 请勿 COMMIT
