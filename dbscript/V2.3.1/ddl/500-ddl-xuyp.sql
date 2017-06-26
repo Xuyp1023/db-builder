@@ -17,7 +17,7 @@ BEGIN
 	  `T_REG_TIME` varchar(8) DEFAULT NULL COMMENT '创建时间',
 	  `C_BUSIN_STATU` varchar(255) DEFAULT NULL COMMENT '资产状态 0:未生效  1生效  2废止 3 转让 4不可用',
 	  `C_ASSET_NAME` varchar(120) DEFAULT NULL COMMENT '资产类型id',
-	  `C_ASSET_TYPE` varchar(4) DEFAULT NULL COMMENT '保理产品id',
+	  `C_ASSET_TYPE` varchar(20) DEFAULT NULL COMMENT '保理产品id',
 	  `C_SOURCE_USE_TYPE` varchar(4) DEFAULT NULL COMMENT '资产使用用途 1 询价 2 融资',
 	  `L_CUSTNO` bigint(20) DEFAULT NULL COMMENT '债权公司编号(资产所属公司)',
 	  `C_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '债权公司名称(资产所有者)',
@@ -889,5 +889,47 @@ BEGIN
 END$$
 call create_table_scf_busin_type()$$
 drop PROCEDURE if EXISTS create_table_scf_busin_type$$
+
+## --修改资产表类型字段
+   drop PROCEDURE if EXISTS change_scfasset_table_assetType_col$$
+create procedure change_scfasset_table_assetType_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='C_ASSET_TYPE')
+THEN   
+   alter table t_scf_asset modify column `C_ASSET_TYPE` varchar(20) DEFAULT NULL COMMENT '保理产品id';
+END IF;
+END$$
+call change_scfasset_table_assetType_col()$$
+drop PROCEDURE if EXISTS change_scfasset_table_assetType_col$$
+
+## ---bug718  定时任务
+
+
+drop PROCEDURE if EXISTS create_table_scf_jobLog$$
+create procedure create_table_scf_jobLog() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_joblog')
+	THEN
+	CREATE TABLE `t_scf_joblog` (
+	  `ID` bigint(18) NOT NULL,
+	  `C_BUSIN_STATUS` char(2) DEFAULT NULL COMMENT '业务状态 0 设置失败       1 设置成功',
+	  `D_REG_DATE` char(8) DEFAULT NULL COMMENT '注册日期',
+	  `T_REG_TIME` char(6) DEFAULT NULL COMMENT '注册时间',
+	  `C_SHOW_MESSAGE` varchar(2500) DEFAULT NULL COMMENT '日志记录信息',
+	  `C_ORDER_BY` char(10) DEFAULT NULL COMMENT '多条排序序号',
+	  `C_DATAINFO_TYPE` char(2) DEFAULT NULL COMMENT '数据类型：1订单2票据3应收账款4发票5贸易合同',
+	  `C_BUSIN_TYPE` char(3) DEFAULT NULL COMMENT '业务模型  1:过期日志',
+	  PRIMARY KEY (`ID`),
+	  KEY `inx_joblog_tab_businstatus_col` (`C_BUSIN_STATUS`) USING BTREE,
+	  KEY `inx_joblog_tab_businType_col` (`C_BUSIN_TYPE`) USING BTREE
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+	END IF;
+END$$
+call create_table_scf_jobLog()$$
+drop PROCEDURE if EXISTS create_table_scf_jobLog$$
+
+
+
+
 
 
