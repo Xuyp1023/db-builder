@@ -930,6 +930,16 @@ drop PROCEDURE if EXISTS create_table_scf_jobLog$$
 
 
 
+## ---bug767
 
+          drop PROCEDURE if EXISTS change_requesttemp_table_total_balance_col$$
+create procedure change_requesttemp_table_total_balance_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_request_temp' AND COLUMN_NAME='F_TOTALBALANCE')
+THEN   
+   ALTER TABLE `t_scf_request_temp` ADD COLUMN `F_TOTALBALANCE` decimal(18,2) DEFAULT NULL COMMENT '融资总金额，来自资产';
+END IF;
+END$$
+call change_requesttemp_table_total_balance_col()$$
+drop PROCEDURE if EXISTS change_requesttemp_table_total_balance_col$$
 
 
