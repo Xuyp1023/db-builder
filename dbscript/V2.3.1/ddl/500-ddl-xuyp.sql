@@ -942,4 +942,51 @@ END$$
 call change_requesttemp_table_total_balance_col()$$
 drop PROCEDURE if EXISTS change_requesttemp_table_total_balance_col$$
 
+## ---bug771
+
+          drop PROCEDURE if EXISTS change_receivablev3_table_expire_flag_status_col$$
+create procedure change_receivablev3_table_expire_flag_status_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_v3' AND COLUMN_NAME='C_EXPIRE_FLAG_STATUS')
+THEN   
+   ALTER TABLE `t_scf_receivable_v3` ADD COLUMN `C_EXPIRE_FLAG_STATUS` char(2) DEFAULT NULL COMMENT '0: 未生效单据自动任务过期来源  1：已生效的单据自动任务过期来源';
+END IF;
+END$$
+call change_receivablev3_table_expire_flag_status_col()$$
+drop PROCEDURE if EXISTS change_receivablev3_table_expire_flag_status_col$$
+
+
+
+          drop PROCEDURE if EXISTS change_orderv3_table_expire_flag_status_col$$
+create procedure change_orderv3_table_expire_flag_status_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_order_v3' AND COLUMN_NAME='C_EXPIRE_FLAG_STATUS')
+THEN   
+   ALTER TABLE `t_scf_order_v3` ADD COLUMN `C_EXPIRE_FLAG_STATUS` char(2) DEFAULT NULL COMMENT '0: 未生效单据自动任务过期来源  1：已生效的单据自动任务过期来源';
+END IF;
+END$$
+call change_orderv3_table_expire_flag_status_col()$$
+drop PROCEDURE if EXISTS change_orderv3_table_expire_flag_status_col$$
+
+
+          drop PROCEDURE if EXISTS change_invoicev3_table_expire_flag_status_col$$
+create procedure change_invoicev3_table_expire_flag_status_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_invoice_v3' AND COLUMN_NAME='C_EXPIRE_FLAG_STATUS')
+THEN   
+   ALTER TABLE `t_scf_invoice_v3` ADD COLUMN `C_EXPIRE_FLAG_STATUS` char(2) DEFAULT NULL COMMENT '0: 未生效单据自动任务过期来源  1：已生效的单据自动任务过期来源';
+END IF;
+END$$
+call change_invoicev3_table_expire_flag_status_col()$$
+drop PROCEDURE if EXISTS change_invoicev3_table_expire_flag_status_col$$
+
+
+          drop PROCEDURE if EXISTS change_billv3_table_expire_flag_status_col$$
+create procedure change_billv3_table_expire_flag_status_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_accept_bill_v3' AND COLUMN_NAME='C_EXPIRE_FLAG_STATUS')
+THEN   
+   ALTER TABLE `t_scf_accept_bill_v3` ADD COLUMN `C_EXPIRE_FLAG_STATUS` char(2) DEFAULT NULL COMMENT '0: 未生效单据自动任务过期来源  1：已生效的单据自动任务过期来源';
+END IF;
+END$$
+call change_billv3_table_expire_flag_status_col()$$
+drop PROCEDURE if EXISTS change_billv3_table_expire_flag_status_col$$
+
+
 
