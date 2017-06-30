@@ -236,6 +236,17 @@ END$$
 call change_table_col()$$
 drop PROCEDURE if EXISTS change_table_col$$
 
+##修改字段类型
+drop PROCEDURE if EXISTS change_table_col$$
+create procedure change_table_col() BEGIN   
+IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_far_function' AND COLUMN_NAME='C_DESCRIPTION')
+THEN   
+   ALTER TABLE `t_far_function` CHANGE COLUMN `C_DESCRIPTION` `C_DESCRIPTION` MEDIUMTEXT NULL COMMENT '功能描述';
+END IF;
+END$$
+call change_table_col()$$
+drop PROCEDURE if EXISTS change_table_col$$
+
 
 
 
