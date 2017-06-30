@@ -248,6 +248,17 @@ call change_table_col()$$
 drop PROCEDURE if EXISTS change_table_col$$
 
 
+drop PROCEDURE if EXISTS change_table_col$$
+create procedure change_table_col() BEGIN   
+IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_far_config' AND COLUMN_NAME='C_VALUE')
+THEN   
+   ALTER TABLE `t_far_config` CHANGE COLUMN `C_VALUE` `C_VALUE` VARCHAR(2000) NULL COMMENT '配置内容';
+END IF;
+END$$
+call change_table_col()$$
+drop PROCEDURE if EXISTS change_table_col$$
+
+
 
 
 
