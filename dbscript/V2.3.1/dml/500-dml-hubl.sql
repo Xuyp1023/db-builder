@@ -725,7 +725,7 @@ INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DAT
 INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('203', 'TaxIdentityImgUrl', 'C', 200, 0, '', '0', 0, '税收身份声明文件(机构)')$$
 
 delete from t_far_function where c_face='203' and C_FUN='riskExam' and c_code='B002'$$
-INSERT INTO `t_far_function` (`C_FACE`, `C_FUN`, `C_CODE`, `C_NAME`, `C_DESCRIPTION`, `C_URL`, `C_FACEURL`, `C_INCLASS`, `C_OUTCLASS`, `D_MODIDATE`, `C_INPUT_MODE`, `C_OUTPUT_MODE`, `C_INVOKE_MODE`, `C_DATA_ENCODER`, `C_DATA_DECODER`, `C_RESULTCODE`) VALUES ('203', 'riskExam', 'B002', '风险评测', NULL, 'rest/bytter/request', NULL, NULL, NULL, NULL, '0', '0', '0', NULL, NULL, NULL)$$
+INSERT INTO `t_far_function` (`C_FACE`, `C_FUN`, `C_CODE`, `C_NAME`, `C_DESCRIPTION`, `C_URL`, `C_FACEURL`, `C_INCLASS`, `C_OUTCLASS`, `D_MODIDATE`, `C_INPUT_MODE`, `C_OUTPUT_MODE`, `C_INVOKE_MODE`, `C_DATA_ENCODER`, `C_DATA_DECODER`, `C_RESULTCODE`) VALUES ('203', 'riskExam', 'B002', '风险评测', NULL, 'byttertrading/rest/bytter/request', NULL, NULL, NULL, NULL, '0', '0', '0', NULL, NULL, NULL)$$
 
 
 delete from t_far_fieldmap where c_face='203' and c_funcode='B002'$$
