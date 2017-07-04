@@ -259,6 +259,28 @@ call change_table_col()$$
 drop PROCEDURE if EXISTS change_table_col$$
 
 
+##-- 添加列 F_DAYS 
+drop PROCEDURE if EXISTS change_table_col$$
+create procedure change_table_col() BEGIN   
+IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_daily_statement' AND COLUMN_NAME='F_DAYS')
+THEN   
+   ALTER TABLE `t_cps_daily_statement` ADD COLUMN `F_DAYS` BIGINT(10) NULL COMMENT '结算利息的天数';
+END IF;
+END$$
+call change_table_col()$$
+drop PROCEDURE if EXISTS change_table_col$$
+
+drop PROCEDURE if EXISTS change_table_col$$
+create procedure change_table_col() BEGIN   
+IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_monthly_statement_record' AND COLUMN_NAME='F_DAYS')
+THEN   
+   ALTER TABLE `t_cps_monthly_statement_record` ADD COLUMN `F_DAYS` BIGINT(10) NULL COMMENT '结算利息的天数';
+END IF;
+END$$
+call change_table_col()$$
+drop PROCEDURE if EXISTS change_table_col$$
+
+
 
 
 
