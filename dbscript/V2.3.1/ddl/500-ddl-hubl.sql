@@ -174,7 +174,7 @@ drop PROCEDURE if EXISTS change_table_col$$
 
 drop PROCEDURE if EXISTS change_table_col$$
 create procedure change_table_col() BEGIN   
-IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_risk_record' AND COLUMN_NAME='c_expireTime')
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_risk_record' AND COLUMN_NAME='c_expireTime')
 THEN   
    ALTER TABLE `t_risk_record` ADD COLUMN `c_expireTime` VARCHAR(20) NULL COMMENT '过期时间';
 END IF;
@@ -184,7 +184,7 @@ drop PROCEDURE if EXISTS change_table_col$$
 
 drop PROCEDURE if EXISTS change_table_col$$
 create procedure change_table_col() BEGIN   
-IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sale_accorequest' AND COLUMN_NAME='c_company_property')
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sale_accorequest' AND COLUMN_NAME='c_company_property')
 THEN   
    ALTER TABLE `t_sale_accorequest` ADD COLUMN `c_company_property` VARCHAR(20) NULL COMMENT '企业性质';
 END IF;
@@ -195,7 +195,7 @@ drop PROCEDURE if EXISTS change_table_col$$
 
 drop PROCEDURE if EXISTS change_table_col$$
 create procedure change_table_col() BEGIN   
-IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sale_accorequest' AND COLUMN_NAME='c_company_property_describe')
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sale_accorequest' AND COLUMN_NAME='c_company_property_describe')
 THEN   
    ALTER TABLE `t_sale_accorequest` ADD COLUMN `c_company_property_describe` VARCHAR(200) NULL COMMENT '企业性质描述';
 END IF;
@@ -206,7 +206,7 @@ drop PROCEDURE if EXISTS change_table_col$$
 
 drop PROCEDURE if EXISTS change_table_col$$
 create procedure change_table_col() BEGIN   
-IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sale_accorequest' AND COLUMN_NAME='c_aptitude')
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sale_accorequest' AND COLUMN_NAME='c_aptitude')
 THEN   
    ALTER TABLE `t_sale_accorequest` ADD COLUMN `c_aptitude` VARCHAR(20) NULL COMMENT '是否有资质';
 END IF;
@@ -217,7 +217,7 @@ drop PROCEDURE if EXISTS change_table_col$$
 
 drop PROCEDURE if EXISTS change_table_col$$
 create procedure change_table_col() BEGIN   
-IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sale_accorequest' AND COLUMN_NAME='c_natural_person')
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sale_accorequest' AND COLUMN_NAME='c_natural_person')
 THEN   
    ALTER TABLE `t_sale_accorequest` ADD COLUMN `c_natural_person` VARCHAR(50) NULL COMMENT '实际投资者的自然人';
 END IF;
@@ -228,7 +228,7 @@ drop PROCEDURE if EXISTS change_table_col$$
 
 drop PROCEDURE if EXISTS change_table_col$$
 create procedure change_table_col() BEGIN   
-IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sale_accorequest' AND COLUMN_NAME='c_beneficiary')
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sale_accorequest' AND COLUMN_NAME='c_beneficiary')
 THEN   
    ALTER TABLE `t_sale_accorequest` ADD COLUMN `c_beneficiary` VARCHAR(50) NULL COMMENT '实际受益人';
 END IF;
@@ -262,7 +262,7 @@ drop PROCEDURE if EXISTS change_table_col$$
 ##-- 添加列 F_DAYS 
 drop PROCEDURE if EXISTS change_table_col$$
 create procedure change_table_col() BEGIN   
-IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_daily_statement' AND COLUMN_NAME='F_DAYS')
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_daily_statement' AND COLUMN_NAME='F_DAYS')
 THEN   
    ALTER TABLE `t_cps_daily_statement` ADD COLUMN `F_DAYS` BIGINT(10) NULL COMMENT '结算利息的天数';
 END IF;
@@ -272,7 +272,7 @@ drop PROCEDURE if EXISTS change_table_col$$
 
 drop PROCEDURE if EXISTS change_table_col$$
 create procedure change_table_col() BEGIN   
-IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_monthly_statement_record' AND COLUMN_NAME='F_DAYS')
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_monthly_statement_record' AND COLUMN_NAME='F_DAYS')
 THEN   
    ALTER TABLE `t_cps_monthly_statement_record` ADD COLUMN `F_DAYS` BIGINT(10) NULL COMMENT '结算利息的天数';
 END IF;
