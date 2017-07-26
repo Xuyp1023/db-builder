@@ -989,4 +989,181 @@ call change_billv3_table_expire_flag_status_col()$$
 drop PROCEDURE if EXISTS change_billv3_table_expire_flag_status_col$$
 
 
+## --task216
+drop PROCEDURE if EXISTS create_table_scf_commissionParam$$
+create procedure create_table_scf_commissionParam() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_commission_param')
+	THEN
+	CREATE TABLE `t_cps_commission_param` (
+	  `ID` bigint(18) NOT NULL COMMENT '主键',
+	  `L_CUSTNO` bigint(18) DEFAULT NULL COMMENT '平台id',
+	  `C_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '平台名称',
+	  `L_CORE_CUSTNO` bigint(18) DEFAULT NULL COMMENT '核心企业对账企业Id',
+	  `C_CORE_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '对账企业名称',
+	  `F_INTEREST_RATE` decimal(18,2) DEFAULT NULL COMMENT '佣金年利率',
+	  `F_TAX_RATE` decimal(18,2) DEFAULT NULL COMMENT '商业发票税率',
+	  `L_REG_OPERID` bigint(18) DEFAULT NULL COMMENT '注册人Id',
+	  `C_REG_OPERNAME` varchar(120) DEFAULT NULL COMMENT '注册人名称',
+	  `D_REG_DATE` char(8) DEFAULT NULL COMMENT '注册日期',
+	  `T_REG_TIME` char(6) DEFAULT NULL COMMENT '注册时间',
+	  `C_BUSIN_STATUS` char(2) DEFAULT NULL COMMENT '状态: 0 不可用   1 可用',
+	  PRIMARY KEY (`ID`),
+	  KEY `inx_commissionparam_tab_custno` (`L_CUSTNO`) USING BTREE,
+	  KEY `inx_commissionparam_tab_corecustno` (`L_CORE_CUSTNO`) USING BTREE,
+	  KEY `inx_commissionparam_tab_businstatus` (`C_BUSIN_STATUS`) USING BTREE
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='佣金成本维护表';
+
+
+
+	END IF;
+END$$
+call create_table_scf_commissionParam()$$
+drop PROCEDURE if EXISTS create_table_scf_commissionParam$$
+
+
+drop PROCEDURE if EXISTS create_table_cps_invoice$$
+create procedure create_table_cps_invoice() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_invoice')
+	THEN
+		CREATE TABLE `t_cps_invoice` (
+		  `ID` bigint(18) NOT NULL COMMENT '流水号',
+		  `C_INVOICE_CODE` varchar(255) DEFAULT NULL COMMENT '发票代码',
+		  `C_INVOICE_NO` varchar(255) DEFAULT NULL COMMENT '发票号码',
+		  `L_CUSTNO` bigint(18) DEFAULT NULL COMMENT '客户编号',
+		  `L_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '客户名称',
+		  `L_REG_OPERID` bigint(18) DEFAULT NULL COMMENT '申请人',
+		  `C_REG_OPERNAME` varchar(1200) DEFAULT NULL COMMENT '申请人姓名',
+		  `C_OPERORG` varchar(255) DEFAULT NULL COMMENT '操作机构',
+		  `D_REG_DATE` char(8) DEFAULT NULL COMMENT '申请日期',
+		  `T_REG_TIME` char(6) DEFAULT NULL COMMENT '申请时间',
+		  `L_CORE_CUSTNO` bigint(18) DEFAULT NULL COMMENT '核心企业Id',
+		  `L_CORE_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '核心企业名称',
+		  `D_INVOICE_DATE` char(8) DEFAULT NULL COMMENT '开票日期',
+		  `F_BALANCE` decimal(16,2) DEFAULT NULL COMMENT '发票总金额',
+		  `C_DRAWER` varchar(255) DEFAULT NULL COMMENT '开票人',
+		  `N_BATCHNO` bigint(18) DEFAULT NULL COMMENT '上传的批次号',
+		  `C_BUSIN_STATUS` char(2) DEFAULT NULL COMMENT '状态 0 初始化状态 1 待开票  2 开票中  3 已开票   4 作废',
+		  `C_DESCRIPTION` varchar(255) DEFAULT NULL COMMENT '备注',
+		  `L_CONFIRM_OPERID` bigint(18) DEFAULT NULL COMMENT '确认人',
+		  `C_CONFIRM_OPERNAME` varchar(120) DEFAULT NULL COMMENT '确认人名称',
+		  `D_CONFIRM_DATE` char(8) DEFAULT NULL COMMENT '确认日期',
+		  `T_CONFIRM_TIME` char(6) DEFAULT NULL COMMENT '确认时间',
+		  `L_AUDIT_OPERID` bigint(18) DEFAULT NULL COMMENT '提交开票人',
+		  `C_AUDIT_OPERNAME` varchar(120) DEFAULT NULL COMMENT '提交开票人姓名',
+		  `D_AUDIT_DATE` char(8) DEFAULT NULL COMMENT '提交日期',
+		  `T_AUDIT_TIME` char(6) DEFAULT NULL COMMENT '提交时间',
+		  `L_CUSTINVOICE_ID` bigint(18) DEFAULT NULL COMMENT '平台发票抬头Id',
+		  `L_CORECUSTINVOICE_ID` bigint(18) DEFAULT NULL COMMENT '核心企业发票抬头id',
+		  `C_INVOICE_TYPE` char(2) DEFAULT NULL COMMENT '发票种类  0 普通发票  1 专用发票',
+		  `C_INVOICE_CONTENT` varchar(255) DEFAULT NULL COMMENT '发票内容',
+		  `F_TAX_BALANCE` decimal(16,2) DEFAULT NULL COMMENT '税额',
+		  `F_INTEREST_BALANCE` decimal(16,2) DEFAULT NULL COMMENT '发票金额',
+		  `F_TAX_RATE` decimal(16,2) DEFAULT NULL COMMENT '税率',
+		  `C_REFNO` varchar(20) DEFAULT NULL COMMENT '编号',
+		  PRIMARY KEY (`ID`),
+		  KEY `inx_cpsInvoice_tab_custNo` (`L_CUSTNO`) USING BTREE,
+		  KEY `inx_cpsInvoice_tab_coreCustno` (`L_CORE_CUSTNO`) USING BTREE,
+		  KEY `inx_cpsInvoice_tab_businstatus` (`C_BUSIN_STATUS`) USING BTREE,
+		  KEY `inx_cpsInvoice_tab_regdate` (`D_REG_DATE`) USING BTREE
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+	END IF;
+END$$
+call create_table_cps_invoice()$$
+drop PROCEDURE if EXISTS create_table_cps_invoice$$
+
+
+drop PROCEDURE if EXISTS create_table_cps_invoice_custinfo$$
+create procedure create_table_cps_invoice_custinfo() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_invoice_custinfo')
+	THEN
+		CREATE TABLE `t_cps_invoice_custinfo` (
+		  `ID` bigint(18) NOT NULL COMMENT '发票主键',
+		  `L_CUSTNO` bigint(18) NOT NULL COMMENT '企业id',
+		  `L_CORE_CUSTNO` bigint(18) DEFAULT NULL COMMENT '核心企业id',
+		  `C_CORE_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '核心企业名称',
+		  `C_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '企业名称',
+		  `C_CORE_BANK` varchar(255) DEFAULT NULL COMMENT '开户银行',
+		  `C_CORE_BANK_ACCOUNT` varchar(120) DEFAULT NULL COMMENT '银行帐号',
+		  `C_CORE_TAXPAYERNO` varchar(120) DEFAULT NULL COMMENT '纳税人识别号',
+		  `C_CORE_PHONE` varchar(30) DEFAULT NULL COMMENT '电话',
+		  `C_CORE_ADDRESS` varchar(255) DEFAULT NULL COMMENT '地址',
+		  `C_BUSIN_STATUS` char(2) DEFAULT NULL COMMENT '状态  0 不可用   1 可用',
+		  `L_REG_OPERID` bigint(18) DEFAULT NULL COMMENT '注册人',
+		  `C_REG_OPERNAME` varchar(40) DEFAULT NULL COMMENT '注册人名字',
+		  `D_REG_DATE` char(8) DEFAULT NULL COMMENT '注册日期',
+		  `T_REG_TIME` char(6) DEFAULT NULL COMMENT '注册时间',
+		  `C_IS_LATEST` char(2) DEFAULT NULL COMMENT '是否默认  0 不是默认   1是默认',
+		  `C_COREINFO_TYPE` char(2) DEFAULT NULL COMMENT '发票抬头的类型  1  企业     0个人',
+		  PRIMARY KEY (`ID`),
+		  KEY `inx_invoice_custinfo_tab_custno` (`L_CUSTNO`) USING BTREE,
+		  KEY `inx_invoice_custinfo_tab_coreCustno` (`L_CORE_CUSTNO`) USING BTREE,
+		  KEY `inx_invoice_custinfo_tab_businstatus` (`C_BUSIN_STATUS`) USING BTREE
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='发票抬头信息维护';
+
+
+
+	END IF;
+END$$
+call create_table_cps_invoice_custinfo()$$
+drop PROCEDURE if EXISTS create_table_cps_invoice_custinfo$$
+
+
+drop PROCEDURE if EXISTS create_table_cps_invoice_record$$
+create procedure create_table_cps_invoice_record() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_invoice_record')
+	THEN
+		CREATE TABLE `t_cps_invoice_record` (
+		  `ID` bigint(18) NOT NULL COMMENT '主键',
+		  `L_INVOICE_ID` bigint(18) DEFAULT NULL COMMENT '发票Id',
+		  `L_MONTHLY_STATEMENT_ID` bigint(18) DEFAULT NULL COMMENT '月账单Id',
+		  `F_BLANCE` decimal(16,2) DEFAULT NULL COMMENT '总金额',
+		  `F_TAX_RATE` decimal(16,2) DEFAULT NULL COMMENT '税率',
+		  `C_INVOICE_TYPE` char(2) DEFAULT NULL COMMENT '发票种类  0 普通发票  1 专用发票',
+		  `L_REG_OPERID` bigint(18) DEFAULT NULL COMMENT '申请人',
+		  `C_REG_OPERNAME` varchar(120) DEFAULT NULL COMMENT '申请人姓名',
+		  `D_REG_DATE` char(8) DEFAULT NULL COMMENT '申请日期',
+		  `T_REG_TIME` char(6) DEFAULT NULL COMMENT '申请时间',
+		  PRIMARY KEY (`ID`),
+		  KEY `inx_invoice_record_tab_invoiceid` (`L_INVOICE_ID`) USING BTREE
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+	END IF;
+END$$
+call create_table_cps_invoice_record()$$
+drop PROCEDURE if EXISTS create_table_cps_invoice_record$$
+
+
+
+          drop PROCEDURE if EXISTS change_monthlystatement_table_plain_invoice_flag_col$$
+create procedure change_monthlystatement_table_plain_invoice_flag_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_monthly_statement' AND COLUMN_NAME='C_PLAININVOICE_FLAG')
+THEN   
+   ALTER TABLE `t_cps_monthly_statement` ADD COLUMN `C_PLAININVOICE_FLAG` char(2) DEFAULT '0' COMMENT '是否用于普通发票 默认为0 未使用  1已经使用';
+END IF;
+END$$
+call change_monthlystatement_table_plain_invoice_flag_col()$$
+drop PROCEDURE if EXISTS change_monthlystatement_table_plain_invoice_flag_col$$
+
+
+
+          drop PROCEDURE if EXISTS change_monthlystatement_table_special_invoice_flag_col$$
+create procedure change_monthlystatement_table_special_invoice_flag_col() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cps_monthly_statement' AND COLUMN_NAME='C_SPECIALINVOICE_FLAG')
+THEN   
+   ALTER TABLE `t_cps_monthly_statement` ADD COLUMN `C_SPECIALINVOICE_FLAG` char(2) DEFAULT '0' COMMENT '是否用于专用发票 默认为0 未使用  1已经使用';
+END IF;
+END$$
+call change_monthlystatement_table_special_invoice_flag_col()$$
+drop PROCEDURE if EXISTS change_monthlystatement_table_special_invoice_flag_col$$
+
+
+
 
