@@ -511,8 +511,8 @@ INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_P
 DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='invoiceType' and C_NAME='invoiceType' $$
 INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SALE', 'invoiceType', '发票类型', 'invoiceType', '0', 'C', '2', '0', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
 
-update t_cps_monthly_statement set C_PLAININVOICE_FLAG=0 where   ((C_PLAININVOICE_FLAG !=0 and C_PLAININVOICE_FLAG !=1) or C_PLAININVOICE_FLAG is NULL ) 
-update t_cps_monthly_statement set C_SPECIALINVOICE_FLAG=0 where ((C_SPECIALINVOICE_FLAG !=0 and C_SPECIALINVOICE_FLAG !=1) or C_SPECIALINVOICE_FLAG is NULL ) 
+update t_cps_monthly_statement set C_PLAININVOICE_FLAG=0 where   ((C_PLAININVOICE_FLAG !=0 and C_PLAININVOICE_FLAG !=1) or C_PLAININVOICE_FLAG is NULL )$$ 
+update t_cps_monthly_statement set C_SPECIALINVOICE_FLAG=0 where ((C_SPECIALINVOICE_FLAG !=0 and C_SPECIALINVOICE_FLAG !=1) or C_SPECIALINVOICE_FLAG is NULL )$$ 
 
 DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700315 AND `ID` <= 700316$$
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700315', 'ICommissionInvoiceCustInfoService.webSaveAddInvoiceCustInfo', 'coreCustName', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
