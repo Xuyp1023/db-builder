@@ -389,6 +389,139 @@ INSERT INTO `t_scf_busintype` (`ID`, `C_BUSIN_TYPE_NAME`, `C_CREDIT_FLAG`, `C_DE
 INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'ScfJoblog.id', '1006183', NULL, 'SCF', '0', NULL, '18', '700255' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700255')$$
 
 
+
+## --task-216
+
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'CommissionParam.id', '3291', NULL, 'SALE', '0', NULL, '18', '700256' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700256')$$
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'CommissionInvoiceRecord.id', '3291', NULL, 'SALE', '0', NULL, '18', '700257' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700257')$$
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'CommissionInvoiceCustInfo.id', '3291', NULL, 'SALE', '0', NULL, '18', '700258' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700258')$$
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'CommissionInvoice.id', '3291', NULL, 'SALE', '0', NULL, '18', '700259' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700259')$$
+
+
+DELETE FROM `t_rule_busin` WHERE `ID` = 700260$$
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('ICommissionParamService.webSaveAddParam', NULL, NULL, '参数配置新增', NULL, NULL, '1', '20160614', '20160614', '700260', NULL, 'ICommissionParamService.webSaveAddParam', 'com.betterjr.modules.commission.entity.CommissionParam')$$
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700261 AND `ID` <= 700264$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700261', 'ICommissionParamService.webSaveAddParam', 'custNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700262', 'ICommissionParamService.webSaveAddParam', 'coreCustNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700263', 'ICommissionParamService.webSaveAddParam', 'interestRate', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700264', 'ICommissionParamService.webSaveAddParam', 'taxRate', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='interestRate' and C_NAME='interestRate' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SALE', 'interestRate', '年利率', 'interestRate', '0', 'N', '16', '2', NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='taxRate' and C_NAME='taxRate' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SALE', 'taxRate', '税率', 'taxRate', '0', 'N', '16', '2', NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+
+DELETE FROM `t_rule_busin` WHERE `ID` = 700265$$
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('ICommissionParamService.webQueryParamList', NULL, NULL, '参数配置查询', NULL, NULL, '1', '20160614', '20160614', '700265', NULL, 'ICommissionParamService.webQueryParamList', 'java.util.HashMap')$$
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700266 AND `ID` <= 700267$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700266', 'ICommissionParamService.webQueryParamList', 'custNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700267', 'ICommissionParamService.webQueryParamList', 'coreCustNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+DELETE FROM `t_rule_busin` WHERE `ID` = 700268$$
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('ICommissionParamService.webSaveUpdateParam', NULL, NULL, '参数配置更新', NULL, NULL, '1', '20160614', '20160614', '700268', NULL, 'ICommissionParamService.webSaveUpdateParam', 'com.betterjr.modules.commission.entity.CommissionParam')$$
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700269 AND `ID` <= 700271$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700269', 'ICommissionParamService.webSaveUpdateParam', 'id', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700270', 'ICommissionParamService.webSaveUpdateParam', 'interestRate', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700271', 'ICommissionParamService.webSaveUpdateParam', 'taxRate', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+
+DELETE FROM `t_rule_busin` WHERE `ID` = 700272$$
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('ICommissionInvoiceCustInfoService.webSaveAddInvoiceCustInfo', NULL, NULL, '佣金支付发票抬头新增', NULL, NULL, '1', '20160614', '20160614', '700272', NULL, 'ICommissionInvoiceCustInfoService.webSaveAddInvoiceCustInfo', 'com.betterjr.modules.commission.entity.CommissionInvoiceCustInfo')$$
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700273 AND `ID` <= 700281$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700273', 'ICommissionInvoiceCustInfoService.webSaveAddInvoiceCustInfo', 'custNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700274', 'ICommissionInvoiceCustInfoService.webSaveAddInvoiceCustInfo', 'coreCustNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700275', 'ICommissionInvoiceCustInfoService.webSaveAddInvoiceCustInfo', 'coreBank', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700276', 'ICommissionInvoiceCustInfoService.webSaveAddInvoiceCustInfo', 'coreBankAccount', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700277', 'ICommissionInvoiceCustInfoService.webSaveAddInvoiceCustInfo', 'coreTaxPayerNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700278', 'ICommissionInvoiceCustInfoService.webSaveAddInvoiceCustInfo', 'corePhone', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700279', 'ICommissionInvoiceCustInfoService.webSaveAddInvoiceCustInfo', 'coreAddress', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700280', 'ICommissionInvoiceCustInfoService.webSaveAddInvoiceCustInfo', 'coreInfoType', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700281', 'ICommissionInvoiceCustInfoService.webSaveAddInvoiceCustInfo', 'isLatest', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='coreBank' and C_NAME='coreBank' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'coreBank', '银行', 'coreBank', '0', 'C', '255', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='coreBankAccount' and C_NAME='coreBankAccount' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'coreBankAccount', '银行账户', 'coreBankAccount', '0', 'C', '255', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='coreTaxPayerNo' and C_NAME='coreTaxPayerNo' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'coreTaxPayerNo', '纳税人识别号', 'coreTaxPayerNo', '0', 'C', '120', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='corePhone' and C_NAME='corePhone' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'corePhone', '电话', 'corePhone', '0', 'C', '30', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='coreAddress' and C_NAME='coreAddress' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'coreAddress', '地址', 'coreAddress', '0', 'C', '255', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='coreInfoType' and C_NAME='coreInfoType' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'coreInfoType', '发票抬头的类型', 'coreInfoType', '1', 'C', '2', '0', NULL, NULL, 'LONG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='isLatest' and C_NAME='isLatest' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'isLatest', '默认', 'isLatest', '1', 'C', '2', '0', NULL, NULL, 'LONG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+
+DELETE FROM `t_rule_busin` WHERE `ID` = 700282$$
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('ICommissionInvoiceCustInfoService.webQueryInvoiceCustInfoList', NULL, NULL, '发票抬头查询', NULL, NULL, '1', '20160614', '20160614', '700282', NULL, 'ICommissionInvoiceCustInfoService.webQueryInvoiceCustInfoList', 'java.util.HashMap')$$
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700283 AND `ID` <= 700284$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700283', 'ICommissionInvoiceCustInfoService.webQueryInvoiceCustInfoList', 'custNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700284', 'ICommissionInvoiceCustInfoService.webQueryInvoiceCustInfoList', 'coreCustNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+
+DELETE FROM `t_rule_busin` WHERE `ID` = 700285$$
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('ICommissionInvoiceCustInfoService.webSaveUpdateInvoiceCustInfo', NULL, NULL, '发票抬头修改', NULL, NULL, '1', '20160614', '20160614', '700285', NULL, 'ICommissionInvoiceCustInfoService.webSaveUpdateInvoiceCustInfo', 'com.betterjr.modules.commission.entity.CommissionInvoiceCustInfo')$$
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700286 AND `ID` <= 700295$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700286', 'ICommissionInvoiceCustInfoService.webSaveUpdateInvoiceCustInfo', 'custNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700287', 'ICommissionInvoiceCustInfoService.webSaveUpdateInvoiceCustInfo', 'coreCustNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700288', 'ICommissionInvoiceCustInfoService.webSaveUpdateInvoiceCustInfo', 'coreBank', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700289', 'ICommissionInvoiceCustInfoService.webSaveUpdateInvoiceCustInfo', 'coreBankAccount', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700290', 'ICommissionInvoiceCustInfoService.webSaveUpdateInvoiceCustInfo', 'coreTaxPayerNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700291', 'ICommissionInvoiceCustInfoService.webSaveUpdateInvoiceCustInfo', 'corePhone', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700292', 'ICommissionInvoiceCustInfoService.webSaveUpdateInvoiceCustInfo', 'coreAddress', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700293', 'ICommissionInvoiceCustInfoService.webSaveUpdateInvoiceCustInfo', 'coreInfoType', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700294', 'ICommissionInvoiceCustInfoService.webSaveUpdateInvoiceCustInfo', 'isLatest', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700295', 'ICommissionInvoiceCustInfoService.webSaveUpdateInvoiceCustInfo', 'id', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+
+DELETE FROM `t_rule_busin` WHERE `ID` = 700297$$
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('ICommissionInvoiceService.webSaveAuditInvoice', NULL, NULL, '发票修改', NULL, NULL, '1', '20160614', '20160614', '700297', NULL, 'ICommissionInvoiceService.webSaveAuditInvoice', 'com.betterjr.modules.commission.entity.CommissionInvoice')$$
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700298 AND `ID` <= 700303$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700298', 'ICommissionInvoiceService.webSaveAuditInvoice', 'invoiceNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700299', 'ICommissionInvoiceService.webSaveAuditInvoice', 'invoiceCode', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700300', 'ICommissionInvoiceService.webSaveAuditInvoice', 'invoiceDate', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700301', 'ICommissionInvoiceService.webSaveAuditInvoice', 'description', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700302', 'ICommissionInvoiceService.webSaveAuditInvoice', 'drawer', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700303', 'ICommissionInvoiceService.webSaveAuditInvoice', 'id', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+
+DELETE FROM `t_rule_busin` WHERE `ID` = 700304$$
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('ICommissionInvoiceService.webQueryCommissionInvoice', NULL, NULL, '发票查询', NULL, NULL, '1', '20160614', '20160614', '700304', NULL, 'ICommissionInvoiceService.webQueryCommissionInvoice', 'java.util.HashMap')$$
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700305 AND `ID` <= 700309$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700305', 'ICommissionInvoiceService.webQueryCommissionInvoice', 'businStatus', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700306', 'ICommissionInvoiceService.webQueryCommissionInvoice', 'GTEregDate', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700307', 'ICommissionInvoiceService.webQueryCommissionInvoice', 'LTEregDate', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700308', 'ICommissionInvoiceService.webQueryCommissionInvoice', 'custNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700309', 'ICommissionInvoiceService.webQueryCommissionInvoice', 'coreCustNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+DELETE FROM `t_rule_busin` WHERE `ID` = 700310$$
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('ICommissionInvoiceService.webQueryCanUseMonthly', NULL, NULL, '发票月账单查询', NULL, NULL, '1', '20160614', '20160614', '700310', NULL, 'ICommissionInvoiceService.webQueryCanUseMonthly', 'java.util.HashMap')$$
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700311 AND `ID` <= 700314$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700311', 'ICommissionInvoiceService.webQueryCanUseMonthly', 'coreCustNo', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700312', 'ICommissionInvoiceService.webQueryCanUseMonthly', 'GTEbillMonth', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700313', 'ICommissionInvoiceService.webQueryCanUseMonthly', 'LTEbillMonth', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700314', 'ICommissionInvoiceService.webQueryCanUseMonthly', 'invoiceType', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='invoiceType' and C_NAME='invoiceType' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SALE', 'invoiceType', '发票类型', 'invoiceType', '0', 'C', '2', '0', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+
+update t_cps_monthly_statement set C_PLAININVOICE_FLAG=0 where   ((C_PLAININVOICE_FLAG !=0 and C_PLAININVOICE_FLAG !=1) or C_PLAININVOICE_FLAG is NULL ) 
+update t_cps_monthly_statement set C_SPECIALINVOICE_FLAG=0 where ((C_SPECIALINVOICE_FLAG !=0 and C_SPECIALINVOICE_FLAG !=1) or C_SPECIALINVOICE_FLAG is NULL ) 
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700315 AND `ID` <= 700316$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700315', 'ICommissionInvoiceCustInfoService.webSaveAddInvoiceCustInfo', 'coreCustName', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700316', 'ICommissionInvoiceCustInfoService.webSaveUpdateInvoiceCustInfo', 'coreCustName', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='coreCustName' and C_NAME='coreCustName' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'coreCustName', '企业名称', 'coreCustName', '0', 'C', '120', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+
+
+
 ##-------------------------------------------------------------------------------------------------
 ##--END 请勿 COMMIT
 ##-------------------------------------------------------------------------------------------------
