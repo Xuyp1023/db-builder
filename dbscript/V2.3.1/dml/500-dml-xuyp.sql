@@ -521,6 +521,13 @@ INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_P
 DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='coreCustName' and C_NAME='coreCustName' $$
 INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'coreCustName', '企业名称', 'coreCustName', '0', 'C', '120', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
 
+DELETE FROM `t_cfg_menu` WHERE `ID` >= 700317 AND `ID` <= 700321$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700317', NULL, '佣金成本维护', '佣金成本维护', '../../scf2/home.html#/1qh-mobile/Commissionsion', NULL, '20101', '16', NULL, '1', '20170511', '20170511', NULL, '1', 'PLATFORM_USER');
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700318', NULL, '发票抬头维护', '发票抬头维护', '../../scf2/home.html#/1qh-mobile/Invoicelooked', NULL, '20101', '17', NULL, '1', '20170511', '20170511', NULL, '1', 'PLATFORM_USER');
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700319', NULL, '发票开票信息维护', '发票开票信息维护', '../../scf2/home.html#/1qh-mobile/maintenancebill', NULL, '20101', '18', NULL, '1', '20170511', '20170511', NULL, '1', 'PLATFORM_USER');
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700320', NULL, '发票开票申请', '发票开票申请', '../../scf2/home.html#/1qh-mobile/Invoiceapply', NULL, '20101', '19', NULL, '1', '20170511', '20170511', NULL, '1', 'PLATFORM_USER');
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700321', NULL, '发票开票确认', '发票开票确认', '../../scf2/home.html#/1qh-mobile/Invoiceaffirm', NULL, '20101', '20', NULL, '1', '20170511', '20170511', NULL, '1', 'PLATFORM_USER');
+
 
 
 ##-------------------------------------------------------------------------------------------------
