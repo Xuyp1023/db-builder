@@ -1165,5 +1165,195 @@ call change_monthlystatement_table_special_invoice_flag_col()$$
 drop PROCEDURE if EXISTS change_monthlystatement_table_special_invoice_flag_col$$
 
 
+##------ 新增供应商利率
+
+drop PROCEDURE if EXISTS create_table_scf_supplier_offer$$
+create procedure create_table_scf_supplier_offer() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_supplier_offer')
+	THEN
+		CREATE TABLE `t_scf_supplier_offer` (
+		  `ID` bigint(20) NOT NULL COMMENT 'Id主键',
+		  `L_CUSTNO` bigint(20) DEFAULT NULL COMMENT '供应商客户号',
+		  `C_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '供应商名称',
+		  `L_CORE_CUSTNO` bigint(20) DEFAULT NULL COMMENT '核心企业客户号',
+		  `C_CORE_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '核心企业名称',
+		  `L_CORECUST_RATE` decimal(16,2) DEFAULT NULL COMMENT '核心企业给供应商的利率',
+		  `D_REG_DATE` char(8) DEFAULT NULL COMMENT '注册日期',
+		  `T_REG_TIME` char(6) DEFAULT NULL COMMENT '注册时间',
+		  `L_REG_OPERID` bigint(20) DEFAULT NULL COMMENT '注册人',
+		  `C_REG_OPERNAME` varchar(120) DEFAULT NULL COMMENT '注册人名称',
+		  `C_OPERORG` varchar(200) DEFAULT NULL COMMENT '核心企业的操作机构',
+		  `C_BUSIN_STATUS` char(2) DEFAULT NULL COMMENT '状态  0： 不可用  1 正常使用',
+		  PRIMARY KEY (`ID`),
+		  KEY `inx_supplieroffer_tab_t_scf_supplier_offer_index` (`L_CUSTNO`,`L_CORE_CUSTNO`,`C_BUSIN_STATUS`) USING BTREE,
+		  KEY `inx_supplieroffer_tab_cust_core_index` (`L_CUSTNO`,`L_CORE_CUSTNO`) USING BTREE
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	END IF;
+END$$
+call create_table_scf_supplier_offer()$$
+drop PROCEDURE if EXISTS create_table_scf_supplier_offer$$
+
+
+##-------给资产新增字段
+
+drop PROCEDURE if EXISTS change_scfAsset_table_endDate$$
+create procedure change_scfAsset_table_endDate() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='D_END_DATE')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `D_END_DATE` char(8) DEFAULT NULL COMMENT '融资到期时间';
+END IF;
+END$$
+call change_scfAsset_table_endDate()$$
+drop PROCEDURE if EXISTS change_scfAsset_table_endDate$$
+
+
+drop PROCEDURE if EXISTS change_scfAsset_table_custBankName$$
+create procedure change_scfAsset_table_custBankName() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='c_cust_bankName')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `c_cust_bankName` varchar(100) DEFAULT NULL COMMENT '供应商的银行名称';
+END IF;
+END$$
+call change_scfAsset_table_custBankName()$$
+drop PROCEDURE if EXISTS change_scfAsset_table_custBankName$$
+
+drop PROCEDURE if EXISTS change_scfAsset_table_custBankAccount$$
+create procedure change_scfAsset_table_custBankAccount() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='c_cust_bankAccount')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `c_cust_bankAccount` varchar(100) DEFAULT NULL COMMENT '供应商的银行帐户名称';
+END IF;
+END$$
+call change_scfAsset_table_custBankAccount()$$
+drop PROCEDURE if EXISTS change_scfAsset_table_custBankAccount$$
+
+drop PROCEDURE if EXISTS change_scfAsset_table_custBankAccountName$$
+create procedure change_scfAsset_table_custBankAccountName() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='c_cust_bankAccountName')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `c_cust_bankAccountName` varchar(100) DEFAULT NULL COMMENT '供应商的开户人名称';
+END IF;
+END$$
+call change_scfAsset_table_custBankAccountName()$$
+drop PROCEDURE if EXISTS change_scfAsset_table_custBankAccountName$$
+
+drop PROCEDURE if EXISTS change_scfAsset_table_cforeCustBankName$$
+create procedure change_scfAsset_table_cforeCustBankName() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='c_corecust_bankName')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `c_corecust_bankName` varchar(100) DEFAULT NULL COMMENT '核心企业的银行名称';
+END IF;
+END$$
+call change_scfAsset_table_cforeCustBankName()$$
+drop PROCEDURE if EXISTS change_scfAsset_table_cforeCustBankName$$
+
+drop PROCEDURE if EXISTS change_scfAsset_table_cforeCustBankAccount$$
+create procedure change_scfAsset_table_cforeCustBankAccount() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='c_corecust_bankAccount')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `c_corecust_bankAccount` varchar(100) DEFAULT NULL COMMENT '核心企业的银行帐户名称';
+END IF;
+END$$
+call change_scfAsset_table_cforeCustBankAccount()$$
+drop PROCEDURE if EXISTS change_scfAsset_table_cforeCustBankAccount$$
+
+
+drop PROCEDURE if EXISTS change_scfAsset_table_cforeCustBankAccountName$$
+create procedure change_scfAsset_table_cforeCustBankAccountName() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset' AND COLUMN_NAME='c_corecust_bankAccountName')
+THEN   
+   ALTER TABLE `t_scf_asset` ADD COLUMN `c_corecust_bankAccountName` varchar(100) DEFAULT NULL COMMENT '核心企业的开户人名称';
+END IF;
+END$$
+call change_scfAsset_table_cforeCustBankAccountName()$$
+drop PROCEDURE if EXISTS change_scfAsset_table_cforeCustBankAccountName$$
+
+
+drop PROCEDURE if EXISTS change_scfAssetdaseDate_table_relationInfoId$$
+create procedure change_scfAssetdaseDate_table_relationInfoId() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset_dasedata' AND COLUMN_NAME='L_RELATION_INFO_ID')
+THEN   
+   ALTER TABLE `t_scf_asset_dasedata` ADD COLUMN `L_RELATION_INFO_ID` bigint(20) DEFAULT NULL COMMENT '资产基础数据主键id';
+END IF;
+END$$
+call change_scfAssetdaseDate_table_relationInfoId()$$
+drop PROCEDURE if EXISTS change_scfAssetdaseDate_table_relationInfoId$$
+
+drop PROCEDURE if EXISTS change_scfAssetCompany_table_bankName$$
+create procedure change_scfAssetCompany_table_bankName() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset_company' AND COLUMN_NAME='c_bankName')
+THEN   
+   ALTER TABLE `t_scf_asset_company` ADD COLUMN `c_bankName` varchar(100) DEFAULT NULL COMMENT '开户银行行名称';
+END IF;
+END$$
+call change_scfAssetCompany_table_bankName()$$
+drop PROCEDURE if EXISTS change_scfAssetCompany_table_bankName$$
+
+
+drop PROCEDURE if EXISTS change_scfAssetCompany_table_bankaccount$$
+create procedure change_scfAssetCompany_table_bankaccount() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset_company' AND COLUMN_NAME='c_bankAccount')
+THEN   
+   ALTER TABLE `t_scf_asset_company` ADD COLUMN `c_bankAccount` varchar(100) DEFAULT NULL COMMENT '银行帐号';
+END IF;
+END$$
+call change_scfAssetCompany_table_bankaccount()$$
+drop PROCEDURE if EXISTS change_scfAssetCompany_table_bankaccount$$
+
+drop PROCEDURE if EXISTS change_scfAssetCompany_table_bankaccountName$$
+create procedure change_scfAssetCompany_table_bankaccountName() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset_company' AND COLUMN_NAME='c_bankAccountName')
+THEN   
+   ALTER TABLE `t_scf_asset_company` ADD COLUMN `c_bankAccountName` varchar(100) DEFAULT NULL COMMENT '开户人户名名称';
+END IF;
+END$$
+call change_scfAssetCompany_table_bankaccountName()$$
+drop PROCEDURE if EXISTS change_scfAssetCompany_table_bankaccountName$$
+
+
+drop PROCEDURE if EXISTS change_custFileOrderCloumn_table_beginRow$$
+create procedure change_custFileOrderCloumn_table_beginRow() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_file_ordercloumn' AND COLUMN_NAME='N_BEGIN_ROW')
+THEN   
+   ALTER TABLE `t_cust_file_ordercloumn` ADD COLUMN `N_BEGIN_ROW` int(4) DEFAULT NULL COMMENT '解析开始行';
+END IF;
+END$$
+call change_custFileOrderCloumn_table_beginRow()$$
+drop PROCEDURE if EXISTS change_custFileOrderCloumn_table_beginRow$$
+
+drop PROCEDURE if EXISTS change_custFileOrderCloumn_table_EndRow$$
+create procedure change_custFileOrderCloumn_table_EndRow() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_file_ordercloumn' AND COLUMN_NAME='N_END_ROW')
+THEN   
+   ALTER TABLE `t_cust_file_ordercloumn` ADD COLUMN `N_END_ROW` int(4) DEFAULT NULL COMMENT '末尾有几行数据无法使用';
+END IF;
+END$$
+call change_custFileOrderCloumn_table_EndRow()$$
+drop PROCEDURE if EXISTS change_custFileOrderCloumn_table_EndRow$$
+
+
+drop PROCEDURE if EXISTS change_recievablev3_table_commissionfileid$$
+create procedure change_recievablev3_table_commissionfileid() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_v3' AND COLUMN_NAME='L_CCOMMISSIONFILE_ID')
+THEN   
+   ALTER TABLE `t_scf_receivable_v3` ADD COLUMN `L_CCOMMISSIONFILE_ID` bigint(18) DEFAULT NULL COMMENT '佣金文件导入佣金文件id';
+END IF;
+END$$
+call change_recievablev3_table_commissionfileid()$$
+drop PROCEDURE if EXISTS change_recievablev3_table_commissionfileid$$
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
