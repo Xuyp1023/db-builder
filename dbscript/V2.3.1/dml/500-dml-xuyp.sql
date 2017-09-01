@@ -528,6 +528,36 @@ INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target
 INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700320', NULL, '发票开票申请', '发票开票申请', '../../scf2/home.html#/1qh-mobile/Invoiceapply', NULL, '20101', '19', NULL, '1', '20170511', '20170511', NULL, '1', 'PLATFORM_USER')$$
 INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700321', NULL, '发票开票确认', '发票开票确认', '../../scf2/home.html#/1qh-mobile/Invoiceaffirm', NULL, '20101', '20', NULL, '1', '20170511', '20170511', NULL, '1', 'PLATFORM_USER')$$
 
+##--------------融资申请sql
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'ScfSupplierOffer.id', '18', NULL, 'SALE', '0', NULL, '18', '700322' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700322')$$
+
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'ScfReceivableRequestAgreement.id', '22', NULL, 'SALE', '0', NULL, '18', '700334' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700334')$$
+
+
+DELETE FROM `t_rule_busin` WHERE `ID` = 700323$$
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_TYPE`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_GROUP`, `C_ERRORINFO`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_VERSION`, `C_FUNC`, `C_ENTITY`) VALUES ('IScfSupplierOfferService.webSaveAddOffer', NULL, NULL, '添加利率信息', NULL, NULL, '1', '20160906', '20160906', '700323', NULL, 'IScfSupplierOfferService.webSaveAddOffer', 'com.betterjr.modules.supplieroffer.entity.ScfSupplierOffer')$$
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` >= 700324 AND `ID` <= 700326$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700324', 'IScfSupplierOfferService.webSaveAddOffer', 'coreCustno', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700325', 'IScfSupplierOfferService.webSaveAddOffer', 'custNo', '2', '1', NULL, NULL, NULL, NULL, NULL)$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700326', 'IScfSupplierOfferService.webSaveAddOffer', 'coreCustRate', '3', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='coreCustRate' and C_NAME='coreCustRate' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SALE', 'coreCustRate', '利率', 'coreCustRate', '0', 'N', '16', '2', NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+
+
+DELETE FROM `t_cust_file_ordercloumn` WHERE `ID` >= 700327 AND `ID` <= 700333$$
+INSERT INTO `t_cust_file_ordercloumn` (`ID`, `C_INFO_TYPE`, `C_UP_FLAG`, `C_BUSIN_STATUS`, `L_CLOUMN_ORDER`, `C_CLOUMN_PROPERTIES`, `C_CLOUMN_NAME`, `L_IS_MUST`, `D_REG_DATE`, `T_REG_TIME`, `C_CLOUMN_TYPE`, `N_BEGIN_ROW`, `N_END_ROW`) VALUES ('700327', '3', '1', '0', '0', 'coreCustName', '供应商名称', '1', NULL, NULL, 'c', '1', '1')$$
+INSERT INTO `t_cust_file_ordercloumn` (`ID`, `C_INFO_TYPE`, `C_UP_FLAG`, `C_BUSIN_STATUS`, `L_CLOUMN_ORDER`, `C_CLOUMN_PROPERTIES`, `C_CLOUMN_NAME`, `L_IS_MUST`, `D_REG_DATE`, `T_REG_TIME`, `C_CLOUMN_TYPE`, `N_BEGIN_ROW`, `N_END_ROW`) VALUES ('700328', '3', '1', '0', '1', 'receivableNo', '应付账款编号', '1', NULL, NULL, 'c', '1', '1')$$
+INSERT INTO `t_cust_file_ordercloumn` (`ID`, `C_INFO_TYPE`, `C_UP_FLAG`, `C_BUSIN_STATUS`, `L_CLOUMN_ORDER`, `C_CLOUMN_PROPERTIES`, `C_CLOUMN_NAME`, `L_IS_MUST`, `D_REG_DATE`, `T_REG_TIME`, `C_CLOUMN_TYPE`, `N_BEGIN_ROW`, `N_END_ROW`) VALUES ('700329', '3', '1', '0', '2', 'endDate', '应付账款到期日期', '1', NULL, NULL, 'n', '1', '1')$$
+INSERT INTO `t_cust_file_ordercloumn` (`ID`, `C_INFO_TYPE`, `C_UP_FLAG`, `C_BUSIN_STATUS`, `L_CLOUMN_ORDER`, `C_CLOUMN_PROPERTIES`, `C_CLOUMN_NAME`, `L_IS_MUST`, `D_REG_DATE`, `T_REG_TIME`, `C_CLOUMN_TYPE`, `N_BEGIN_ROW`, `N_END_ROW`) VALUES ('700330', '3', '1', '0', '3', 'balance', '应付账款金额', '1', NULL, NULL, 'n', '1', '1')$$
+INSERT INTO `t_cust_file_ordercloumn` (`ID`, `C_INFO_TYPE`, `C_UP_FLAG`, `C_BUSIN_STATUS`, `L_CLOUMN_ORDER`, `C_CLOUMN_PROPERTIES`, `C_CLOUMN_NAME`, `L_IS_MUST`, `D_REG_DATE`, `T_REG_TIME`, `C_CLOUMN_TYPE`, `N_BEGIN_ROW`, `N_END_ROW`) VALUES ('700331', '3', '1', '0', '4', 'agreeNo', '贸易合同号', '1', NULL, NULL, 'c', '1', '1')$$
+INSERT INTO `t_cust_file_ordercloumn` (`ID`, `C_INFO_TYPE`, `C_UP_FLAG`, `C_BUSIN_STATUS`, `L_CLOUMN_ORDER`, `C_CLOUMN_PROPERTIES`, `C_CLOUMN_NAME`, `L_IS_MUST`, `D_REG_DATE`, `T_REG_TIME`, `C_CLOUMN_TYPE`, `N_BEGIN_ROW`, `N_END_ROW`) VALUES ('700332', '3', '1', '0', '5', 'invoiceNos', '发票号', '1', NULL, NULL, 'c', '1', '1')$$
+INSERT INTO `t_cust_file_ordercloumn` (`ID`, `C_INFO_TYPE`, `C_UP_FLAG`, `C_BUSIN_STATUS`, `L_CLOUMN_ORDER`, `C_CLOUMN_PROPERTIES`, `C_CLOUMN_NAME`, `L_IS_MUST`, `D_REG_DATE`, `T_REG_TIME`, `C_CLOUMN_TYPE`, `N_BEGIN_ROW`, `N_END_ROW`) VALUES ('700333', '3', '1', '0', '6', 'description', '备注', '0', NULL, NULL, 'c', '1', '1')$$
+
+
+
+
 
 
 ##-------------------------------------------------------------------------------------------------
