@@ -1345,6 +1345,124 @@ drop PROCEDURE if EXISTS change_recievablev3_table_commissionfileid$$
 
 
 
+drop PROCEDURE if EXISTS create_table_scf_receivable_request$$
+create procedure create_table_scf_receivable_request() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_request')
+	THEN
+		CREATE TABLE `t_scf_receivable_request` (
+		  `C_REQUESTNO` char(18) NOT NULL COMMENT '申请编号',
+		  `C_EQUITYNO` char(18) DEFAULT NULL COMMENT '融资编号',
+		  `L_CUSTNO` bigint(20) DEFAULT NULL COMMENT '供应商编号',
+		  `C_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '供应商名称',
+		  `C_CUST_BANKACCOUNT` varchar(100) DEFAULT NULL COMMENT '收款帐号',
+		  `C_CUST_BANKACCOUNTNAME` varchar(100) DEFAULT NULL COMMENT '收款开户名称',
+		  `C_CUST_BANKNAME` varchar(100) DEFAULT NULL COMMENT '收款银行',
+		  `L_CORE_CUSTNO` bigint(20) DEFAULT NULL COMMENT '核心企业编号',
+		  `C_CORE_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '核心企业名称',
+		  `N_BUSINTYPE_NO` int(4) DEFAULT NULL COMMENT '业务类型',
+		  `L_ASSET_ID` bigint(20) DEFAULT NULL COMMENT '资产Id',
+		  `F_BALANCE` decimal(16,2) DEFAULT NULL COMMENT '申请总金额',
+		  `F_CUST_CORE_RATE` decimal(16,2) DEFAULT NULL COMMENT '核心企业提供的折扣率',
+		  `F_REQUEST_PAY_BALANCE` decimal(16,2) DEFAULT NULL COMMENT '申请提前付款金额',
+		  `F_CUST_OPAT_RATE` decimal(16,2) DEFAULT NULL COMMENT '平台提供利率',
+		  `C_REQUEST_PAY_DATE` char(8) DEFAULT NULL COMMENT '提前付款日期',
+		  `C_DESCRIPTION` varchar(1000) DEFAULT NULL COMMENT '备注',
+		  `C_BUSINSTATUS` char(2) DEFAULT NULL COMMENT '状态 0 未生效 1供应商提交申请 2供应商签署合同 3 供应商转让合同给核心企业签署 4核心企业确认并签署合同 5资金方付款 6完结 7废止',
+		  `C_OPERORG` varchar(200) DEFAULT NULL COMMENT '所属机构',
+		  `L_OWN_COMPANY` bigint(20) DEFAULT NULL COMMENT '当前流程所属公司',
+		  `D_REG_DATE` char(8) DEFAULT NULL COMMENT '申请日期',
+		  `T_REG_TIME` char(6) DEFAULT NULL COMMENT '申请时间',
+		  `D_END_DATE` char(8) DEFAULT NULL COMMENT '到期时间',
+		  `F_REQUEST_PAY_PLAT_BALANCE` decimal(16,2) DEFAULT NULL COMMENT '付款给平台的钱',
+		  `N_CORE_AGREEMENT_ID` bigint(20) DEFAULT NULL COMMENT '核心企业与供应商签订的合同id',
+		  `N_PLAT_AGREEMENT_ID` bigint(20) DEFAULT NULL COMMENT '平台和供应商签订的合同id',
+		  `C_RECEIVABLE_REQUEST_TYPE` char(2) DEFAULT NULL COMMENT '应收账款融资类型',
+		  `L_FACTORY_CUSTNO` bigint(20) DEFAULT NULL COMMENT '保理公司编号',
+		  `C_FACTORY_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '保理公司名称',
+		  `N_REQUEST_BALANCE` decimal(16,2) DEFAULT NULL COMMENT '申请金额',
+		  PRIMARY KEY (`C_REQUESTNO`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	END IF;
+END$$
+call create_table_scf_receivable_request()$$
+drop PROCEDURE if EXISTS create_table_scf_receivable_request$$
+
+
+
+drop PROCEDURE if EXISTS create_table_scf_receivable_request_agreement$$
+create procedure create_table_scf_receivable_request_agreement() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_request_agreement')
+	THEN
+		CREATE TABLE `t_scf_receivable_request_agreement` (
+		  `ID` bigint(18) NOT NULL COMMENT '编号',
+		  `C_REF_NO` char(23) DEFAULT NULL COMMENT '合同凭证编号',
+		  `C_AGREEMENT_CODE` char(23) DEFAULT NULL COMMENT '合同编号',
+		  `L_CUSTNO` bigint(18) DEFAULT NULL COMMENT '供应商企业编号',
+		  `C_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '供应商名称',
+		  `L_CORE_CUSTNO` bigint(18) DEFAULT NULL COMMENT '核心企业编号',
+		  `C_CORE_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '核心企业名称',
+		  `C_AGREEMENT_NAME` varchar(255) DEFAULT NULL COMMENT '合同名称',
+		  `C_BUSIN_STATUS` char(2) DEFAULT NULL COMMENT '状态 0 未签署  1供应商已签 2采购商已签 3 作废',
+		  `D_CUST_DATE` char(8) DEFAULT NULL COMMENT '供应商签署日期',
+		  `T_CUST_TIME` char(6) DEFAULT NULL COMMENT '供应商签署时间',
+		  `D_CORE_DATE` char(8) DEFAULT NULL COMMENT '核心企业签署日期',
+		  `T_CORE_TIME` char(6) DEFAULT NULL COMMENT '核心企业签署时间',
+		  `L_CUST_OPERID` bigint(20) DEFAULT NULL COMMENT '供应商签署人名称',
+		  `C_CUST_OPERNAME` varchar(120) DEFAULT NULL COMMENT '核心企业签署人名称',
+		  `L_CORE_OPERID` bigint(20) DEFAULT NULL COMMENT '核心企业签署人名称',
+		  `C_CORE_OPERNAME` varchar(120) DEFAULT NULL COMMENT '核心企业签署人名称',
+		  `L_AGREEMENT_TEMPLATE_ID` bigint(20) DEFAULT NULL COMMENT '合同模版存放地址',
+		  `F_BALANCE` decimal(16,2) DEFAULT NULL COMMENT '金额',
+		  `L_RECEIVABLEREQUEST_NO` char(18) DEFAULT NULL COMMENT '融资申请编号',
+		  `L_AGREEMENT_CONFIRM_FILE_ID` bigint(20) DEFAULT NULL COMMENT '各方签署合同的文件上传到服务器存放id',
+		  `C_AGREEMENT_TYPE` char(2) DEFAULT NULL COMMENT '合同类型  0 企业金服平台  1 核心企业签订',
+		  `D_SIGN_DATE` char(8) DEFAULT NULL COMMENT '合同最后签署日期',
+		  PRIMARY KEY (`ID`),
+		  KEY `inx_receivable_agreement_tab_core_cust_index` (`L_CUSTNO`,`L_CORE_CUSTNO`) USING BTREE,
+		  KEY `inx_receivbale_agreement_coreCustBusin_index` (`L_CUSTNO`,`L_CORE_CUSTNO`,`C_BUSIN_STATUS`) USING BTREE
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	END IF;
+END$$
+call create_table_scf_receivable_request_agreement()$$
+drop PROCEDURE if EXISTS create_table_scf_receivable_request_agreement$$
+
+
+drop PROCEDURE if EXISTS create_table_scf_receivable_request_log$$
+create procedure create_table_scf_receivable_request_log() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_request_log')
+	THEN
+		CREATE TABLE `t_scf_receivable_request_log` (
+		  `ID` bigint(18) NOT NULL AUTO_INCREMENT,
+		  `C_EQUITYNO` char(18) DEFAULT NULL COMMENT '融资编号',
+		  `L_MODI_OPERID` bigint(20) DEFAULT NULL COMMENT '操作员Id',
+		  `C_MODI_OPERNAME` varchar(120) DEFAULT NULL COMMENT '操作员名称',
+		  `T_MODI_TIME` char(6) DEFAULT NULL COMMENT '操作时间',
+		  `D_MODI_DATE` char(8) DEFAULT NULL COMMENT '操作日期',
+		  `C_MODI_MESSAGE` varchar(500) DEFAULT NULL COMMENT '操作步骤信息',
+		  `L_CUSTNO` bigint(18) DEFAULT NULL COMMENT '操作员所属公司',
+		  `C_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '所属公司名称',
+		  PRIMARY KEY (`ID`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	END IF;
+END$$
+call create_table_scf_receivable_request_log()$$
+drop PROCEDURE if EXISTS create_table_scf_receivable_request_log$$
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
