@@ -1453,7 +1453,15 @@ drop PROCEDURE if EXISTS create_table_scf_receivable_request_log$$
 
 
 
-
+drop PROCEDURE if EXISTS change_recievablev3_table_custCoreRate$$
+create procedure change_recievablev3_table_custCoreRate() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_v3' AND COLUMN_NAME='F_CUST_CORE_RATE')
+THEN   
+   ALTER TABLE `t_scf_receivable_v3` ADD COLUMN `F_CUST_CORE_RATE` decimal(16,2) DEFAULT NULL COMMENT '折扣率';
+END IF;
+END$$
+call change_recievablev3_table_custCoreRate()$$
+drop PROCEDURE if EXISTS change_recievablev3_table_custCoreRate$$
 
 
 
