@@ -1498,6 +1498,17 @@ call change_custRelation_table_isInside()$$
 drop PROCEDURE if EXISTS change_custRelation_table_isInside$$
 
 
+drop PROCEDURE if EXISTS change_supplierOffer_table_operRole$$
+create procedure change_supplierOffer_table_operRole() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_supplier_offer' AND COLUMN_NAME='C_OPER_ROLE')
+THEN   
+   ALTER TABLE `t_scf_supplier_offer` ADD COLUMN `C_OPER_ROLE` char(2) DEFAULT NULL COMMENT '新增利率的角色1 核心企业  2 平台   3 保理公司';
+END IF;
+END$$
+call change_supplierOffer_table_operRole()$$
+drop PROCEDURE if EXISTS change_supplierOffer_table_operRole$$
+
+
 
 
 
