@@ -982,6 +982,75 @@ INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target
 delete from t_cfg_menu where id='223'$$
 INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (223, NULL, '资产管理', '资产管理', NULL, NULL, 4, 5, '', '1', '20160830', '20160830', NULL, '0', 'SUPPLIER_USER,SELLER_USER,CORE_USER,FACTOR_USER,PLATFORM_USER')$$
 
+
+
+##-- 增加通知接口 ID  2017/07/05
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) SELECT 'AlipayNotify.id', 0, NULL, 'SCF', '0', NULL, 10, 50020 FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '50020')$$
+
+delete from t_far_fieldmap where c_face='ylb'  and c_funcode='auditStatusNotify'$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'auditStatusNotify', 0, 'action', 'action', NULL, '2', '0', NULL, '0', NULL)$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'auditStatusNotify', 0, 'create_time', 'createTime', NULL, '2', '0', NULL, '0', NULL)$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'auditStatusNotify', 0, 'display_status', 'displayStatus', NULL, '2', '0', NULL, '0', NULL)$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'auditStatusNotify', 0, 'notify_id', 'notifyId', NULL, '2', '0', NULL, '0', NULL)$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'auditStatusNotify', 0, 'notify_pid', 'notifyPid', NULL, '2', '0', NULL, '0', NULL)$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'auditStatusNotify', 0, 'notify_time', 'notifyTime', NULL, '2', '0', NULL, '0', NULL)$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'auditStatusNotify', 0, 'notify_type', 'notifyType', NULL, '2', '0', NULL, '0', NULL)$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'auditStatusNotify', 0, 'partner_id', 'partnerId', NULL, '2', '0', NULL, '0', NULL)$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'auditStatusNotify', 0, 'shop_id', 'shopId', NULL, '2', '0', NULL, '0', NULL)$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'auditStatusNotify', 0, 'sign', 'sign', NULL, '2', '0', NULL, '0', NULL)$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'auditStatusNotify', 0, 'sign_type', 'signType', NULL, '2', '0', NULL, '0', NULL)$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'auditStatusNotify', 0, 'status', 'businStatus', NULL, '2', '0', NULL, '0', NULL)$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'auditStatusNotify', 0, 'update_time', 'updateTime', NULL, '2', '0', NULL, '0', NULL)$$
+
+
+delete from t_face_fielddict  where C_FACE='ylb' and c_column_name in (
+	select c_facefield from t_far_fieldmap t where t.c_face='ylb'  and c_funcode='auditStatusNotify'
+)$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'notify_id', 'C', 100, 0, '', '0', 0, '')$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'partner_id', 'C', 16, 0, '', '0', 0, '')$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'notify_pid', 'C', 16, 0, '', '0', 0, '')$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'notify_time', 'C', 100, 0, '', '0', 0, '')$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'shop_id', 'C', 64, 0, '', '0', 0, '')$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'status', 'C', 10, 0, '', '0', 0, '')$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'sign_type', 'C', 10, 0, '', '0', 0, '')$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'sign', 'C', 256, 0, '', '0', 0, '')$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'display_status', 'C', 2, 0, '', '0', 0, '')$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'notify_type', 'C', 64, 0, '', '0', 0, '')$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'update_time', 'C', 32, 0, '', '0', 0, '')$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'create_time', 'C', 32, 0, '', '0', 0, '')$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'action', 'C', 50, 0, '', '0', 0, '')$$
+
+delete from t_cfg_dictitem where id=50035$$
+INSERT INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (50035, 110070, 'ylb', NULL, '天弘基金', NULL, 0, '1', '0', NULL, '1')$$
+
+delete from t_far_fieldmap where c_face='ylb' and C_FUNCODE='yulibaoCapitalRansom' and C_FACEFIELD='amount'$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'yulibaoCapitalRansom', 0, 'amount', 'shares', '0', '1', '0', NULL, '0', NULL)$$
+
+delete from t_cfg_config where c_name in ('YlbAuthPath','YlbRedirectUrl')$$
+INSERT INTO `t_cfg_config` (`ID`, `C_SYS`, `N_GROUPNO`, `C_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_CHARSET`, `C_MODE`, `C_CTRLTYPE`, `N_WIDTH`, `C_DICTCODE`, `C_VALUELIST`, `C_VALUE`, `N_SORT`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_MODIFY`, `C_SPLIT`) VALUES (9900030, 'SALE', 9904, 'YlbAuthPath', 'C', 100, 0, '@', 'NORMAL', NULL, NULL, NULL, NULL, 'http://openauth.alipay.com/oauth2/appToAppAuth.htm?app_id=2017041406716290&redirect_uri=https%3A%2F%2Fhubl.qiejf.com%2Fbetter%2FaliPayAuth%2FauthInvoke', 0, '1', NULL, NULL, '余利宝邀约授权地址', '0', '0')$$
+INSERT INTO `t_cfg_config` (`ID`, `C_SYS`, `N_GROUPNO`, `C_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_CHARSET`, `C_MODE`, `C_CTRLTYPE`, `N_WIDTH`, `C_DICTCODE`, `C_VALUELIST`, `C_VALUE`, `N_SORT`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_MODIFY`, `C_SPLIT`) VALUES (9900031, 'SALE', 9904, 'YlbRedirectUrl', 'C', 100, 0, '@', 'NORMAL', NULL, NULL, NULL, NULL, 'https://hubl.qiejf.com/better/byte/app/pages/result.html', 0, '1', NULL, NULL, '余利宝授权回调url地址', '0', '0')$$
+
+delete from t_far_fieldmap where c_face='ylb' and c_funcode='yulibaoCapitalRansom' and c_facefield='ransom_mode'$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('ylb', 'yulibaoCapitalRansom', 0, 'ransom_mode', 'acceptMode', '0', '1', '0', NULL, '1', 'REALTIME')$$
+
+delete from T_FACE_FIELDDICT where c_face='ylb' and c_column_name='amount'$$
+INSERT INTO `t_face_fielddict` (`C_FACE`, `C_COLUMN_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_DATA_FLAG`, `C_CONVERT_FLAG`, `N_SPLTASCII`, `C_DESCRIPTION`) VALUES ('ylb', 'amount', 'C', 100, 2, '', '0', 0, ' ')$$
+
+delete from t_cfg_dictitem where id in (50100,50101,50102,50103)$$
+INSERT INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (50100, 130010, '801', NULL, '活期宝充值', NULL, 0, '1', '0', NULL, '1')$$
+INSERT INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (50101, 130010, '802', NULL, '活期宝普通取现', NULL, 0, '1', '0', NULL, '1')$$
+INSERT INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (50102, 130010, '803', NULL, '活期宝快速取现', NULL, 0, '1', '0', NULL, '1')$$
+INSERT INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES (50103, 130010, '804', NULL, '活期宝买基金/活期宝互转', NULL, 0, '1', '0', NULL, '1')$$
+
+delete from t_cfg_menu where id in (20211,20212,20210,20209,20213)$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20211, NULL, '天天基金短信验证', '天天基金短信验证', '../../byte/home1.html#/p/fund/peng/tiantian', NULL, 20210, 1, '天天基金短信验证', '1', '20170823', '20170823', NULL, '1', NULL)$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20212, NULL, '活期宝申购', '活期宝申购', '../../byte/home1.html#/p/fund/deal/currentT/apply', NULL, 20210, 1, '活期宝申购', '1', '20170823', '20170823', NULL, '1', NULL)$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20210, NULL, '企额宝', '企额宝', '', NULL, 2, 8, '企额宝', '1', '20170823', '20170823', NULL, '0', NULL)$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20209, NULL, '基金风险评测', '基金风险评测', '../../byte/home1.html#/p/fund/report', NULL, 30, 8, '基金风险评测', '1', '20160422', '20160422', NULL, '1', NULL)$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20213, NULL, '活期宝赎回', '活期宝赎回', '../../byte/home1.html#/p/fund/deal/currentT/redeem', NULL, 20210, 2, '活期宝赎回', '1', '20170830', '20170830', NULL, '1', NULL)$$
+
+
+
 ##-------------------------------------------------------------------------------------------------
 ##--END 请勿 COMMIT
 ##-------------------------------------------------------------------------------------------------
