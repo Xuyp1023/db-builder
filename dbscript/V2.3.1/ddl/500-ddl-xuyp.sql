@@ -1464,6 +1464,27 @@ call change_recievablev3_table_custCoreRate()$$
 drop PROCEDURE if EXISTS change_recievablev3_table_custCoreRate$$
 
 
+##---------模式2
+
+drop PROCEDURE if EXISTS change_receivableRequestAgreement_table_factoryNo$$
+create procedure change_receivableRequestAgreement_table_factoryNo() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_request_agreement' AND COLUMN_NAME='L_FACTORYNO')
+THEN   
+   ALTER TABLE `t_scf_receivable_request_agreement` ADD COLUMN `L_FACTORYNO` bigint(20) DEFAULT NULL COMMENT '保理公司Id';
+END IF;
+END$$
+call change_receivableRequestAgreement_table_factoryNo()$$
+drop PROCEDURE if EXISTS change_receivableRequestAgreement_table_factoryNo$$
+
+drop PROCEDURE if EXISTS change_receivableRequestAgreement_table_factoryName$$
+create procedure change_receivableRequestAgreement_table_factoryName() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_request_agreement' AND COLUMN_NAME='C_FACTORYNAME')
+THEN   
+   ALTER TABLE `t_scf_receivable_request_agreement` ADD COLUMN `C_FACTORYNAME` varchar(200) DEFAULT NULL COMMENT '保理公司名称';
+END IF;
+END$$
+call change_receivableRequestAgreement_table_factoryName()$$
+drop PROCEDURE if EXISTS change_receivableRequestAgreement_table_factoryName$$
 
 
 
