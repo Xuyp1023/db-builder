@@ -1487,7 +1487,15 @@ call change_receivableRequestAgreement_table_factoryName()$$
 drop PROCEDURE if EXISTS change_receivableRequestAgreement_table_factoryName$$
 
 
-
+drop PROCEDURE if EXISTS change_custRelation_table_isInside$$
+create procedure change_custRelation_table_isInside() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_relation' AND COLUMN_NAME='C_IS_INSIDE')
+THEN   
+   ALTER TABLE `t_cust_relation` ADD COLUMN `C_IS_INSIDE` char(2) DEFAULT NULL COMMENT '企业内部资金提供方  0 不是   1 是';
+END IF;
+END$$
+call change_custRelation_table_isInside()$$
+drop PROCEDURE if EXISTS change_custRelation_table_isInside$$
 
 
 
