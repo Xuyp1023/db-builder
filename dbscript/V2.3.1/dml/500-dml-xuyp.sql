@@ -588,7 +588,7 @@ INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target
 INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700361', NULL, '电子合同管理', '电子合同管理', '../../scf2/home.html#/prePay_2/set.ecmanage', NULL, '700352', '9', '', '1', '20161027', '20161027', NULL, '1', 'SUPPLIER_USER')$$
 
 
-DELETE FROM `t_rule_busin_validator` WHERE `ID` = 700347$$
+DELETE FROM `t_rule_busin_validator` WHERE `ID` = 700336$$
 INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700336', 'IScfSupplierOfferService.webSaveAddOffer', 'operRole', '4', '1', NULL, NULL, NULL, NULL, NULL)$$
 
 DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='operRole' and C_NAME='operRole' $$
