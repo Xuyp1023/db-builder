@@ -557,7 +557,7 @@ INSERT INTO `t_cust_file_ordercloumn` (`ID`, `C_INFO_TYPE`, `C_UP_FLAG`, `C_BUSI
 
 
 ##---------菜单
-DELETE FROM `t_cfg_menu` WHERE `ID` >= 700334 AND `ID` <= 700346$$
+DELETE FROM `t_cfg_menu` WHERE `ID` >= 700334 AND `ID` <= 700351$$
 INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700334', NULL, '应付账款批量导入', '应付账款批量导入', '../../scf2/home.html#/prePay_1/account.details', NULL, '223', '25', '', '1', '20161027', '20161027', NULL, '1', 'CORE_USER')$$
 INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700335', NULL, '采购方提前付款', '采购方提前付款', NULL, NULL, '4', '13', '', '1', '20160830', '20160830', NULL, '0', 'SUPPLIER_USER,SELLER_USER,FACTOR_USER,CORE_USER,PLATFORM_USER')$$
 INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700336', NULL, '预期收益设置', '预期收益设置', '../../scf2/home.html#/prePay_1/set.yeild', NULL, '700335', '1', '', '1', '20161027', '20161027', NULL, '1', 'CORE_USER')$$
