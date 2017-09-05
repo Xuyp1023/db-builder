@@ -1509,6 +1509,17 @@ call change_supplierOffer_table_operRole()$$
 drop PROCEDURE if EXISTS change_supplierOffer_table_operRole$$
 
 
+drop PROCEDURE if EXISTS change_receivableRequest_table_depositRate$$
+create procedure change_receivableRequest_table_depositRate() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_request' AND COLUMN_NAME='F_DEPOSIT_RATE')
+THEN   
+   ALTER TABLE `t_scf_receivable_request` ADD COLUMN `F_DEPOSIT_RATE` decimal(16,2) DEFAULT NULL COMMENT '供应商折扣率';
+END IF;
+END$$
+call change_receivableRequest_table_depositRate()$$
+drop PROCEDURE if EXISTS change_receivableRequest_table_depositRate$$
+
+
 
 
 
