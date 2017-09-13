@@ -1553,6 +1553,38 @@ call change_assetdict_table_assetinfotype()$$
 drop PROCEDURE if EXISTS change_assetdict_table_assetinfotype$$
 
 
+drop PROCEDURE if EXISTS create_table_coreproduct_cust$$
+create procedure create_table_coreproduct_cust() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_coreproduct_cust')
+	THEN
+		CREATE TABLE `t_scf_coreproduct_cust` (
+		  `ID` bigint(20) NOT NULL COMMENT '主键Id',
+		  `C_PRODUCT_NAME` varchar(50) DEFAULT NULL COMMENT '保理产品名称',
+		  `C_PRODUCT_CODE` varchar(50) DEFAULT NULL COMMENT '保理产品编号',
+		  `C_RECEIVABLE_REQUEST_TYPE` char(2) DEFAULT NULL COMMENT '融资申请类型 1 采购方提前付款  2结算中心提前付款 3：内部保理付款  4 银行保理 5 外部保理付款',
+		  `L_FACTORY_CUSTNO` bigint(20) DEFAULT NULL COMMENT '资金方编号',
+		  `C_FACTORY_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '资金方名称',
+		  `L_CORE_CUSTNO` bigint(20) DEFAULT NULL COMMENT '核心企业编号',
+		  `C_CORE_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '核心企业名称',
+		  `L_CUSTNO` bigint(20) DEFAULT NULL COMMENT '供应商名称',
+		  `C_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '供应商名称',
+		  `D_REG_DATE` char(8) DEFAULT NULL COMMENT '注册日期',
+		  `T_REG_TIME` char(6) DEFAULT NULL COMMENT '注册时间',
+		  `L_REG_OPERID` bigint(20) DEFAULT NULL COMMENT '注册人',
+		  `C_REG_OPERNAME` varchar(120) DEFAULT NULL COMMENT '注册人名称',
+		  `C_BUSIN_STATUS` char(2) DEFAULT NULL COMMENT '业务状态 0 不可用   1 未分配给供应商   2 已经分配给供应商',
+		  `L_PRODUCT_ID` bigint(18) DEFAULT NULL COMMENT '保理产品Id',
+		  PRIMARY KEY (`ID`),
+		  KEY `inx_coreproductcust_table_cust_corecust_index` (`L_CORE_CUSTNO`,`L_CUSTNO`) USING BTREE
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	END IF;
+END$$
+call create_table_coreproduct_cust()$$
+drop PROCEDURE if EXISTS create_table_coreproduct_cust$$
+
+
+
 
 
 
