@@ -1521,6 +1521,40 @@ drop PROCEDURE if EXISTS change_receivableRequest_table_depositRate$$
 
 
 
+drop PROCEDURE if EXISTS change_receivableRequest_table_requestproductCode$$
+create procedure change_receivableRequest_table_requestproductCode() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_request' AND COLUMN_NAME='N_REQUEST_PRODUCT_CODE')
+THEN   
+   ALTER TABLE `t_scf_receivable_request` ADD COLUMN `N_REQUEST_PRODUCT_CODE` varchar(50) DEFAULT '' COMMENT '保理产品Id';
+END IF;
+END$$
+call change_receivableRequest_table_requestproductCode()$$
+drop PROCEDURE if EXISTS change_receivableRequest_table_requestproductCode$$
+
+
+drop PROCEDURE if EXISTS change_productCOnfig_table_receivableType$$
+create procedure change_productCOnfig_table_receivableType() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_product_config' AND COLUMN_NAME='C_RECEIVABLE_REQUEST_TYPE')
+THEN   
+   ALTER TABLE `t_scf_product_config` ADD COLUMN `C_RECEIVABLE_REQUEST_TYPE` char(2) DEFAULT NULL COMMENT '应收账款融资类型  1 采购方提前付款  2结算中心提前付款 3：内部保理付款  4 银行保理 5 外部保理付款';
+END IF;
+END$$
+call change_productCOnfig_table_receivableType()$$
+drop PROCEDURE if EXISTS change_productCOnfig_table_receivableType$$
+
+drop PROCEDURE if EXISTS change_assetdict_table_assetinfotype$$
+create procedure change_assetdict_table_assetinfotype() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_asset_dict' AND COLUMN_NAME='C_ASSET_INFO_TYPE')
+THEN   
+   ALTER TABLE `t_scf_asset_dict` ADD COLUMN `C_ASSET_INFO_TYPE` char(2) DEFAULT NULL COMMENT '关联的基础数据的类型1订单2票据3应收账款4发票5贸易合同6运输单单据类型';
+END IF;
+END$$
+call change_assetdict_table_assetinfotype()$$
+drop PROCEDURE if EXISTS change_assetdict_table_assetinfotype$$
+
+
+
+
 
 
 
