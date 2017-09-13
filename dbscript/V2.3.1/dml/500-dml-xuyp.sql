@@ -599,6 +599,37 @@ INSERT INTO `t_cust_relation` (`ID`, `L_CUSTNO`, `C_CUSTNAME`, `C_BANK_ACCO`, `C
 
 
 
+DELETE FROM `t_scf_asset_dict`$$
+INSERT INTO  `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`, `C_ASSET_INFO_TYPE`) VALUES ('1000', '1', '1', '1', '0', '1', '商业承兑汇票', '2')$$
+INSERT INTO  `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`, `C_ASSET_INFO_TYPE`) VALUES ('1001', '2', '1', '1', '0', '1', '应付账款', '3')$$
+INSERT INTO  `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`, `C_ASSET_INFO_TYPE`) VALUES ('1002', '3', '2', '1', '1', '1', '贸易合', '5')$$
+INSERT INTO  `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`, `C_ASSET_INFO_TYPE`) VALUES ('1003', '4', '2', '1', '1', '1', '商业发票', '4')$$
+INSERT INTO  `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`, `C_ASSET_INFO_TYPE`) VALUES ('1004', '5', '1', '1', '0', '1', '采购订单或订货单', '1')$$
+INSERT INTO  `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`, `C_ASSET_INFO_TYPE`) VALUES ('1005', '6', '2', '0', '1', '1', '对账单', '9')$$
+INSERT INTO  `t_scf_asset_dict` (`ID`, `C_DICT_TYPE`, `C_DATA_SOURCE`, `C_FORM_DATA`, `C_ATTACH`, `C_BUSIN_STATUS`, `C_DESCRIPTION`, `C_ASSET_INFO_TYPE`) VALUES ('1006', '7', '2', '0', '1', '1', '出货单或出库单', '10')$$
+
+
+
+DELETE FROM `t_cust_relation` WHERE `ID` = 700362$$
+INSERT INTO `t_cust_relation` (`ID`, `L_CUSTNO`, `C_CUSTNAME`, `C_BANK_ACCO`, `C_BANK_ACCONAME`, `C_CUSTTYPE`, `C_BT_NO`, `C_CORP_ID`, `L_RELATE_CUSTNO`, `C_RELATE_CUSTNAME`, `C_RELATE_CUSTCORP`, `C_RELATE_TYPE`, `C_PARTNER_CUSTNO`, `L_OPERID`, `C_OPERNAME`, `L_REG_OPERID`, `C_REG_OPERNAME`, `D_REG_DATE`, `T_REG_TIME`, `L_MODI_OPERID`, `C_MODI_OPERNAME`, `D_MODI_DATE`, `T_MODI_TIME`, `C_OPERORG`, `C_BUSIN_STATUS`, `C_LAST_STATUS`, `C_IS_INSIDE`) VALUES ('700362', '102200336', '广东德豪润达电气股份有限公司', NULL, NULL, '0', NULL, NULL, '102200336', '广东德豪润达电气股份有限公司', NULL, '2', NULL, '1000696', '核心企业人员', '1000696', '核心企业人员', '20161201', '155906', '1000696', '核心企业人员', '20161201', '155906', 'biet$$Developer.Core.Enterprise', '3', '3', NULL)$$
+
+
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` = 700363$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700363', 'saveModifyProductConfig', 'receivableRequestType', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+DELETE FROM `t_rule_validator` WHERE  C_VALID_NAME='receivableRequestType' and C_NAME='receivableRequestType' $$
+INSERT INTO `t_rule_validator` (`C_SYS`, `C_VALID_NAME`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `F_MAX`, `F_MIN`, `C_VALIDATOR`, `C_PATTERN`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_BUSIN_FIELD`, `C_DEPENDS`, `C_MESSAGE`, `C_REF_VALUE`) VALUES ('SCF', 'receivableRequestType', '融资模式', 'receivableRequestType', '0', 'C', '2', '0', NULL, NULL, 'NULL', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL)$$
+
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` = 700364$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700364', 'addProductConfig', 'receivableRequestType', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+
+
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'ScfCoreProductCust.id', '10', NULL, 'SCF', '0', NULL, '18', '700365' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700365')$$
+
+
 
 ##-------------------------------------------------------------------------------------------------
 ##--END 请勿 COMMIT
