@@ -969,6 +969,43 @@ call change_table_col()$$
 drop PROCEDURE if EXISTS change_table_col$$
 
 
+##--上传文件字段加长
+drop PROCEDURE if EXISTS change_table_col$$
+create procedure change_table_col() BEGIN   
+IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileupload' AND COLUMN_NAME='C_REQUESTNO')
+THEN   
+   ALTER TABLE `t_cust_fileupload` CHANGE COLUMN `C_REQUESTNO` `C_REQUESTNO` VARCHAR(50) NULL COMMENT '申请单号';
+END IF;
+END$$
+call change_table_col()$$
+drop PROCEDURE if EXISTS change_table_col$$
+
+drop PROCEDURE if EXISTS change_table_col$$
+create procedure change_table_col() BEGIN   
+IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileupload' AND COLUMN_NAME='C_TRADEACCO')
+THEN   
+   ALTER TABLE `t_cust_fileupload` CHANGE COLUMN `C_TRADEACCO` `C_TRADEACCO` VARCHAR(50) NULL COMMENT '交易账户';
+END IF;
+END$$
+call change_table_col()$$
+drop PROCEDURE if EXISTS change_table_col$$
+
+
+drop PROCEDURE if EXISTS change_table_col$$
+create procedure change_table_col() BEGIN   
+IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileupload' AND COLUMN_NAME='C_SALE_REQUESTNO')
+THEN   
+   ALTER TABLE `t_cust_fileupload` CHANGE COLUMN `C_SALE_REQUESTNO` `C_SALE_REQUESTNO` VARCHAR(50) NULL COMMENT '销售机构申请编号';
+END IF;
+END$$
+call change_table_col()$$
+drop PROCEDURE if EXISTS change_table_col$$
+
+
+
+
+
+
 ##--创建企业方案表 2017/09/04  
 drop PROCEDURE if EXISTS create_table_comMoneyScheme$$
 create procedure create_table_comMoneyScheme() 
