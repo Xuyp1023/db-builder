@@ -628,6 +628,12 @@ INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_P
 
 INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'ScfCoreProductCust.id', '10', NULL, 'SCF', '0', NULL, '18', '700365' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700365')$$
 
+DELETE FROM `t_cfg_dictitem` WHERE `ID` = 700366$$
+INSERT INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES ('700366', '130345', '6', '02dec0f6-2a93-40fb-8171-013a170404f1', '应付账款提前回款协议书', 'scfElecReceivableRequestService', '0', '1', '0', NULL, '0')$$
+
+DELETE FROM `t_cfg_dictitem` WHERE `ID` = 700367$$
+INSERT INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES ('700367', '130345', '7', '02dec0f6-2a93-40fb-8171-013a170404f1', '应付账款提前回款协议书(结算中心)', 'scfElecReceivableRequestService', '0', '1', '0', NULL, '0')$$
+
 
 
 ##-------------------------------------------------------------------------------------------------
