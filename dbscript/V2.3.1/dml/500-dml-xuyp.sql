@@ -634,10 +634,10 @@ DELETE FROM `t_cfg_dictitem` WHERE `ID` = 700367$$
 INSERT INTO `t_cfg_dictitem` (`ID`, `L_ITEMNO`, `C_VALUE`, `C_CODE`, `C_NAME`, `C_SUBJECT`, `L_SORT`, `C_STATUS`, `C_DEFAULT`, `C_DESCRIPTION`, `C_OUT`) VALUES ('700367', '130345', '7', '02dec0f6-2a93-40fb-8171-013a170404f1', '应付账款提前回款协议书(结算中心)', 'scfElecReceivableRequestService', '0', '1', '0', NULL, '0')$$
 
 DELETE FROM `t_cfg_dictitem` WHERE `ID` = 310$$
-INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('310', NULL, '客户关系管理', '客户关系管理', '../../scf2/home.html#/customerRelation/coreRelationManage', NULL, '20', '2', '', '1', '20161122', '20161122', NULL, '1', 'CORE_USER');
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('310', NULL, '客户关系管理', '客户关系管理', '../../scf2/home.html#/customerRelation/coreRelationManage', NULL, '20', '2', '', '1', '20161122', '20161122', NULL, '1', 'CORE_USER')$$
 
 DELETE FROM `t_cfg_dictitem` WHERE `ID` = 700368$$
-INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700368', NULL, '客户关系管理', '客户关系管理', '../../scf2/home.html#/customerRelation/RelationManage', NULL, '20', '2', '', '1', '20161122', '20161122', NULL, '1', 'SUPPLIER_USER,SELLER_USER');
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700368', NULL, '客户关系管理', '客户关系管理', '../../scf2/home.html#/customerRelation/RelationManage', NULL, '20', '2', '', '1', '20161122', '20161122', NULL, '1', 'SUPPLIER_USER,SELLER_USER')$$
 
 
 
