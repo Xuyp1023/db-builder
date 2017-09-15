@@ -1585,6 +1585,15 @@ drop PROCEDURE if EXISTS create_table_coreproduct_cust$$
 
 
 
+drop PROCEDURE if EXISTS change_receivablerequest_table_coreAgreementid$$
+create procedure change_receivablerequest_table_coreAgreementid() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_request' AND COLUMN_NAME='N_CORE_AGREEMENT_ID')
+THEN   
+   ALTER TABLE `t_scf_receivable_request` ADD COLUMN `N_CORE_AGREEMENT_ID` varchar(40) DEFAULT NULL COMMENT '核心企业与供应商签订的合同id';
+END IF;
+END$$
+call change_receivablerequest_table_coreAgreementid()$$
+drop PROCEDURE if EXISTS change_receivablerequest_table_coreAgreementid$$
 
 
 
