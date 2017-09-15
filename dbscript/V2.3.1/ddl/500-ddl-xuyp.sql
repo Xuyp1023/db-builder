@@ -1596,18 +1596,6 @@ call change_receivablerequest_table_coreAgreementid()$$
 drop PROCEDURE if EXISTS change_receivablerequest_table_coreAgreementid$$
 
 
-drop PROCEDURE if EXISTS change_receivablerequest_table_elecagreement$$
-create procedure change_receivablerequest_table_elecagreement() BEGIN   
-IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_request' AND COLUMN_NAME='C_ELECAGREEMENT_APPNO')
-THEN   
-   ALTER TABLE `t_scf_receivable_request` ADD COLUMN `C_ELECAGREEMENT_APPNO` varchar(40) DEFAULT NULL COMMENT '电子合同地址';
-END IF;
-END$$
-call change_receivablerequest_table_elecagreement()$$
-drop PROCEDURE if EXISTS change_receivablerequest_table_elecagreement$$
-
-
-
 
 
 
