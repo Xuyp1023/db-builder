@@ -641,6 +641,15 @@ INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target
 
 
 
+
+DELETE FROM `t_sys_notifi_profile` WHERE `ID` = -700369$$
+INSERT INTO `t_sys_notifi_profile` (`ID`, `N_VERSION`, `C_PROFILE_NAME`, `C_PROFILE_RULE`, `C_SUBSCRIBE_ENABLE`, `C_SUBSCRIBE_RULE_LIST`, `L_REG_OPERID`, `C_REG_OPERNAME`, `D_REG_DATE`, `T_REG_TIME`, `L_MODI_OPERID`, `C_MODI_OPERNAME`, `D_MODI_DATE`, `T_MODI_TIME`, `C_OPERORG`, `C_BUSIN_STATUS`, `C_LAST_STATUS`, `L_CUSTNO`, `C_CUSTNAME`, `C_IMMEDIATE`, `C_CUSTOM`) VALUES ('-700369', '0', '签约提醒', 'CORE_USER', '0', NULL, '0', NULL, '20170912', NULL, '0', NULL, '20170912', NULL, '', '1', NULL, NULL, NULL, '0', '0')$$
+
+DELETE FROM `t_sys_notifi_chan_profile` WHERE `ID` = -700369$$
+INSERT INTO `t_sys_notifi_chan_profile` (`ID`, `N_VERSION`, `L_PROFILE_ID`, `C_PROFILE_NAME`, `C_CHANNEL`, `C_SUBJECT`, `C_CONTENT`, `C_REFERENCE`, `L_REG_OPERID`, `C_REG_OPERNAME`, `D_REG_DATE`, `T_REG_TIME`, `L_MODI_OPERID`, `C_MODI_OPERNAME`, `D_MODI_DATE`, `T_MODI_TIME`, `C_OPERORG`, `C_BUSIN_STATUS`, `C_LAST_STATUS`, `L_CUSTNO`) VALUES ('-700369', '0', '-700369', '签约提醒', '3', '签约提醒', '{\r\n    \"title\": \"签约提醒\",\r\n    \"tempId\": \"8PzeI0Vvf6lBLByuTCzeFm_YdrmJ8pKfz9jeViuqpnY\",\r\n    \"invokeUrl\": \"https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appId}&redirect_uri=${wechatUrl}/wechatOauth2&response_type=code&scope=snsapi_base&state=41,${appNo}#wechat_redirect\",\r\n    \"topColor\": \"#000000\",\r\n    \"fields\": [\r\n        {\r\n            \"name\": \"first\",\r\n            \"color\": \"#000000\",\r\n            \"value\": \"${(supplierName)!}，您好。${(factorName)!}于${(regDate)!}向您好起了签约请求，请尽快上平台进行处理。\"\r\n        },\r\n        {\r\n            \"name\": \"keyword1\",\r\n            \"color\": \"#000000\",\r\n            \"value\": \"${(agreeName)!}\"\r\n        },\r\n        {\r\n            \"name\": \"keyword2\",\r\n            \"color\": \"#000000\",\r\n            \"value\": \"${(factorName)!}\"\r\n        },\r\n        {\r\n            \"name\": \"keyword3\",\r\n            \"color\": \"#000000\",\r\n            \"value\": \"${(regDate)!}\"\r\n        },\r\n        {\r\n            \"name\": \"keyword4\",\r\n            \"color\": \"#000000\",\r\n            \"value\": \"${(endDate)!}\"\r\n        },\r\n        {\r\n            \"name\": \"remark\",\r\n            \"color\": \"#000000\",\r\n            \"value\": \"点击详情进入[企e金服]签约管理操作\"\r\n        }	\r\n    ]\r\n}', '签约提醒', '0', '', '20170912', NULL, '0', NULL, '20170912', NULL, NULL, '1', NULL, '0')$$
+
+INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'ScfReceivableRequestLog.id', '750', NULL, 'SCF', '0', NULL, '18', '700371' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700371')$$
+
 ##-------------------------------------------------------------------------------------------------
 ##--END 请勿 COMMIT
 ##-------------------------------------------------------------------------------------------------
