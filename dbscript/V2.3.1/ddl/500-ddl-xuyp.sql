@@ -1368,7 +1368,7 @@ BEGIN
 		  `F_CUST_OPAT_RATE` decimal(16,2) DEFAULT NULL COMMENT '平台提供利率',
 		  `C_REQUEST_PAY_DATE` char(8) DEFAULT NULL COMMENT '提前付款日期',
 		  `C_DESCRIPTION` varchar(1000) DEFAULT NULL COMMENT '备注',
-		  `C_BUSINSTATUS` char(2) DEFAULT NULL COMMENT '状态 0 未生效 1供应商提交申请 2供应商签署合同 3 供应商转让合同给核心企业签署 4核心企业确认并签署合同 5资金方付款 6完结 7废止',
+		  `C_BUSINSTATUS` char(2) DEFAULT NULL COMMENT '状态 0 未生效 模式整合   0 未生效 1供应商提交申请 2资金方签署合同    3 资金方确认付款  6完结  7废止',
 		  `C_OPERORG` varchar(200) DEFAULT NULL COMMENT '所属机构',
 		  `L_OWN_COMPANY` bigint(20) DEFAULT NULL COMMENT '当前流程所属公司',
 		  `D_REG_DATE` char(8) DEFAULT NULL COMMENT '申请日期',
@@ -1604,6 +1604,37 @@ END IF;
 END$$
 call change_receivablerequest_table_elecagreement()$$
 drop PROCEDURE if EXISTS change_receivablerequest_table_elecagreement$$
+
+
+drop PROCEDURE if EXISTS change_receivablerequest_table_supplierSignFlag$$
+create procedure change_receivablerequest_table_supplierSignFlag() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_request' AND COLUMN_NAME='C_SUPPLIER_SIGN_FLAG')
+THEN   
+   ALTER TABLE `t_scf_receivable_request` ADD COLUMN `C_SUPPLIER_SIGN_FLAG` char(2) DEFAULT NULL COMMENT '供应商签署合同标记 0 未签署  1已签署';
+END IF;
+END$$
+call change_receivablerequest_table_supplierSignFlag()$$
+drop PROCEDURE if EXISTS change_receivablerequest_table_supplierSignFlag$$
+
+drop PROCEDURE if EXISTS change_receivablerequest_table_factorySignFlag$$
+create procedure change_receivablerequest_table_factorySignFlag() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_request' AND COLUMN_NAME='C_FACTORY_SIGN_FLAG')
+THEN   
+   ALTER TABLE `t_scf_receivable_request` ADD COLUMN `C_FACTORY_SIGN_FLAG` char(2) DEFAULT NULL COMMENT '资金方签署合同标记 0 未签署  1已签署';
+END IF;
+END$$
+call change_receivablerequest_table_factorySignFlag()$$
+drop PROCEDURE if EXISTS change_receivablerequest_table_factorySignFlag$$
+
+drop PROCEDURE if EXISTS change_receivablerequest_table_coreSignFlag$$
+create procedure change_receivablerequest_table_coreSignFlag() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_request' AND COLUMN_NAME='C_CORE_SIGN_FLAG')
+THEN   
+   ALTER TABLE `t_scf_receivable_request` ADD COLUMN `C_CORE_SIGN_FLAG` char(2) DEFAULT NULL COMMENT '核心企业签署合同标记 0 未签署  1已签署';
+END IF;
+END$$
+call change_receivablerequest_table_coreSignFlag()$$
+drop PROCEDURE if EXISTS change_receivablerequest_table_coreSignFlag$$
 
 
 
