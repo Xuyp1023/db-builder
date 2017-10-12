@@ -650,6 +650,12 @@ INSERT INTO `t_sys_notifi_chan_profile` (`ID`, `N_VERSION`, `L_PROFILE_ID`, `C_P
 
 INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'ScfReceivableRequestLog.id', '750', NULL, 'SCF', '0', NULL, '18', '700371' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700371')$$
 
+
+DELETE FROM `t_rule_busin_validator` WHERE `ID` = 700372$$
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES ('700372', 'ICommissionFileService.webQueryFileList', 'infoType', '1', '1', NULL, NULL, NULL, NULL, NULL)$$
+
+
+
 ##-------------------------------------------------------------------------------------------------
 ##--END 请勿 COMMIT
 ##-------------------------------------------------------------------------------------------------
