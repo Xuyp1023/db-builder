@@ -1636,6 +1636,118 @@ END$$
 call change_receivablerequest_table_coreSignFlag()$$
 drop PROCEDURE if EXISTS change_receivablerequest_table_coreSignFlag$$
 
+drop PROCEDURE if EXISTS change_receivablerequest_table_payStatus$$
+create procedure change_receivablerequest_table_payStatus() BEGIN   
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_receivable_request' AND COLUMN_NAME='C_PAY_STATUS')
+THEN   
+   ALTER TABLE `t_scf_receivable_request` ADD COLUMN `C_PAY_STATUS` char(2) DEFAULT NULL COMMENT '付款状态  0 初始状态    3付款失败 4 付款成功';
+END IF;
+END$$
+call change_receivablerequest_table_payStatus()$$
+drop PROCEDURE if EXISTS change_receivablerequest_table_payStatus$$
+
+
+drop PROCEDURE if EXISTS create_table_possuorce_payfile$$
+create procedure create_table_possuorce_payfile() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_pos_source_pay_file')
+	THEN
+		CREATE TABLE `t_pos_source_pay_file` (
+		  `id` bigint(20) NOT NULL COMMENT '主键Id',
+		  `D_REQUEST_PAY_DATE` char(8) DEFAULT NULL COMMENT '付款日期',
+		  `N_PAY_AMOUNT` int(11) DEFAULT NULL COMMENT '付款总笔数',
+		  `F_BALANCE` decimal(20,2) DEFAULT NULL COMMENT '金额',
+		  `C_FILE_NAME` varchar(100) DEFAULT NULL COMMENT '文件名称',
+		  `C_REF_NO` char(20) DEFAULT NULL COMMENT '凭证编号',
+		  `L_FILEITEM_ID` bigint(20) DEFAULT NULL COMMENT '生成文件上传的文件Id',
+		  `L_ORG_OPERID` bigint(20) DEFAULT NULL COMMENT '记录生成人',
+		  `C_ORG_OPERNAME` varchar(120) DEFAULT NULL COMMENT '记录人名称',
+		  `D_ORG_DATE` char(8) DEFAULT NULL COMMENT '生成日期',
+		  `T_ORG_TIME` char(6) DEFAULT NULL COMMENT '生成时间',
+		  `C_ORG_IP` varchar(128) DEFAULT NULL COMMENT '生成ip',
+		  `N_POOL_ID` bigint(20) DEFAULT NULL COMMENT '付款池Id',
+		  `C_INFO_TYPE` char(255) DEFAULT NULL COMMENT '文件作用类型 0生成付款文件 1上传的付款结果文件',
+		  `C_BUSIN_STATUS` char(2) DEFAULT NULL COMMENT '文件状态 1 未确认 （包括生成的需要付款申请文件）  2已审核  9已删除',
+		  `N_SOURCE_FILE_ID` bigint(20) DEFAULT NULL COMMENT '生成的需付款文件Id',
+		  `L_AUDIT_OPERID` bigint(20) DEFAULT NULL COMMENT '审核人Id',
+		  `C_AUDIT_OPERNAME` varchar(120) DEFAULT NULL COMMENT '审核人名称',
+		  `D_AUDIT_DATE` char(8) DEFAULT NULL COMMENT '审核日期',
+		  `T_AUDIT_TIME` char(6) DEFAULT NULL COMMENT '审核时间',
+		  `L_FACTORY_CUSTNO` bigint(20) DEFAULT NULL,
+		  `C_FACTORY_CUSTNAME` varchar(120) DEFAULT NULL,
+		  `C_LOCKED_STATUS` char(2) DEFAULT NULL COMMENT '0 : 可以上传解析  1 已经上传解析',
+		  PRIMARY KEY (`id`),
+		  KEY `inx_pay_file_tab_requestdata_businstatus
+		inx_pay_file_tab` (`D_REQUEST_PAY_DATE`,`C_BUSIN_STATUS`) USING BTREE,
+		  KEY `inx_pay_file_tab_regdata_businstatus` (`D_ORG_DATE`,`C_BUSIN_STATUS`) USING BTREE,
+		  KEY `inx_pay_file_tab_poolid` (`N_POOL_ID`) USING BTREE
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+	END IF;
+END$$
+call create_table_possuorce_payfile()$$
+drop PROCEDURE if EXISTS create_table_possuorce_payfile$$
+
+
+drop PROCEDURE if EXISTS create_table_possuorce_paypool$$
+create procedure create_table_possuorce_paypool() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_pos_source_pay_pool')
+	THEN
+		CREATE TABLE `t_pos_source_pay_pool` (
+		  `id` bigint(20) NOT NULL COMMENT '主键Id',
+		  `D_REQUEST_PAY_DATE` char(8) DEFAULT NULL COMMENT '付款日期',
+		  `L_FACTORY_CUSTNO` bigint(20) DEFAULT NULL COMMENT '资金方企业编号',
+		  `C_FACTORY_CUSTNAME` varchar(120) DEFAULT NULL COMMENT '资金方企业名称',
+		  `C_OPERORG` varchar(120) DEFAULT NULL COMMENT '资金方操作机构代码',
+		  `F_BALANCE` decimal(20,2) DEFAULT NULL COMMENT '总金额',
+		  `N_PAY_AMOUNT` int(11) DEFAULT NULL COMMENT '付款总笔数',
+		  `N_NOPAY_AMOUNT` int(11) DEFAULT NULL COMMENT '未付款总笔数',
+		  `N_PAYING_AMOUNT` int(11) DEFAULT NULL COMMENT '付款中笔数',
+		  `N_AUDIT_AMOUNT` int(11) DEFAULT NULL COMMENT '复核中笔数',
+		  `N_PAYFAILURE_AMOUNT` int(11) DEFAULT NULL COMMENT '付款失败笔数',
+		  `N_PAYSUCCESS_AMOUNT` int(11) DEFAULT NULL COMMENT '付款成功笔数',
+		  PRIMARY KEY (`id`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+	END IF;
+END$$
+call create_table_possuorce_paypool()$$
+drop PROCEDURE if EXISTS create_table_possuorce_paypool$$
+
+
+drop PROCEDURE if EXISTS create_table_possuorce_paypoolRecord$$
+create procedure create_table_possuorce_paypoolRecord() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_pos_source_pay_pool_record')
+	THEN
+		CREATE TABLE `t_pos_source_pay_pool_record` (
+		  `ID` bigint(20) NOT NULL COMMENT 'id主键',
+		  `C_REQUESTNO` char(18) DEFAULT NULL COMMENT '申请编号',
+		  `C_CUST_BANKACCOUNT` varchar(120) DEFAULT NULL COMMENT '银行账户',
+		  `C_CUST_BANKACCOUNTNAME` varchar(120) DEFAULT NULL COMMENT '银行账户名称',
+		  `C_CUST_BANKNAME` varchar(120) DEFAULT NULL COMMENT '银行名称',
+		  `F_BALANCE` decimal(20,2) DEFAULT NULL COMMENT '金额',
+		  `N_POOL_ID` bigint(20) DEFAULT NULL COMMENT '付款池id',
+		  `N_PAYFILE_ID` bigint(20) DEFAULT NULL COMMENT '付款文件id',
+		  `C_BUSIN_STATUS` char(2) DEFAULT NULL COMMENT '状态：0 未处理 1付款中 2 复核中 3付款失败 4 付款成功 5 解析生成 6审核生效  9数据失效',
+		  `C_INFO_TYPE` char(2) DEFAULT NULL COMMENT '数据来源 0 融资申请  1上传解析',
+		  `C_DESCRIPTION` varchar(255) DEFAULT NULL COMMENT '付款结果信息',
+		  `D_REQUEST_PAY_DATE` char(8) DEFAULT NULL COMMENT '付款日期',
+		  `L_FACTORY_CUSTNO` bigint(20) DEFAULT NULL,
+		  `C_FACTORY_CUSTNAME` varchar(120) DEFAULT NULL,
+		  `C_BUSIN_STATUS_CHINESE` char(8) DEFAULT NULL COMMENT '付款成功|付款失败',
+		  PRIMARY KEY (`ID`),
+		  KEY `inx_pay_record_tab_fileid` (`N_PAYFILE_ID`) USING BTREE,
+		  KEY `inx_pay_record_tab_factoryno_businStatus` (`C_BUSIN_STATUS`,`L_FACTORY_CUSTNO`) USING BTREE,
+		  KEY `inx_pay_record_tab_businStatus_requestdata_factoryno` (`C_BUSIN_STATUS`,`D_REQUEST_PAY_DATE`,`L_FACTORY_CUSTNO`) USING BTREE
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+	END IF;
+END$$
+call create_table_possuorce_paypoolRecord()$$
+drop PROCEDURE if EXISTS create_table_possuorce_paypoolRecord$$
+
 
 
 
