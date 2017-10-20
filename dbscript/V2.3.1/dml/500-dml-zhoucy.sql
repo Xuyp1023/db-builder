@@ -72,6 +72,33 @@ INSERT INTO `t_cfg_auth_filegroup` (`c_fileinfotype`, `c_description`, `c_sub_ra
 INSERT INTO `t_cfg_auth_filegroup` (`c_fileinfotype`, `c_description`, `c_sub_rang`, `c_deficiencyinfo`) VALUES ('CustContacterIdNationFile', '联系人身份证-国徽面', '保理业务', '联系人身份证-国徽面');
 INSERT INTO `t_cfg_auth_filegroup` (`c_fileinfotype`, `c_description`, `c_sub_rang`, `c_deficiencyinfo`) VALUES ('CustContacterIdHeadFile', '联系人身份证-头像面', '保理业务', '联系人身份证-头像面');
 
+
+##-- V2.3.1
+##
+##-- 2017/10/20
+##-- 操作员增加影像文件的附件信息
+
+delete from `t_rule_busin` where id = 51004;
+INSERT INTO `t_rule_busin` (`C_NAME`, `C_EXECUTE_CONTENT`, `C_DESCRIPTION`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `ID`, `C_FUNC`, `C_ENTITY`) VALUES ('updateOperatorWithImageFile', NULL, '编辑操作员带上附件信息', '1', '20161017', '20161017', 51004, 'IOperatorService.webUpdateOperatorWithImageFile', 'com.betterjr.modules.account.entity.CustOperatorInfoRequest');
+
+delete from `t_rule_busin_validator` where `C_BUSIN_NAME`='updateOperatorWithImageFile';
+
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51037, 'updateOperatorWithImageFile', 'password', 1, '0', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51038, 'updateOperatorWithImageFile', 'address', 2, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51039, 'updateOperatorWithImageFile', 'ruleList', 3, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51040, 'updateOperatorWithImageFile', 'phone', 4, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51041, 'updateOperatorWithImageFile', 'id', 5, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51060, 'updateOperatorWithImageFile', 'operCode', 6, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51062, 'updateOperatorWithImageFile', 'name', 7, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51063, 'updateOperatorWithImageFile', 'mobileNo', 7, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51065, 'updateOperatorWithImageFile', 'zipCode', 7, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51066, 'updateOperatorWithImageFile', 'faxNo', 7, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51067, 'updateOperatorWithImageFile', 'email', 7, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51093, 'updateOperatorWithImageFile', 'status', 7, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51104, 'updateOperatorWithImageFile', 'clerkMan', 7, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51105, 'updateOperatorWithImageFile', 'contIdentType', 1, '1', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_rule_busin_validator` (`ID`, `C_BUSIN_NAME`, `C_VALID_NAME`, `N_PRIORITY`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_SHOW_NAME`, `C_NAME`, `C_MUSTITEM`) VALUES (51106, 'updateOperatorWithImageFile', 'contIdentNo', 2, '1', NULL, NULL, NULL, NULL, NULL);
+
 ##-------------------------------------------------------------------------------------------------
 ##--END 请勿 COMMIT
 ##-------------------------------------------------------------------------------------------------
