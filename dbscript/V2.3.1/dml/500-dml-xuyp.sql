@@ -661,6 +661,16 @@ INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO
 INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`)  SELECT 'PayOrderPoolRecord.id', '1336', NULL, 'SCF', '0', NULL, '18', '700375' FROM dual WHERE NOT EXISTS (SELECT 1 FROM `t_cfg_snogeneral` WHERE id = '700375')$$
 
 
+DELETE FROM `t_cfg_menu` WHERE `ID` =700376$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700376', NULL, '付款管理', '付款管理', NULL, NULL, '4', '14', '付款管理', '1', '20160830', '20160830', NULL, '0', 'CORE_USER,FACTOR_USER')$$
+
+DELETE FROM `t_cfg_menu` WHERE `ID` =700377$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700377', NULL, '付款指令管理', '付款指令管理', '../../scf2/home.html#/prePay_1/pay.order', NULL, '700376', '1', '', '1', '20161027', '20161027', NULL, '1', 'CORE_USER,FACTOR_USER')$$
+
+DELETE FROM `t_cfg_menu` WHERE `ID` =700378$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES ('700378', NULL, '付款指令结果', '付款指令结果', '../../scf2/home.html#/prePay_1/pay.result', NULL, '700376', '1', '', '1', '20161027', '20161027', NULL, '1', 'CORE_USER,FACTOR_USER')$$
+
+
 
 
 ##-------------------------------------------------------------------------------------------------
