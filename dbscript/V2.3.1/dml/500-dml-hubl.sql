@@ -1105,7 +1105,7 @@ INSERT INTO `t_sale_cfg_fundbusin` (`C_TANO`, `C_FUNDCODE`, `C_SHARETYPE`, `C_AG
 delete from t_cfg_config where id in (9900030,9900031,9900032)$$
 INSERT INTO `t_cfg_config` (`ID`, `C_SYS`, `N_GROUPNO`, `C_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_CHARSET`, `C_MODE`, `C_CTRLTYPE`, `N_WIDTH`, `C_DICTCODE`, `C_VALUELIST`, `C_VALUE`, `N_SORT`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_MODIFY`, `C_SPLIT`) VALUES (9900030, 'SALE', 9904, 'YlbAuthPath', 'C', 100, 0, '@', 'NORMAL', NULL, NULL, NULL, NULL, 'http://openauth.alipay.com/oauth2/appToAppAuth.htm?app_id=2017041406716290&redirect_uri=https%3A%2F%2Fhubl.qiejf.com%2Fbetter%2FaliPayAuth%2FauthInvoke', 0, '1', NULL, NULL, '余利宝邀约授权地址', '0', '0')$$
 INSERT INTO `t_cfg_config` (`ID`, `C_SYS`, `N_GROUPNO`, `C_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_CHARSET`, `C_MODE`, `C_CTRLTYPE`, `N_WIDTH`, `C_DICTCODE`, `C_VALUELIST`, `C_VALUE`, `N_SORT`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_MODIFY`, `C_SPLIT`) VALUES (9900031, 'SALE', 9904, 'YlbRedirectUrl', 'C', 100, 0, '@', 'NORMAL', NULL, NULL, NULL, NULL, 'https://hubl.qiejf.com/better/byte/app/pages/result.html', 0, '1', NULL, NULL, '余利宝授权回调url地址', '0', '0')$$
-INSERT INTO `t_cfg_config` (`ID`, `C_SYS`, `N_GROUPNO`, `C_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_CHARSET`, `C_MODE`, `C_CTRLTYPE`, `N_WIDTH`, `C_DICTCODE`, `C_VALUELIST`, `C_VALUE`, `N_SORT`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_MODIFY`, `C_SPLIT`) VALUES (9900032, 'SALE', 9904, 'TTPartnerId', 'C', 100, 0, '@', 'NORMAL', NULL, NULL, NULL, NULL, 'TTFUNDQHBT10046', 0, '1', NULL, NULL, '余利宝授权回调url地址', '0', '0')$$
+INSERT INTO `t_cfg_config` (`ID`, `C_SYS`, `N_GROUPNO`, `C_NAME`, `C_DATA_TYPE`, `N_DATA_LEN`, `N_DATA_SCALE`, `C_CHARSET`, `C_MODE`, `C_CTRLTYPE`, `N_WIDTH`, `C_DICTCODE`, `C_VALUELIST`, `C_VALUE`, `N_SORT`, `C_STATUS`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`, `C_MODIFY`, `C_SPLIT`) VALUES (9900032, 'SALE', 9904, 'TTPartnerId', 'C', 100, 0, '@', 'NORMAL', NULL, NULL, NULL, NULL, 'TTFUNDQHBT10046', 0, '1', NULL, NULL, '天天基金的商户号', '0', '0')$$
 
 
 delete from t_far_fieldmap where c_face='303' and C_FUNCODE='uploadFile'$$
@@ -1124,6 +1124,37 @@ delete from t_sys_notifi_profile where id in (-50008,-50007,-50006)$$
 INSERT INTO `t_sys_notifi_profile` (`ID`, `N_VERSION`, `C_PROFILE_NAME`, `C_PROFILE_RULE`, `C_SUBSCRIBE_ENABLE`, `C_SUBSCRIBE_RULE_LIST`, `L_REG_OPERID`, `C_REG_OPERNAME`, `D_REG_DATE`, `T_REG_TIME`, `L_MODI_OPERID`, `C_MODI_OPERNAME`, `D_MODI_DATE`, `T_MODI_TIME`, `C_OPERORG`, `C_BUSIN_STATUS`, `C_LAST_STATUS`, `L_CUSTNO`, `C_CUSTNAME`, `C_IMMEDIATE`, `C_CUSTOM`) VALUES (-50008, 0, '授信成功通知', 'FACTOR_USER', '0', NULL, 0, NULL, '20170912', NULL, 0, NULL, '20170912', NULL, '', '1', NULL, NULL, NULL, '0', '0')$$
 INSERT INTO `t_sys_notifi_profile` (`ID`, `N_VERSION`, `C_PROFILE_NAME`, `C_PROFILE_RULE`, `C_SUBSCRIBE_ENABLE`, `C_SUBSCRIBE_RULE_LIST`, `L_REG_OPERID`, `C_REG_OPERNAME`, `D_REG_DATE`, `T_REG_TIME`, `L_MODI_OPERID`, `C_MODI_OPERNAME`, `D_MODI_DATE`, `T_MODI_TIME`, `C_OPERORG`, `C_BUSIN_STATUS`, `C_LAST_STATUS`, `L_CUSTNO`, `C_CUSTNAME`, `C_IMMEDIATE`, `C_CUSTOM`) VALUES (-50007, 0, '验证通过提醒', 'CORE_USER', '0', NULL, 0, NULL, '20170912', NULL, 0, NULL, '20170912', NULL, '', '1', NULL, NULL, NULL, '0', '0')$$
 INSERT INTO `t_sys_notifi_profile` (`ID`, `N_VERSION`, `C_PROFILE_NAME`, `C_PROFILE_RULE`, `C_SUBSCRIBE_ENABLE`, `C_SUBSCRIBE_RULE_LIST`, `L_REG_OPERID`, `C_REG_OPERNAME`, `D_REG_DATE`, `T_REG_TIME`, `L_MODI_OPERID`, `C_MODI_OPERNAME`, `D_MODI_DATE`, `T_MODI_TIME`, `C_OPERORG`, `C_BUSIN_STATUS`, `C_LAST_STATUS`, `L_CUSTNO`, `C_CUSTNAME`, `C_IMMEDIATE`, `C_CUSTOM`) VALUES (-50006, 0, '应收账款提醒', 'CORE_USER', '0', NULL, 0, NULL, '20170912', NULL, 0, NULL, '20170912', NULL, '', '1', NULL, NULL, NULL, '0', '0')$$
+
+
+delete from t_far_fieldmap where c_face='203' and c_funcode='B009' and c_facefield in ('AvailableBalance','Balance')$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('203', 'B009', 0, 'AvailableBalance', 'validShares', '0', '2', '0', NULL, '0', NULL)$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('203', 'B009', 0, 'Balance', 'shares', '0', '2', '0', NULL, '0', NULL)$$
+
+delete from t_far_fieldmap where c_face='203' and c_funcode='B006' and c_facefield='OutType'$$
+INSERT INTO `t_far_fieldmap` (`C_FACE`, `C_FUNCODE`, `N_ORDER`, `C_FACEFIELD`, `C_BEANFIELD`, `C_CLASS`, `C_IO`, `C_MUSTITEM`, `C_LEVEL`, `C_VALUE_MODE`, `C_EXP`) VALUES ('203', 'B006', 0, 'OutType', 'orderWay', '0', '1', '0', NULL, '0', '')$$
+
+delete from t_cfg_menu where id='33'$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (33, NULL, ' 普通赎回', ' 普通赎回', 'redem/redem.html', NULL, 30, 11, ' 普通赎回', '1', '20151207', '20151207', NULL, '1', NULL)$$
+
+
+delete from t_cfg_menu where id in (20215,20216,20217)$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20215, NULL, '方案定制', '方案定制', '../../byte/home1.html#/p/fund/peng/scheme', NULL, 20210, 3, '方案定制', '1', '20170922', '20170922', NULL, '1', NULL);
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20216, NULL, '企鹅宝申购', '企鹅宝申购', '../../byte/home1.html#/p/fund/peng/apply1', NULL, 20210, 4, '企鹅宝申购', '1', '20170922', '20170922', NULL, '1', NULL);
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20217, NULL, '企鹅宝赎回', '企鹅宝赎回', '../../byte/home1.html#/p/fund/peng/redeem1', NULL, 20210, 5, '企鹅宝赎回', '1', '20170922', '20170922', NULL, '1', NULL);
+
+
+##--华夏风险评测等级变更
+delete from t_risk_grade where `N_EXAMNO` =2$$
+INSERT INTO `t_risk_grade` (`ID`, `N_EXAMNO`, `C_RISKNO`, `C_GRADEINFO`, `N_POINTSTART`, `N_POINTEND`, `C_MATCHRISKGRADE`, `C_APP_TYPE`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`) VALUES (11, 2, '1', '保守型', 0.00, 20.00, '00', '0', '20160411', '20160411', '表示您不乐意投资于任何令资本承受风险的产品。您的回报很可能只会相当于当时的利率，未必能够赶上通胀。')$$
+INSERT INTO `t_risk_grade` (`ID`, `N_EXAMNO`, `C_RISKNO`, `C_GRADEINFO`, `N_POINTSTART`, `N_POINTEND`, `C_MATCHRISKGRADE`, `C_APP_TYPE`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`) VALUES (12, 2, '2', '稳健型', 20.00, 40.00, '00,01', '0', '20160411', '20160411', '表示您乐意接受\n？ 以一个低程度的投资风险去换取于中期（约3年）胜过一般存款的回报潜力，以及于通胀下能保障您的资本的潜力?\n资产市值可能波动并跌至低于您原本的投资额。')$$
+INSERT INTO `t_risk_grade` (`ID`, `N_EXAMNO`, `C_RISKNO`, `C_GRADEINFO`, `N_POINTSTART`, `N_POINTEND`, `C_MATCHRISKGRADE`, `C_APP_TYPE`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`) VALUES (13, 2, '3', '平衡型', 40.00, 60.00, '00,01,02', '0', '20160411', '20160411', '表示您乐意接受\n？  以一个较高程度的投资风险去换取于中长期（约5年）胜过存款的回报潜力，以及于通胀能保障您的资本的潜力$$\n？  资产市值可能波动并跌至低于您原本的投资额$$\n？  一个比‘保守型’投资者所能接受的更大的资产市值波动。')$$
+INSERT INTO `t_risk_grade` (`ID`, `N_EXAMNO`, `C_RISKNO`, `C_GRADEINFO`, `N_POINTSTART`, `N_POINTEND`, `C_MATCHRISKGRADE`, `C_APP_TYPE`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`) VALUES (14, 2, '4', '成长型', 60.00, 80.00, '00,01,02,03', '0', '20160411', '20160411', '表示您乐意接受\n？  于短、中、及长期均属高程度的投资风险及资产市值波幅，去换取高于通胀的回报潜力$$\n？  资产市值可能波动并跌至远低于您原本的投资额$$\n？  一个比‘稳健型’投资者所能接受的更大的资产市值波动。')$$
+INSERT INTO `t_risk_grade` (`ID`, `N_EXAMNO`, `C_RISKNO`, `C_GRADEINFO`, `N_POINTSTART`, `N_POINTEND`, `C_MATCHRISKGRADE`, `C_APP_TYPE`, `D_REGDATE`, `D_MODIDATE`, `C_DESCRIPTION`) VALUES (15, 2, '5', '积极型', 80.00, 100.00, '00,01,02,03,04', '0', '20160411', '20160411', '表示您乐意接受\n？  于短、中及长期均属非常高程度的投资风险及资产市值波幅，去换取非常高的回报潜力$$\n？  资产市值可能波动并跌至远低于您原本的投资额$$\n？  一个比‘积极型’投资者所能接受的更大的资产市值波幅。')$$
+
+##-- 华夏赎回返回原订单号
+delete from `t_far_fieldmap` where `C_FACE` ='203' and `C_FUNCODE` ='B006' and `C_FACEFIELD` ='SendNo'$$
+insert into `t_far_fieldmap`(`C_FACE`,`C_FUNCODE`,`N_ORDER`,`C_FACEFIELD`,`C_BEANFIELD`,`C_CLASS`,`C_IO`,`C_MUSTITEM`,`C_LEVEL`,`C_VALUE_MODE`,`C_EXP`)
+values('203','B006','0','SendNo','saleTradeAccount','0','2','0',null,'0',null)$$
 
 
 ##-------------------------------------------------------------------------------------------------

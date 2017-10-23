@@ -1001,128 +1001,6 @@ END$$
 call change_table_col()$$
 drop PROCEDURE if EXISTS change_table_col$$
 
-
-
-
-
-
-##--创建企业方案表 2017/09/04  
-drop PROCEDURE if EXISTS create_table_comMoneyScheme$$
-create procedure create_table_comMoneyScheme() 
-BEGIN
-	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_com_money_scheme')
-	THEN
-CREATE TABLE `t_com_money_scheme` (
-	`id` BIGINT(18) NOT NULL,
-	`c_scheme_name` VARCHAR(50) NULL DEFAULT NULL COMMENT '方案名称',
-	`F_INCOMEUNIT` DECIMAL(9,5) NULL DEFAULT '0.00000' COMMENT '万份单位收益',
-	`F_INCOMERATIO` DECIMAL(9,5) NULL DEFAULT '0.00000' COMMENT '七日年化收益',
-	`D_CDATE` VARCHAR(8) NULL DEFAULT NULL COMMENT '发布日期',
-	`D_VALID_DATE` VARCHAR(8) NULL DEFAULT NULL COMMENT '有效日期',
-	`c_scheme_type` VARCHAR(2) NULL DEFAULT NULL COMMENT '方案类型',
-	`f_investment_amount` DECIMAL(16,2) NULL DEFAULT NULL COMMENT '投资金额',
-	`c_first_choice` CHAR(1) NULL DEFAULT '1' COMMENT '是否为首选：9首选，1正常',
-	`c_auto_redem` CHAR(1) NULL DEFAULT '0' COMMENT '到期自动赎回：1自动赎回',
-	`l_investment_term` BIGINT(10) NULL DEFAULT NULL COMMENT '投资期限',
-	`c_scheme_describe` VARCHAR(200) NULL DEFAULT NULL COMMENT '方案描述',
-	`c_busin_status` VARCHAR(2) NULL DEFAULT NULL COMMENT '状态：1可用，0禁用',
-	`d_regdate` VARCHAR(8) NULL DEFAULT NULL COMMENT '注册日期',
-	`t_regtime` VARCHAR(8) NULL DEFAULT NULL COMMENT '注册时间',
-	`d_modifydate` VARCHAR(8) NULL DEFAULT NULL COMMENT '修改日期',
-	`t_modeifytime` VARCHAR(8) NULL DEFAULT NULL COMMENT '修改时间',
-	`c_operorg` VARCHAR(200) NULL DEFAULT NULL COMMENT '方案所属机构',
-	`c_add_operorg` VARCHAR(200) NULL DEFAULT NULL COMMENT '添加的操作机构',
-	`c_add_operid` BIGINT(18) NULL DEFAULT NULL COMMENT '添加的操作员编号',
-	`c_add_opername` VARCHAR(120) NULL DEFAULT NULL COMMENT '添加的操作员名称',
-	`c_modify_operorg` VARCHAR(200) NULL DEFAULT NULL COMMENT '修改的操作机构',
-	`c_modify_operid` BIGINT(18) NULL DEFAULT NULL COMMENT '修改的操作员编号',
-	`c_modify_opername` VARCHAR(120) NULL DEFAULT NULL COMMENT '修改的操作员名称',
-	`C_RULE_TYPE` VARCHAR(120) NULL DEFAULT NULL COMMENT '角色类型（平台添加大家都可以查看）',
-	PRIMARY KEY (`id`)
-)
-COMMENT='企额宝方案表'
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB;
-	END IF;
-END$$
-call create_table_comMoneyScheme()$$
-drop PROCEDURE if EXISTS create_table_comMoneyScheme$$
-
-
-drop PROCEDURE if EXISTS create_table_comMoneyScheme_Temp$$
-create procedure create_table_comMoneyScheme_Temp() 
-BEGIN
-	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_com_money_scheme_temp')
-	THEN
-CREATE TABLE `t_com_money_scheme_temp` (
-	`id` BIGINT(18) NOT NULL,
-	`c_scheme_name` VARCHAR(50) NULL DEFAULT NULL COMMENT '方案名称',
-	`F_INCOMEUNIT` DECIMAL(9,5) NULL DEFAULT '0.00000' COMMENT '万份单位收益',
-	`F_INCOMERATIO` DECIMAL(9,5) NULL DEFAULT '0.00000' COMMENT '七日年化收益',
-	`D_CDATE` VARCHAR(8) NULL DEFAULT NULL COMMENT '发布日期',
-	`D_VALID_DATE` VARCHAR(8) NULL DEFAULT NULL COMMENT '有效日期',
-	`c_scheme_type` VARCHAR(2) NULL DEFAULT NULL COMMENT '方案类型',
-	`f_investment_amount` DECIMAL(16,2) NULL DEFAULT NULL COMMENT '投资金额',
-	`c_first_choice` CHAR(1) NULL DEFAULT '1' COMMENT '是否为首选：9首选，1正常',
-	`c_auto_redem` CHAR(1) NULL DEFAULT '0' COMMENT '到期自动赎回：1自动赎回',
-	`l_investment_term` BIGINT(10) NULL DEFAULT NULL COMMENT '投资期限',
-	`c_scheme_describe` VARCHAR(200) NULL DEFAULT NULL COMMENT '方案描述',
-	`c_busin_status` VARCHAR(2) NULL DEFAULT NULL COMMENT '状态：1可用，0禁用',
-	`d_regdate` VARCHAR(8) NULL DEFAULT NULL COMMENT '注册日期',
-	`t_regtime` VARCHAR(8) NULL DEFAULT NULL COMMENT '注册时间',
-	`d_modifydate` VARCHAR(8) NULL DEFAULT NULL COMMENT '修改日期',
-	`t_modeifytime` VARCHAR(8) NULL DEFAULT NULL COMMENT '修改时间',
-	`c_operorg` VARCHAR(200) NULL DEFAULT NULL COMMENT '方案所属机构',
-	`c_add_operorg` VARCHAR(200) NULL DEFAULT NULL COMMENT '添加的操作机构',
-	`c_add_operid` BIGINT(18) NULL DEFAULT NULL COMMENT '添加的操作员编号',
-	`c_add_opername` VARCHAR(120) NULL DEFAULT NULL COMMENT '添加的操作员名称',
-	`c_modify_operorg` VARCHAR(200) NULL DEFAULT NULL COMMENT '修改的操作机构',
-	`c_modify_operid` BIGINT(18) NULL DEFAULT NULL COMMENT '修改的操作员编号',
-	`c_modify_opername` VARCHAR(120) NULL DEFAULT NULL COMMENT '修改的操作员名称',
-	`C_RULE_TYPE` VARCHAR(120) NULL DEFAULT NULL COMMENT '角色类型（平台添加大家都可以查看）',
-	PRIMARY KEY (`id`)
-)
-COMMENT='企额宝方案临时表'
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB;
-	END IF;
-END$$
-call create_table_comMoneyScheme_Temp()$$
-drop PROCEDURE if EXISTS create_table_comMoneyScheme_Temp$$
-
-
-drop PROCEDURE if EXISTS create_t_scheme_fund_combin$$
-create procedure create_t_scheme_fund_combin() 
-BEGIN
-	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scheme_fund_combin')
-	THEN
-CREATE TABLE `t_scheme_fund_combin` (
-	`id` BIGINT(18) NOT NULL,
-	`l_schemeid` BIGINT(18) NOT NULL COMMENT '方案投资编号',
-	`c_agencyNo` VARCHAR(3) NULL DEFAULT NULL COMMENT '销售机构代码',
-	`c_fundCode` CHAR(6) NULL DEFAULT NULL COMMENT '基金代码',
-	`C_FUNDNAME` VARCHAR(60) NULL DEFAULT NULL COMMENT '基金名称',
-	`F_INCOMEUNIT` DECIMAL(9,5) NULL DEFAULT '0.00000' COMMENT '万份单位收益',
-	`F_INCOMERATIO` DECIMAL(9,5) NULL DEFAULT '0.00000' COMMENT '七日年化收益',
-	`F_MAXBALANCE` DECIMAL(16,2) NULL DEFAULT '0.00' COMMENT '最大投资金额',
-	`C_MAX_PROPORTION` VARCHAR(10) NULL DEFAULT NULL COMMENT '最大投资占比',
-	`C_INVESTMENT_PROPORTION` VARCHAR(10) NULL DEFAULT NULL COMMENT '当前投资占比',
-	`f_investment_balance` DECIMAL(16,2) NULL DEFAULT NULL COMMENT '当前投资金额',
-	`c_busin_status` VARCHAR(2) NULL DEFAULT NULL COMMENT '状态：1可用，0草稿',
-	`c_regdate` VARCHAR(8) NULL DEFAULT NULL COMMENT '添加日期',
-	`t_regtime` VARCHAR(8) NULL DEFAULT NULL COMMENT '添加时间',
-	`c_operorg` VARCHAR(120) NULL DEFAULT NULL COMMENT '所属机构',
-	PRIMARY KEY (`id`)
-)
-COMMENT='方案基金组合表'
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB;
-	END IF;
-END$$
-call create_t_scheme_fund_combin()$$
-drop PROCEDURE if EXISTS create_t_scheme_fund_combin$$
-
-
 drop PROCEDURE if EXISTS create_t_sale_sms_dayfund$$
 create procedure create_t_sale_sms_dayfund() 
 BEGIN
@@ -1179,6 +1057,27 @@ END$$
 call create_t_sale_sms_dayfund_record()$$
 drop PROCEDURE if EXISTS create_t_sale_sms_dayfund_record$$
 
+##--添加区域城市代码字段
+drop procedure if exists create_t_cfg_area$$
+create procedure create_t_cfg_area()
+BEGIN
+    IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS where TABLE_SCHEMA in (select database()) AND table_name='T_CFG_AREA' and COLUMN_NAME='C_RELATION_NFCODE')
+	THEN
+		ALTER TABLE `T_CFG_AREA` ADD COLUMN `C_RELATION_NFCODE` VARCHAR(20) NULL COMMENT '映射南方需要的城市代码';
+	END IF;
+END$$
+call create_t_cfg_area()$$
+drop procedure if EXISTS create_t_cfg_area$$
 
 
-
+##--添加基金开户对应的对外经办人编号 2017/10/20 C_OPER_ID
+drop procedure if exists create_column_C_OPER_ID$$
+create procedure create_column_C_OPER_ID()
+BEGIN
+    IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS where TABLE_SCHEMA in (select database()) AND table_name='t_sale_accorequest' and COLUMN_NAME='C_OPER_ID')
+	THEN
+		ALTER TABLE `t_sale_accorequest` ADD COLUMN `C_OPER_ID` BIGINT(20) NULL COMMENT '对外经办人ID';
+	END IF;
+END$$
+call create_column_C_OPER_ID()$$
+drop procedure if EXISTS create_column_C_OPER_ID$$
