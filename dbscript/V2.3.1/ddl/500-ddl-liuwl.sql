@@ -472,6 +472,54 @@ drop PROCEDURE if EXISTS create_table_sys_contract_type$$
 drop PROCEDURE if EXISTS modify_table_stamper_info$$
 create procedure modify_table_stamper_info() 
 BEGIN
+
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_corp_account' and column_name='C_ACCOUNT')
+	THEN 
+		ALTER TABLE `t_sys_contract_corp_account`
+		CHANGE COLUMN `C_ACCOUNT` `C_ACCOUNT` VARCHAR(50) NULL DEFAULT NULL COMMENT '帐号' AFTER `C_IDENT_NO`;
+	END IF;
+	
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_signer_account' and column_name='C_ACCOUNT')
+	THEN 
+		ALTER TABLE `t_sys_contract_signer_account`
+		CHANGE COLUMN `C_ACCOUNT` `C_ACCOUNT` VARCHAR(50) NULL DEFAULT NULL COMMENT '帐号' AFTER `C_IDENT_NO`;
+	END IF;
+	
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_stub' and column_name='N_PAGINATION')
+	THEN 
+		ALTER TABLE `t_sys_contract_stub`
+		CHANGE COLUMN `N_PAGINATION` `C_PAGINATION` VARCHAR(30) NULL DEFAULT NULL COMMENT '签署页码，若为多页签章，支持页码格式；类似打印指定打印页' AFTER `C_POSITION_TYPE`;
+	END IF;
+	
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_template_stamp_place' and column_name='N_PAGINATION')
+	THEN 
+		ALTER TABLE `t_sys_contract_template_stamp_place`
+		CHANGE COLUMN `N_PAGINATION` `C_PAGINATION` VARCHAR(30) NULL DEFAULT NULL COMMENT '签署页码，若为多页签章，支持页码格式；类似打印指定打印页' AFTER `C_TYPE`;
+	END IF;
+
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_stub' and column_name='L_OPERNAME')
+	THEN 
+		ALTER TABLE `t_sys_contract_stub`
+	CHANGE COLUMN `L_OPERNAME` `C_OPERNAME` VARCHAR(50) NULL DEFAULT NULL COMMENT '操作员名称' AFTER `L_OPERID`;
+	END IF;
+
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_corp_account' and column_name='C_SIGNER_ACCOUNT')
+	THEN 
+		ALTER TABLE `t_sys_contract_corp_account`
+		CHANGE COLUMN `C_SIGNER_ACCOUNT` `C_SIGNER_ACCOUNT` VARCHAR(200) NULL DEFAULT NULL COMMENT '电子合同签署人帐号' AFTER `C_SIGNER_OPERNAME`;
+	END IF;
+
+
+	ALTER TABLE t_contract_ledger  CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+	ALTER TABLE t_contract_ledger_cust CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+	ALTER TABLE t_contract_ledger_recode CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+	ALTER TABLE t_cps_daily_statement CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+	ALTER TABLE t_cps_daily_statement_record  CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+	ALTER TABLE t_cps_monthly_statement CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+	ALTER TABLE t_cps_monthly_statement_record  CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+	ALTER TABLE t_scf_agreement_standard CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+	ALTER TABLE t_scf_agreement_type CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+	
 	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_corp_account' and column_name='C_MOBILENO')
 	THEN 
 		ALTER TABLE `t_sys_contract_corp_account`
@@ -484,31 +532,16 @@ BEGIN
 		ADD COLUMN `C_CUSTTYPE` CHAR(1) NULL DEFAULT '0' COMMENT '客户类型：0：机构；1：个人' AFTER `C_NAME`;
 	END IF;
 
-	ALTER TABLE `t_sys_contract_corp_account`
-		CHANGE COLUMN `C_ACCOUNT` `C_ACCOUNT` VARCHAR(50) NULL DEFAULT NULL COMMENT '帐号' AFTER `C_IDENT_NO`;
-
-	ALTER TABLE `t_sys_contract_signer_account`
-		CHANGE COLUMN `C_ACCOUNT` `C_ACCOUNT` VARCHAR(50) NULL DEFAULT NULL COMMENT '帐号' AFTER `C_IDENT_NO`;
-
-	ALTER TABLE `t_sys_contract_stub`
-		CHANGE COLUMN `N_PAGINATION` `C_PAGINATION` VARCHAR(30) NULL DEFAULT NULL COMMENT '签署页码，若为多页签章，支持页码格式；类似打印指定打印页' AFTER `C_POSITION_TYPE`;
-
-	ALTER TABLE `t_sys_contract_template_stamp_place`
-		CHANGE COLUMN `N_PAGINATION` `C_PAGINATION` VARCHAR(30) NULL DEFAULT NULL COMMENT '签署页码，若为多页签章，支持页码格式；类似打印指定打印页' AFTER `C_TYPE`;
-
 	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_agreement' and column_name='L_TEMPLATEID')
 	THEN 
 		ALTER TABLE `t_scf_agreement`
 		ADD COLUMN `L_TEMPLATEID` BIGINT(20) NULL DEFAULT NULL COMMENT '电子合同模板编号' AFTER `C_ENDDATE`;
 	END IF;
-	
-	ALTER TABLE `t_sys_contract_stub`
-	CHANGE COLUMN `L_OPERNAME` `C_OPERNAME` VARCHAR(50) NULL DEFAULT NULL COMMENT '操作员名称' AFTER `L_OPERID`;
-	
-	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_stub' and column_name='C_SIGN_SERVICEID')
+
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_stub' and column_name='C_SIGN_SERVICEID')
 	THEN 
 		ALTER TABLE `t_sys_contract_stub`
-		ADD COLUMN `C_SIGN_SERVICEID` VARCHAR(50) NULL DEFAULT NULL COMMENT '签署记录id' AFTER `C_OPERNAME`；
+		ADD COLUMN `C_SIGN_SERVICEID` VARCHAR(50) NULL DEFAULT NULL COMMENT '签署记录id' AFTER `C_OPERNAME`;
 	END IF;
 	
 	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_scf_agreement_stub' and column_name='N_SEQUENCE')
@@ -522,11 +555,8 @@ BEGIN
 		ALTER TABLE `t_scf_agreement_stub`
 		ADD COLUMN `C_SIGN_SERVICEID` VARCHAR(50) NULL COMMENT '在电子合同服务商那边的签署记录id' AFTER `D_REGDATE`;
 	END IF;
-	
-	ALTER TABLE `t_sys_contract_corp_account`
-		CHANGE COLUMN `C_SIGNER_ACCOUNT` `C_SIGNER_ACCOUNT` VARCHAR(200) NULL DEFAULT NULL COMMENT '电子合同签署人帐号' AFTER `C_SIGNER_OPERNAME`;
 
-	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_corp_account' and column_name='C_ORG_REGTYPE')	
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_corp_account' and column_name='C_ORG_REGTYPE')	
 	THEN 
 		ALTER TABLE `t_sys_contract_corp_account`
 		ADD COLUMN `C_ORG_REGTYPE` VARCHAR(1) NOT NULL COMMENT ' 证件形式，0：三证合一，1：一证一码' AFTER `C_MOBILENO`;
@@ -538,33 +568,42 @@ BEGIN
 		ADD COLUMN `n_htmlno` BIGINT(20) NULL DEFAULT NULL COMMENT '原始的HTML的文件信息' AFTER `L_TEMPLATEID`;
 	END IF;
 		
-	ALTER TABLE t_contract_ledger  CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-	ALTER TABLE t_contract_ledger_cust CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-	ALTER TABLE t_contract_ledger_recode CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-	ALTER TABLE t_cps_daily_statement CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-	ALTER TABLE t_cps_daily_statement_record  CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-	ALTER TABLE t_cps_monthly_statement CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-	ALTER TABLE t_cps_monthly_statement_record  CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-	ALTER TABLE t_scf_agreement_standard CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-	ALTER TABLE t_scf_agreement_type CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-		
 END$$
 call modify_table_stamper_info()$$
 drop PROCEDURE if EXISTS modify_table_stamper_info$$
 
 
+
+
 ##-- 修改文件相关处理的字段类型和增加文件批次号信息，字段明细和验证规则  提交日期2017/10/16
 drop PROCEDURE if EXISTS change_table_col$$
 create procedure change_table_col() BEGIN
+
+IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileitem' and column_name='N_BATCHNO')	
+	THEN 	
+		ALTER TABLE `t_cust_fileitem`
+	CHANGE COLUMN `N_BATCHNO` `N_BATCHNO` BIGINT NULL DEFAULT NULL AFTER `ID`;
+	END IF;
+
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileitem' and column_name='ID')	
+	THEN 	
+		ALTER TABLE `t_cust_fileitem`
+	CHANGE COLUMN `ID` `ID` BIGINT NULL DEFAULT NULL FIRST;
+	END IF;
+	
+	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileitem' and column_name='N_LENGTH')	
+	THEN 	
+		ALTER TABLE `t_cust_fileitem`
+	
+	CHANGE COLUMN `N_LENGTH` `N_LENGTH` INT NULL DEFAULT NULL AFTER `C_FILEPATH`;
+	END IF;
+
 IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileitem')
 THEN   
 
-ALTER TABLE `t_cust_fileitem`
-	CHANGE COLUMN `N_BATCHNO` `N_BATCHNO` BIGINT NULL DEFAULT NULL AFTER `ID`;
+
 	
-ALTER TABLE `t_cust_fileitem`
-	CHANGE COLUMN `ID` `ID` BIGINT NULL DEFAULT NULL FIRST,
-	CHANGE COLUMN `N_LENGTH` `N_LENGTH` INT NULL DEFAULT NULL AFTER `C_FILEPATH`;
+
 	
 ALTER TABLE `t_cust_fileaduit`
 	ALTER `ID` DROP DEFAULT,
