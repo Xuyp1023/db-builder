@@ -469,6 +469,36 @@ drop PROCEDURE if EXISTS create_table_sys_contract_type$$
 
 ## -- copy zhoucy ddl   to  liuwl
 ##--修改电子合同相关表，并且修改这些表的字符集  提交日期2017/09/26
+
+
+
+drop PROCEDURE if EXISTS create_table_sys_fileaduit_temp$$
+create procedure create_table_sys_fileaduit_temp() 
+BEGIN
+	IF NOT EXISTS (SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit_temp')
+	THEN
+		CREATE TABLE `t_cust_fileaduit_temp` (
+		  `ID` bigint(20) NOT NULL,
+		  `L_CUSTNO` bigint(20) DEFAULT NULL,
+		  `N_COUNT` smallint(6) DEFAULT NULL,
+		  `C_STATUS` varchar(1) NOT NULL,
+		  `C_TYPE` varchar(60) NOT NULL,
+		  `C_DESCRIPTION` varchar(200) DEFAULT NULL,
+		  `D_REGDATE` varchar(8) DEFAULT NULL,
+		  `D_REGTIME` varchar(8) DEFAULT NULL,
+		  `D_MODIDATE` varchar(15) DEFAULT NULL,
+		  `C_OPERNO` varchar(18) DEFAULT NULL COMMENT '操作员编号',
+		  `L_ADUIT_CUSTNO` bigint(20) DEFAULT NULL,
+		  `C_ADUITORNO` varchar(18) DEFAULT NULL COMMENT '操作员编号',
+		  `D_ADUIT_DATE` varchar(15) DEFAULT NULL,
+		  `N_BATCHNO` bigint(18) DEFAULT '0' COMMENT '审批临时文件信息',
+		  UNIQUE KEY `PK_CUST_FILEADUIT` (`ID`,`L_CUSTNO`,`C_TYPE`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+	END IF;
+END$$
+call create_table_sys_fileaduit_temp()$$
+drop PROCEDURE if EXISTS create_table_sys_fileaduit_temp$$
+
 drop PROCEDURE if EXISTS modify_table_stamper_info$$
 create procedure modify_table_stamper_info() 
 BEGIN
