@@ -728,3 +728,28 @@ END IF;
 END$$
 call change_table_col()$$
 drop PROCEDURE if EXISTS change_table_col$$
+
+
+drop PROCEDURE if EXISTS modify_t_cfg_snogeneral_lastno$$
+create procedure modify_t_cfg_snogeneral_lastno() 
+BEGIN
+	declare MY_LASTNO  int;
+	select L_LASTNO INTO MY_LASTNO from t_cfg_snogeneral a where a.C_OPERTYPE='ContractTemplateStampPlace.id';
+	IF MY_LASTNO < 1000 THEN
+		update t_cfg_snogeneral set L_LASTNO =10000 where C_OPERTYPE='ContractTemplateStampPlace.id';
+	END IF;
+END $$
+call modify_t_cfg_snogeneral_lastno()$$
+drop PROCEDURE if EXISTS modify_t_cfg_snogeneral_lastno$$
+
+drop PROCEDURE if EXISTS modify_t_cfg_snogeneral_lastno$$
+create procedure modify_t_cfg_snogeneral_lastno() 
+BEGIN
+	declare MY_LASTNO  int;
+	select L_LASTNO INTO MY_LASTNO from t_cfg_snogeneral a where a.C_OPERTYPE='ContractTemplate.id';
+	IF MY_LASTNO < 1000 THEN
+		update t_cfg_snogeneral set L_LASTNO =1000 where C_OPERTYPE='ContractTemplate.id';
+	END IF;
+END $$
+call modify_t_cfg_snogeneral_lastno()$$
+drop PROCEDURE if EXISTS modify_t_cfg_snogeneral_lastno$$
