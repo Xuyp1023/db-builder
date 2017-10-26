@@ -474,39 +474,39 @@ create procedure modify_table_stamper_info()
 BEGIN
 
 	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_corp_account' and column_name='C_ACCOUNT')
-	THEN 
-		ALTER TABLE `t_sys_contract_corp_account`
-		CHANGE COLUMN `C_ACCOUNT` `C_ACCOUNT` VARCHAR(50) NULL DEFAULT NULL COMMENT '帐号' AFTER `C_IDENT_NO`;
+		THEN 
+			ALTER TABLE `t_sys_contract_corp_account`
+			CHANGE COLUMN `C_ACCOUNT` `C_ACCOUNT` VARCHAR(50) NULL DEFAULT NULL COMMENT '帐号' AFTER `C_IDENT_NO`;
 	END IF;
 	
 	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_signer_account' and column_name='C_ACCOUNT')
-	THEN 
-		ALTER TABLE `t_sys_contract_signer_account`
-		CHANGE COLUMN `C_ACCOUNT` `C_ACCOUNT` VARCHAR(50) NULL DEFAULT NULL COMMENT '帐号' AFTER `C_IDENT_NO`;
+		THEN 
+			ALTER TABLE `t_sys_contract_signer_account`
+			CHANGE COLUMN `C_ACCOUNT` `C_ACCOUNT` VARCHAR(50) NULL DEFAULT NULL COMMENT '帐号' AFTER `C_IDENT_NO`;
 	END IF;
 	
 	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_stub' and column_name='N_PAGINATION')
-	THEN 
-		ALTER TABLE `t_sys_contract_stub`
-		CHANGE COLUMN `N_PAGINATION` `C_PAGINATION` VARCHAR(30) NULL DEFAULT NULL COMMENT '签署页码，若为多页签章，支持页码格式；类似打印指定打印页' AFTER `C_POSITION_TYPE`;
+		THEN 
+			ALTER TABLE `t_sys_contract_stub`
+			CHANGE COLUMN `N_PAGINATION` `C_PAGINATION` VARCHAR(30) NULL DEFAULT NULL COMMENT '签署页码，若为多页签章，支持页码格式；类似打印指定打印页' AFTER `C_POSITION_TYPE`;
 	END IF;
 	
 	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_template_stamp_place' and column_name='N_PAGINATION')
-	THEN 
-		ALTER TABLE `t_sys_contract_template_stamp_place`
-		CHANGE COLUMN `N_PAGINATION` `C_PAGINATION` VARCHAR(30) NULL DEFAULT NULL COMMENT '签署页码，若为多页签章，支持页码格式；类似打印指定打印页' AFTER `C_TYPE`;
+		THEN 
+			ALTER TABLE `t_sys_contract_template_stamp_place`
+			CHANGE COLUMN `N_PAGINATION` `C_PAGINATION` VARCHAR(30) NULL DEFAULT NULL COMMENT '签署页码，若为多页签章，支持页码格式；类似打印指定打印页' AFTER `C_TYPE`;
 	END IF;
 
 	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_stub' and column_name='L_OPERNAME')
-	THEN 
-		ALTER TABLE `t_sys_contract_stub`
-	CHANGE COLUMN `L_OPERNAME` `C_OPERNAME` VARCHAR(50) NULL DEFAULT NULL COMMENT '操作员名称' AFTER `L_OPERID`;
+		THEN 
+			ALTER TABLE `t_sys_contract_stub`
+			CHANGE COLUMN `L_OPERNAME` `C_OPERNAME` VARCHAR(50) NULL DEFAULT NULL COMMENT '操作员名称' AFTER `L_OPERID`;
 	END IF;
 
 	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_corp_account' and column_name='C_SIGNER_ACCOUNT')
-	THEN 
-		ALTER TABLE `t_sys_contract_corp_account`
-		CHANGE COLUMN `C_SIGNER_ACCOUNT` `C_SIGNER_ACCOUNT` VARCHAR(200) NULL DEFAULT NULL COMMENT '电子合同签署人帐号' AFTER `C_SIGNER_OPERNAME`;
+		THEN 
+			ALTER TABLE `t_sys_contract_corp_account`
+			CHANGE COLUMN `C_SIGNER_ACCOUNT` `C_SIGNER_ACCOUNT` VARCHAR(200) NULL DEFAULT NULL COMMENT '电子合同签署人帐号' AFTER `C_SIGNER_OPERNAME`;
 	END IF;
 
 
