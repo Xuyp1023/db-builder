@@ -27,17 +27,6 @@ INSERT INTO `t_scf_contract_template` (`ID`, `L_FACTORNO`, `C_TEMPLATE_NAME`, `C
 INSERT INTO `t_scf_contract_template` (`ID`, `L_FACTORNO`, `C_TEMPLATE_NAME`, `C_TEMPLATE_TYPE`, `C_TEMPLATE_PATH`, `C_TEMPLATE_STATUS`, `N_BATCHNO`, `D_REG_DATE`, `T_REG_TIME`) VALUES (984, 102202019, 'model1_latest.ftl', 'receivableRequestProtocolModel1', '20171010/account/signTemplateFile/4dd5f48cfe3944068243a8ef3cf64e1c', '1', 1003411, '20171010', '154457')$$
 INSERT INTO `t_scf_contract_template` (`ID`, `L_FACTORNO`, `C_TEMPLATE_NAME`, `C_TEMPLATE_TYPE`, `C_TEMPLATE_PATH`, `C_TEMPLATE_STATUS`, `N_BATCHNO`, `D_REG_DATE`, `T_REG_TIME`) VALUES (985, 102202019, 'model2_latest.ftl', 'receivableRequestProtocolModel2', '20171010/account/signTemplateFile/42104bd2affe42349ae7d40b97e4257e', '1', 1003412, '20171010', '154508')$$
 
-drop PROCEDURE if EXISTS modify_t_cfg_snogeneral_lastno$$
-create procedure modify_t_cfg_snogeneral_lastno() 
-BEGIN
-	declare MY_LASTNO  int;
-	select L_LASTNO INTO MY_LASTNO from t_cfg_snogeneral a where a.C_OPERTYPE='ContractTemplateStampPlace.id';
-	IF MY_LASTNO < 1000 THEN
-		update t_cfg_snogeneral set L_LASTNO =10000 where C_OPERTYPE='ContractTemplateStampPlace.id';
-	END IF;
-END $$
-call modify_t_cfg_snogeneral_lastno()$$
-drop PROCEDURE if EXISTS modify_t_cfg_snogeneral_lastno$$
 
 delete from `t_sys_contract_template_stamp_place` where ID < 1000;
 INSERT INTO `t_sys_contract_template_stamp_place` (`ID`, `L_TEMPLATE_ID`, `C_TEMPLATE_NAME`, `C_SIGNATORY`, `N_SEQUENCE`, `C_TYPE`, `C_PAGINATION`, `N_AXIS_X`, `N_AXIS_Y`, `C_KEY_WORD`, `C_BUSIN_STATUS`, `C_DOC_STATUS`, `L_REG_OPERID`, `C_REG_OPERNAME`, `D_REG_DATE`, `T_REG_TIME`, `L_MODI_OPERID`, `C_MODI_OPERNAME`, `D_MODI_DATE`, `T_MODI_TIME`) VALUES (2, 970, '应收账款转让申请书', '甲', 0, NULL, NULL, 0, 0, '买方（签章）', NULL, NULL, 1000695, '平台工作人员', '20170916', '092906', 1000695, '平台工作人员', '20170916', '092906')$$
