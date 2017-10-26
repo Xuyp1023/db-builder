@@ -473,37 +473,37 @@ drop PROCEDURE if EXISTS modify_table_stamper_info$$
 create procedure modify_table_stamper_info() 
 BEGIN
 
-	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_corp_account' and column_name='C_ACCOUNT')
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_corp_account' and column_name='C_ACCOUNT')
 	THEN 
 		ALTER TABLE `t_sys_contract_corp_account`
 		CHANGE COLUMN `C_ACCOUNT` `C_ACCOUNT` VARCHAR(50) NULL DEFAULT NULL COMMENT '帐号' AFTER `C_IDENT_NO`;
 	END IF;
 	
-	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_signer_account' and column_name='C_ACCOUNT')
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_signer_account' and column_name='C_ACCOUNT')
 	THEN 
 		ALTER TABLE `t_sys_contract_signer_account`
 		CHANGE COLUMN `C_ACCOUNT` `C_ACCOUNT` VARCHAR(50) NULL DEFAULT NULL COMMENT '帐号' AFTER `C_IDENT_NO`;
 	END IF;
 	
-	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_stub' and column_name='N_PAGINATION')
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_stub' and column_name='N_PAGINATION')
 	THEN 
 		ALTER TABLE `t_sys_contract_stub`
 		CHANGE COLUMN `N_PAGINATION` `C_PAGINATION` VARCHAR(30) NULL DEFAULT NULL COMMENT '签署页码，若为多页签章，支持页码格式；类似打印指定打印页' AFTER `C_POSITION_TYPE`;
 	END IF;
 	
-	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_template_stamp_place' and column_name='N_PAGINATION')
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_template_stamp_place' and column_name='N_PAGINATION')
 	THEN 
 		ALTER TABLE `t_sys_contract_template_stamp_place`
 		CHANGE COLUMN `N_PAGINATION` `C_PAGINATION` VARCHAR(30) NULL DEFAULT NULL COMMENT '签署页码，若为多页签章，支持页码格式；类似打印指定打印页' AFTER `C_TYPE`;
 	END IF;
 
-	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_stub' and column_name='L_OPERNAME')
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_stub' and column_name='L_OPERNAME')
 	THEN 
 		ALTER TABLE `t_sys_contract_stub`
 	CHANGE COLUMN `L_OPERNAME` `C_OPERNAME` VARCHAR(50) NULL DEFAULT NULL COMMENT '操作员名称' AFTER `L_OPERID`;
 	END IF;
 
-	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_corp_account' and column_name='C_SIGNER_ACCOUNT')
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_sys_contract_corp_account' and column_name='C_SIGNER_ACCOUNT')
 	THEN 
 		ALTER TABLE `t_sys_contract_corp_account`
 		CHANGE COLUMN `C_SIGNER_ACCOUNT` `C_SIGNER_ACCOUNT` VARCHAR(200) NULL DEFAULT NULL COMMENT '电子合同签署人帐号' AFTER `C_SIGNER_OPERNAME`;
@@ -579,85 +579,119 @@ drop PROCEDURE if EXISTS modify_table_stamper_info$$
 drop PROCEDURE if EXISTS change_table_col$$
 create procedure change_table_col() BEGIN
 
-IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileitem' and column_name='N_BATCHNO')	
-	THEN 	
-		ALTER TABLE `t_cust_fileitem`
-	CHANGE COLUMN `N_BATCHNO` `N_BATCHNO` BIGINT NULL DEFAULT NULL AFTER `ID`;
+IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileitem' and column_name='N_BATCHNO')	
+		THEN 	
+			ALTER TABLE `t_cust_fileitem`
+			CHANGE COLUMN `N_BATCHNO` `N_BATCHNO` BIGINT NULL DEFAULT NULL AFTER `ID`;
 	END IF;
 
-	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileitem' and column_name='ID')	
-	THEN 	
-		ALTER TABLE `t_cust_fileitem`
-	CHANGE COLUMN `ID` `ID` BIGINT NULL DEFAULT NULL FIRST;
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileitem' and column_name='ID')	
+		THEN 	
+			ALTER TABLE `t_cust_fileitem`
+			CHANGE COLUMN `ID` `ID` BIGINT NULL DEFAULT NULL FIRST;
 	END IF;
 	
-	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileitem' and column_name='N_LENGTH')	
-	THEN 	
-		ALTER TABLE `t_cust_fileitem`
-	
-	CHANGE COLUMN `N_LENGTH` `N_LENGTH` INT NULL DEFAULT NULL AFTER `C_FILEPATH`;
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileitem' and column_name='N_LENGTH')	
+		THEN 	
+			ALTER TABLE `t_cust_fileitem`
+			CHANGE COLUMN `N_LENGTH` `N_LENGTH` INT NULL DEFAULT NULL AFTER `C_FILEPATH`;
 	END IF;
 
 IF EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileitem')
 THEN   
 
-
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit' and column_name='ID')	
+		THEN 	
+			ALTER TABLE `t_cust_fileaduit`
+			CHANGE COLUMN `ID` `ID` BIGINT NOT NULL FIRST;
+	END IF;
 	
-
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit' and column_name='L_CUSTNO')	
+		THEN 	
+			ALTER TABLE `t_cust_fileaduit`
+			CHANGE COLUMN `L_CUSTNO` `L_CUSTNO` BIGINT NOT NULL AFTER `ID`;
+	END IF;
 	
-ALTER TABLE `t_cust_fileaduit`
-	ALTER `ID` DROP DEFAULT,
-	ALTER `L_CUSTNO` DROP DEFAULT,
-	ALTER `C_TYPE` DROP DEFAULT;
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit' and column_name='N_COUNT')	
+		THEN 	
+			ALTER TABLE `t_cust_fileaduit`
+			CHANGE COLUMN `N_COUNT` `N_COUNT` SMALLINT NULL DEFAULT NULL AFTER `L_CUSTNO`;
+	END IF;
 	
-ALTER TABLE `t_cust_fileaduit`
-	CHANGE COLUMN `ID` `ID` BIGINT NOT NULL FIRST,
-	CHANGE COLUMN `L_CUSTNO` `L_CUSTNO` BIGINT NOT NULL AFTER `ID`,
-	CHANGE COLUMN `N_COUNT` `N_COUNT` SMALLINT NULL DEFAULT NULL AFTER `L_CUSTNO`,
-	CHANGE COLUMN `C_TYPE` `C_TYPE` VARCHAR(60) NOT NULL AFTER `C_STATUS`,
-	CHANGE COLUMN `L_ADUIT_CUSTNO` `L_ADUIT_CUSTNO` BIGINT NULL DEFAULT NULL AFTER `C_OPERNO`;
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit' and column_name='C_TYPE')	
+		THEN 	
+			ALTER TABLE `t_cust_fileaduit`
+			CHANGE COLUMN `C_TYPE` `C_TYPE` VARCHAR(60) NOT NULL AFTER `C_STATUS`;
+	END IF;
+	
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit' and column_name='L_ADUIT_CUSTNO')	
+		THEN 	
+			ALTER TABLE `t_cust_fileaduit`
+			CHANGE COLUMN `L_ADUIT_CUSTNO` `L_ADUIT_CUSTNO` BIGINT NULL DEFAULT NULL AFTER `C_OPERNO`;
+	END IF;
+	
 
 	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit' and column_name='N_BATCHNO')
-	THEN 
-	ALTER TABLE `t_cust_fileaduit`
-		ADD COLUMN `N_BATCHNO` BIGINT(20) NOT NULL AFTER `ID`;
-	END IF;
+		THEN 
+			ALTER TABLE `t_cust_fileaduit`
+			ADD COLUMN `N_BATCHNO` BIGINT(20) NOT NULL AFTER `ID`;
+		END IF;
 
-ALTER TABLE `t_cust_fileaduit_temp`
-	ALTER `ID` DROP DEFAULT,
-	ALTER `L_CUSTNO` DROP DEFAULT,
-	ALTER `N_COUNT` DROP DEFAULT,
-	ALTER `C_STATUS` DROP DEFAULT,
-	ALTER `C_TYPE` DROP DEFAULT;
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit_temp' and column_name='ID')
+		THEN 
+			ALTER TABLE `t_cust_fileaduit_temp`
+			CHANGE COLUMN `ID` `ID` BIGINT NOT NULL FIRST;
+		END IF;
 	
-ALTER TABLE `t_cust_fileaduit_temp`
-	CHANGE COLUMN `ID` `ID` BIGINT NOT NULL FIRST,
-	CHANGE COLUMN `L_CUSTNO` `L_CUSTNO` BIGINT NOT NULL AFTER `ID`,
-	CHANGE COLUMN `N_COUNT` `N_COUNT` SMALLINT NULL AFTER `L_CUSTNO`,
-	CHANGE COLUMN `C_STATUS` `C_STATUS` VARCHAR(1) NOT NULL AFTER `N_COUNT`,
-	CHANGE COLUMN `C_TYPE` `C_TYPE` VARCHAR(60) NOT NULL AFTER `C_STATUS`,
-	CHANGE COLUMN `L_ADUIT_CUSTNO` `L_ADUIT_CUSTNO` BIGINT NULL DEFAULT NULL AFTER `C_OPERNO`;
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit_temp' and column_name='L_CUSTNO')
+		THEN 
+			ALTER TABLE `t_cust_fileaduit_temp`
+			CHANGE COLUMN `L_CUSTNO` `L_CUSTNO` BIGINT NOT NULL AFTER `ID`;
+	END IF;
 	
-ALTER TABLE `t_cust_fileaduit_temp`
-	ALTER `L_CUSTNO` DROP DEFAULT,
-	ALTER `C_STATUS` DROP DEFAULT,
-	ALTER `C_TYPE` DROP DEFAULT;
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit_temp' and column_name='N_COUNT')
+		THEN 
+			ALTER TABLE `t_cust_fileaduit_temp`
+			CHANGE COLUMN `N_COUNT` `N_COUNT` SMALLINT NULL AFTER `L_CUSTNO`;
+	END IF;
 	
-ALTER TABLE `t_cust_fileaduit_temp`
-	CHANGE COLUMN `L_CUSTNO` `L_CUSTNO` BIGINT(20) NULL AFTER `ID`,
-	CHANGE COLUMN `C_STATUS` `C_STATUS` VARCHAR(1) NULL AFTER `N_COUNT`,
-	CHANGE COLUMN `C_TYPE` `C_TYPE` VARCHAR(60) NOT NULL AFTER `C_STATUS`;
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit_temp' and column_name='C_STATUS')
+		THEN 
+			ALTER TABLE `t_cust_fileaduit_temp`
+			CHANGE COLUMN `C_STATUS` `C_STATUS` VARCHAR(1) NOT NULL AFTER `N_COUNT`;
+	END IF;
+	
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit_temp' and column_name='C_TYPE')
+		THEN 
+			ALTER TABLE `t_cust_fileaduit_temp`
+			CHANGE COLUMN `C_TYPE` `C_TYPE` VARCHAR(60) NOT NULL AFTER `C_STATUS`;
+	END IF;
+	
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit_temp' and column_name='L_ADUIT_CUSTNO')
+		THEN 
+			ALTER TABLE `t_cust_fileaduit_temp`
+			CHANGE COLUMN `L_ADUIT_CUSTNO` `L_ADUIT_CUSTNO` BIGINT NULL DEFAULT NULL AFTER `C_OPERNO`;
+	END IF;
+	
+
+	IF  EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit_temp' and column_name='L_ADUIT_CUSTNO')
+		THEN 
+			ALTER TABLE `t_cust_fileaduit_temp`
+			CHANGE COLUMN `L_CUSTNO` `L_CUSTNO` BIGINT(20) NULL AFTER `ID`;
+	END IF;
+	
+	
 
 	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_fileaduit_temp' and column_name='N_BATCHNO')
-	THEN 
-	ALTER TABLE `t_cust_fileaduit_temp`
-		ADD COLUMN `N_BATCHNO` BIGINT(18) NULL DEFAULT '0' COMMENT '审批临时文件信息';
+		THEN 
+			ALTER TABLE `t_cust_fileaduit_temp`
+			ADD COLUMN `N_BATCHNO` BIGINT(18) NULL DEFAULT '0' COMMENT '审批临时文件信息';
 	END IF;
 	 
 	IF NOT EXISTS (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA in (select database()) AND table_name='t_cust_operator' and column_name='N_BATCHNO')
-	THEN 
-	ALTER TABLE `t_cust_operator`
-		ADD COLUMN `N_BATCHNO` BIGINT(18) NULL DEFAULT '0' COMMENT '经办人附件信息' AFTER `C_CLERK`;
+		THEN 
+			ALTER TABLE `t_cust_operator`
+			ADD COLUMN `N_BATCHNO` BIGINT(18) NULL DEFAULT '0' COMMENT '经办人附件信息' AFTER `C_CLERK`;
 	END IF;
 	
 END IF;
