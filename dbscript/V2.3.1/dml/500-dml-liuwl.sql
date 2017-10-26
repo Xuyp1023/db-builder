@@ -10,7 +10,7 @@
 DELETE FROM `t_cfg_snogeneral` WHERE ID >=20600 AND ID <= 20619$$
 
 
-INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) VALUES ('ContractTemplate.id', '1', NULL, 'SYS', '0', NULL, '10', '20601')$$
+
 INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) VALUES ('ContractTemplateStampPlace.id', '1', NULL, 'SYS', '0', NULL, '10', '20602')$$
 INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) VALUES ('ContractTemplateLog.id', '1', NULL, 'SYS', '0', NULL, '10', '20603')$$
 INSERT INTO `t_cfg_snogeneral` (`C_OPERTYPE`, `L_LASTNO`, `D_LASTDATE`, `C_SYSNO`, `C_TYPE`, `C_MSG`, `L_DATA_LEN`, `ID`) VALUES ('ContractStamper.id', '1', NULL, 'SYS', '0', NULL, '10', '20604')$$
