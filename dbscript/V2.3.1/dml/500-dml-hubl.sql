@@ -1138,9 +1138,9 @@ INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target
 
 
 delete from t_cfg_menu where id in (20215,20216,20217)$$
-INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20215, NULL, '方案定制', '方案定制', '../../byte/home1.html#/p/fund/peng/scheme', NULL, 20210, 3, '方案定制', '1', '20170922', '20170922', NULL, '1', NULL);
-INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20216, NULL, '企鹅宝申购', '企鹅宝申购', '../../byte/home1.html#/p/fund/peng/apply1', NULL, 20210, 4, '企鹅宝申购', '1', '20170922', '20170922', NULL, '1', NULL);
-INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20217, NULL, '企鹅宝赎回', '企鹅宝赎回', '../../byte/home1.html#/p/fund/peng/redeem1', NULL, 20210, 5, '企鹅宝赎回', '1', '20170922', '20170922', NULL, '1', NULL);
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20215, NULL, '方案定制', '方案定制', '../../byte/home1.html#/p/fund/peng/scheme', NULL, 20210, 3, '方案定制', '1', '20170922', '20170922', NULL, '1', NULL)$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20216, NULL, '企鹅宝申购', '企鹅宝申购', '../../byte/home1.html#/p/fund/peng/apply1', NULL, 20210, 4, '企鹅宝申购', '1', '20170922', '20170922', NULL, '1', NULL)$$
+INSERT INTO `t_cfg_menu` (`id`, `c_sys`, `c_name`, `c_title`, `c_url`, `c_target`, `n_parent_id`, `n_order`, `c_description`, `c_status`, `d_regdate`, `d_modidate`, `c_openmode`, `c_endnode`, `C_RULE_LIST`) VALUES (20217, NULL, '企鹅宝赎回', '企鹅宝赎回', '../../byte/home1.html#/p/fund/peng/redeem1', NULL, 20210, 5, '企鹅宝赎回', '1', '20170922', '20170922', NULL, '1', NULL)$$
 
 
 ##--华夏风险评测等级变更
